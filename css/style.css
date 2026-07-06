@@ -42,6 +42,8 @@ a { color: inherit; }
 
 .sq { color: var(--red); font-style: normal; }
 
+.keep-case { text-transform: none; }
+
 /* ---------- grain overlay ---------- */
 
 .grain {
@@ -159,25 +161,35 @@ a { color: inherit; }
 .hero-word {
   font-size: clamp(44px, 14.4vw, 240px);
   margin: 24px 0 8px;
-  overflow: hidden;
+  animation: fade 1.4s ease .2s backwards;
 }
 
-.hero-word span {
-  display: block;
-  transform: translateY(112%);
-  animation: rise .9s cubic-bezier(.22, 1, .36, 1) forwards;
+/* ---- 闘牛シルエットの浮かび上がり ---- */
+
+.hero > * { position: relative; }
+
+.hero-bull {
+  position: absolute !important;
+  top: 5%;
+  right: 3%;
+  width: min(50vw, 800px);
+  pointer-events: none;
+  opacity: 0;
+  animation: bull-in 2.4s ease .6s forwards;
+  /* 横方向のスピード線で「走る闘牛」に見せる */
+  -webkit-mask-image: repeating-linear-gradient(180deg, #000 0 24px, transparent 24px 31px);
+  mask-image: repeating-linear-gradient(180deg, #000 0 24px, transparent 24px 31px);
 }
 
-.hero-word span:nth-child(1) { animation-delay: .15s; }
-.hero-word span:nth-child(2) { animation-delay: .21s; }
-.hero-word span:nth-child(3) { animation-delay: .27s; }
-.hero-word span:nth-child(4) { animation-delay: .33s; }
-.hero-word span:nth-child(5) { animation-delay: .39s; }
-.hero-word span:nth-child(6) { animation-delay: .45s; }
-.hero-word span:nth-child(7) { animation-delay: .51s; }
-.hero-word span:nth-child(8) { animation-delay: .57s; }
+/* ページ中央（進行方向）へ突進する向きに反転 */
+.hero-bull svg { width: 100%; height: auto; display: block; transform: scaleX(-1); }
 
-@keyframes rise { to { transform: translateY(0); } }
+.hero-bull path { fill: #8f0d21; }
+
+@keyframes bull-in {
+  from { opacity: 0; transform: translateX(90px); filter: blur(16px); }
+  to { opacity: .85; transform: none; filter: blur(0); }
+}
 
 .hero-tagline {
   margin: clamp(20px, 4vh, 48px) 0;
@@ -675,8 +687,8 @@ a { color: inherit; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   [data-reveal] { opacity: 1; transform: none; transition: none; }
-  .hero-word span { animation: none; transform: none; }
-  .hero-tagline, .hero-bottom { animation: none; }
+  .hero-word, .hero-tagline, .hero-bottom { animation: none; }
+  .hero-bull { animation: none; opacity: .85; }
   .marquee-track { animation-duration: 120s; }
 }
 
@@ -736,6 +748,8 @@ a { color: inherit; }
   .sponsor-grid { grid-template-columns: 1fr 1fr; }
 
   .hero-bottom { flex-direction: column; align-items: flex-start; }
+
+  .hero-bull { width: 96vw; top: 16%; right: -10%; }
 
   .pc { display: none; }
 }
