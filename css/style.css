@@ -182,7 +182,7 @@ a { color: inherit; }
 }
 
 /* ページ中央（進行方向）へ突進する向きに反転 */
-.hero-bull svg { width: 100%; height: auto; display: block; transform: scaleX(-1); }
+.hero-bull img { width: 100%; height: auto; display: block; transform: scaleX(-1); }
 
 @keyframes bull-in {
   from { opacity: 0; transform: translateX(90px); filter: blur(16px); }
