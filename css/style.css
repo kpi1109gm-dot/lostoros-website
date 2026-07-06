@@ -170,8 +170,8 @@ a { color: inherit; }
 
 .hero-bull {
   position: absolute !important;
-  top: 5%;
-  right: 3%;
+  top: 13%;
+  right: 10%;
   width: min(50vw, 800px);
   pointer-events: none;
   opacity: 0;
