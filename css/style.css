@@ -184,8 +184,6 @@ a { color: inherit; }
 /* ページ中央（進行方向）へ突進する向きに反転 */
 .hero-bull svg { width: 100%; height: auto; display: block; transform: scaleX(-1); }
 
-.hero-bull path { fill: #8f0d21; }
-
 @keyframes bull-in {
   from { opacity: 0; transform: translateX(90px); filter: blur(16px); }
   to { opacity: .85; transform: none; filter: blur(0); }
