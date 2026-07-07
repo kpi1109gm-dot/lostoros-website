@@ -159,7 +159,8 @@ a { color: inherit; }
 }
 
 .hero-word {
-  font-size: clamp(44px, 14.4vw, 240px);
+  /* 上限を高くして超ワイド画面でも文字間が間延びしないようにする */
+  font-size: clamp(44px, 14.4vw, 380px);
   margin: 24px 0 8px;
   animation: fade 1.4s ease .2s backwards;
 }
@@ -503,8 +504,8 @@ a { color: inherit; }
 .member-photo {
   position: relative;
   aspect-ratio: 3 / 4;
-  max-height: 520px;
   width: 100%;
+  max-width: 460px;
   background:
     repeating-linear-gradient(105deg,
       transparent 0 90px,
@@ -654,7 +655,7 @@ a { color: inherit; }
 }
 
 .footer-word {
-  font-size: clamp(44px, 14.4vw, 240px);
+  font-size: clamp(44px, 14.4vw, 380px);
   padding: 0 var(--pad-x);
 }
 
