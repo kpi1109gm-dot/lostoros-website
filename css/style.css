@@ -169,11 +169,38 @@ a { color: inherit; }
 
 .hero > * { position: relative; }
 
+/* 縦動画パネル：幅はビューポート連動、実解像度(404px)以上に拡大しない */
+.hero-media {
+  position: absolute !important;
+  top: 8%;
+  right: 6%;
+  width: clamp(200px, 24vw, 404px);
+  margin: 0;
+  animation: fade 1.6s ease .5s backwards;
+}
+
+.hero-media video {
+  width: 100%;
+  height: auto;
+  display: block;
+  border: 1px solid rgba(244, 242, 236, .25);
+  filter: grayscale(1) contrast(1.05);
+}
+
+.hero-media figcaption {
+  font-size: 10px;
+  letter-spacing: .22em;
+  opacity: .55;
+  margin-top: 10px;
+  text-align: right;
+}
+
 .hero-bull {
   position: absolute !important;
-  top: 13%;
-  right: 10%;
-  width: min(50vw, 800px);
+  top: 22%;
+  left: -6%;
+  width: min(46vw, 700px);
+  opacity: 0;
   pointer-events: none;
   opacity: 0;
   animation: bull-in 2.4s ease .6s forwards;
@@ -692,6 +719,7 @@ a { color: inherit; }
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   .hero-word, .hero-tagline, .hero-bottom { animation: none; }
   .hero-bull { animation: none; opacity: .85; }
+  .hero-media { animation: none; }
   .marquee-track { animation-duration: 120s; }
 }
 
@@ -753,7 +781,9 @@ a { color: inherit; }
 
   .hero-bottom { flex-direction: column; align-items: flex-start; }
 
-  .hero-bull { width: 96vw; top: 16%; right: -10%; }
+  /* モバイルは動画パネルを主役に、闘牛は非表示 */
+  .hero-bull { display: none; }
+  .hero-media { width: 48vw; top: 15%; right: 7%; }
 
   .pc { display: none; }
 }

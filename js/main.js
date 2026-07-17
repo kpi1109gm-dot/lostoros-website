@@ -38,6 +38,13 @@
     }, { passive: true });
   }
 
+  // ---- hero video: 動きを減らす設定のユーザーには自動再生しない ----
+  var heroVideo = document.querySelector('.hero-media video');
+  if (heroVideo && reduceMotion) {
+    heroVideo.removeAttribute('autoplay');
+    heroVideo.pause();
+  }
+
   // ---- header: hide on scroll down, show on scroll up ----
   var header = document.querySelector('.site-header');
   var lastY = window.scrollY;
