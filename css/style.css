@@ -531,20 +531,11 @@ a { color: inherit; }
   overflow: hidden;
 }
 
-.member-ph-mark {
-  width: 26%;
-  opacity: .3;
-}
-
-.member-ph-note {
-  position: absolute;
-  bottom: 14px;
-  left: 0;
-  right: 0;
-  text-align: center;
-  font-size: 10px;
-  letter-spacing: .3em;
-  opacity: .45;
+.member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .member-role {
