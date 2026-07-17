@@ -169,52 +169,31 @@ a { color: inherit; }
 
 .hero > * { position: relative; }
 
-/* 縦動画パネル：幅はビューポート連動、実解像度(404px)以上に拡大しない */
-.hero-media {
+/* 全面背景の縦動画：object-fit coverで画面を満たし、暗幕で文字を立たせる */
+.hero-video {
   position: absolute !important;
-  top: 8%;
-  right: 6%;
-  width: clamp(200px, 24vw, 404px);
-  margin: 0;
-  animation: fade 1.6s ease .5s backwards;
+  inset: 0;
+  overflow: hidden;
+  animation: fade 1.8s ease .2s backwards;
 }
 
-.hero-media video {
+.hero-video video {
   width: 100%;
-  height: auto;
-  display: block;
-  border: 1px solid rgba(244, 242, 236, .25);
-  filter: grayscale(1) contrast(1.05);
+  height: 100%;
+  object-fit: cover;
+  object-position: center 30%;
+  filter: grayscale(1) contrast(1.06) brightness(.92);
 }
 
-.hero-media figcaption {
-  font-size: 10px;
-  letter-spacing: .22em;
-  opacity: .55;
-  margin-top: 10px;
-  text-align: right;
-}
-
-.hero-bull {
-  position: absolute !important;
-  top: 22%;
-  left: -6%;
-  width: min(46vw, 700px);
-  opacity: 0;
-  pointer-events: none;
-  opacity: 0;
-  animation: bull-in 2.4s ease .6s forwards;
-  /* 横方向のスピード線で「走る闘牛」に見せる */
-  -webkit-mask-image: repeating-linear-gradient(180deg, #000 0 24px, transparent 24px 31px);
-  mask-image: repeating-linear-gradient(180deg, #000 0 24px, transparent 24px 31px);
-}
-
-/* ページ中央（進行方向）へ突進する向きに反転 */
-.hero-bull img { width: 100%; height: auto; display: block; transform: scaleX(-1); }
-
-@keyframes bull-in {
-  from { opacity: 0; transform: translateX(90px); filter: blur(16px); }
-  to { opacity: .85; transform: none; filter: blur(0); }
+.hero-video::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(12, 12, 13, .55) 0%,
+    rgba(12, 12, 13, .28) 42%,
+    rgba(12, 12, 13, .78) 74%,
+    rgba(12, 12, 13, .96) 100%);
 }
 
 .hero-tagline {
@@ -640,7 +619,42 @@ a { color: inherit; }
 
 /* ---------- contact ---------- */
 
-.section--contact { padding-bottom: clamp(60px, 8vw, 110px); }
+.section--contact {
+  position: relative;
+  overflow: hidden;
+  padding-bottom: clamp(60px, 8vw, 110px);
+}
+
+.section--contact > * { position: relative; }
+
+/* 闘牛シルエット：スピード線マスク付きの背景ウォーターマーク */
+.contact-bull {
+  position: absolute !important;
+  right: -4%;
+  top: 4%;
+  width: min(42vw, 600px);
+  pointer-events: none;
+  opacity: .55;
+  -webkit-mask-image: repeating-linear-gradient(180deg, #000 0 24px, transparent 24px 31px);
+  mask-image: repeating-linear-gradient(180deg, #000 0 24px, transparent 24px 31px);
+}
+
+.contact-bull img { width: 100%; height: auto; display: block; transform: scaleX(-1); }
+
+.contact-mail {
+  font-size: 15px;
+  margin-top: 18px;
+}
+
+.contact-mail a {
+  color: var(--paper);
+  text-decoration: none;
+  border-bottom: 1px solid var(--red);
+  padding-bottom: 2px;
+  transition: color .3s ease;
+}
+
+.contact-mail a:hover { color: var(--red); }
 
 .contact-reach {
   display: inline-flex;
@@ -718,8 +732,7 @@ a { color: inherit; }
   html { scroll-behavior: auto; }
   [data-reveal] { opacity: 1; transform: none; transition: none; }
   .hero-word, .hero-tagline, .hero-bottom { animation: none; }
-  .hero-bull { animation: none; opacity: .85; }
-  .hero-media { animation: none; }
+  .hero-video { animation: none; }
   .marquee-track { animation-duration: 120s; }
 }
 
@@ -781,9 +794,7 @@ a { color: inherit; }
 
   .hero-bottom { flex-direction: column; align-items: flex-start; }
 
-  /* モバイルは動画パネルを主役に、闘牛は非表示 */
-  .hero-bull { display: none; }
-  .hero-media { width: 48vw; top: 15%; right: 7%; }
+  .contact-bull { width: 72vw; opacity: .35; top: 2%; }
 
   .pc { display: none; }
 }

@@ -39,7 +39,7 @@
   }
 
   // ---- hero video: 動きを減らす設定のユーザーには自動再生しない ----
-  var heroVideo = document.querySelector('.hero-media video');
+  var heroVideo = document.querySelector('.hero-video video');
   if (heroVideo && reduceMotion) {
     heroVideo.removeAttribute('autoplay');
     heroVideo.pause();

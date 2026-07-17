@@ -40,17 +40,11 @@
         <span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
 
-      <!-- 突進する闘牛のシルエット（浮かび上がる演出）。素材: クライアント支給の著作権フリーイラスト -->
-      <div class="hero-bull" aria-hidden="true">
-        <img src="assets/bull.png" alt="" width="1600" height="1088">
-      </div>
-
-      <!-- トレーニング映像（縦動画パネル・無劣化のまま使用） -->
-      <figure class="hero-media">
+      <!-- トレーニング映像：全面背景（無劣化のまま使用）＋暗幕グラデーション -->
+      <div class="hero-video" aria-hidden="true">
         <video src="assets/hero-video.mp4" poster="assets/hero-poster.jpg"
                autoplay muted loop playsinline preload="metadata" width="404" height="720"></video>
-        <figcaption class="mono">TRAINING FOOTAGE <span class="sq">■</span> 00:20 LOOP</figcaption>
-      </figure>
+      </div>
 
       <p class="hero-kicker mono keep-case">LLC LosToros <span class="sq" aria-hidden="true">■</span> Track Team, Tokyo Japan</p>
 
@@ -248,18 +242,23 @@
 
     <!-- ======= CONTACT ======= -->
     <section class="section section--ink section--contact" id="contact">
+      <!-- 闘牛シルエット（ヒーローから移設したブランド要素） -->
+      <div class="contact-bull" aria-hidden="true">
+        <img src="assets/bull.png" alt="" width="1600" height="1088">
+      </div>
+
       <div class="section-head mono" data-reveal>
         <span>(006) CONTACT</span><span class="rule"></span><span>お問い合わせ</span>
       </div>
 
-      <!-- TODO: 取得済みメールアドレスの提供後、href="mailto:xxx@xxx" を設定 -->
-      <a class="contact-reach" href="mailto:" data-reveal>
+      <a class="contact-reach" href="mailto:chida@lostoros.net" data-reveal>
         <span class="contact-word">REACH OUT</span>
         <svg class="contact-arrow" viewBox="0 0 96 32" aria-hidden="true">
           <line x1="0" y1="16" x2="88" y2="16"/><polyline points="74,4 90,16 74,28"/>
         </svg>
       </a>
       <p class="contact-note mono" data-reveal>スポンサーシップ / イベント・出演依頼 / 取材 — お気軽にご連絡ください。</p>
+      <p class="contact-mail mono keep-case" data-reveal><a href="mailto:chida@lostoros.net">chida@lostoros.net</a></p>
     </section>
 
   </main>
