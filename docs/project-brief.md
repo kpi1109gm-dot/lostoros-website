@@ -67,6 +67,10 @@
 - トレーニング映像 ver1（2026-07-17受領）→ assets/hero-video.mp4
   ヒーロー全面背景として使用（縦404x720・20秒・音声のみ無劣化削除）
 - お問い合わせメール: chida@lostoros.net（CONTACTに設定済み）
+- 公式ロゴ一式（2026-07-26受領）→ assets/logo-lockup.png（ヘッダー）/
+  assets/wordmark.png（ヒーロー・フッター）/ assets/logo.png（ファビコン用マーク）
+- 2ショット写真（2026-07-26受領）→ assets/team-duo.jpg
+  MEMBERS と SPONSORS の間に全面写真バンドとして配置
 
 ## 受領待ちの素材・情報
 
