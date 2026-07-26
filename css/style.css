@@ -558,60 +558,6 @@ a { color: inherit; }
   max-width: 32em;
 }
 
-/* ---------- 全面写真バンド ---------- */
-
-.band {
-  position: relative;
-  min-height: min(100svh, 860px);
-  display: flex;
-  align-items: flex-end;
-  overflow: hidden;
-  background: var(--ink);
-}
-
-.band-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 38%;
-  filter: grayscale(1) contrast(1.04);
-}
-
-.band::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg,
-    rgba(12, 12, 13, .35) 0%,
-    rgba(12, 12, 13, .08) 38%,
-    rgba(12, 12, 13, .72) 82%,
-    rgba(12, 12, 13, .96) 100%);
-}
-
-.band-inner {
-  position: relative;
-  z-index: 1;
-  padding: 0 var(--pad-x) clamp(48px, 7vw, 96px);
-}
-
-.band-copy {
-  font-weight: 900;
-  font-size: clamp(30px, 5.2vw, 76px);
-  line-height: 1.45;
-  letter-spacing: .05em;
-  color: var(--paper);
-}
-
-.band-sub {
-  font-size: 12px;
-  opacity: .7;
-  margin-top: 20px;
-  text-transform: none;
-  color: var(--paper);
-}
-
 /* ---------- sponsors ---------- */
 
 .sponsor-intro {
@@ -671,24 +617,36 @@ a { color: inherit; }
 .section--contact {
   position: relative;
   overflow: hidden;
+  min-height: min(100svh, 880px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   padding-bottom: clamp(60px, 8vw, 110px);
 }
 
-.section--contact > * { position: relative; }
+.section--contact > *:not(.contact-photo) { position: relative; z-index: 1; }
 
-/* 闘牛シルエット：スピード線マスク付きの背景ウォーターマーク */
-.contact-bull {
-  position: absolute !important;
-  right: -4%;
-  top: 4%;
-  width: min(42vw, 600px);
-  pointer-events: none;
-  opacity: .55;
-  -webkit-mask-image: repeating-linear-gradient(180deg, #000 0 24px, transparent 24px 31px);
-  mask-image: repeating-linear-gradient(180deg, #000 0 24px, transparent 24px 31px);
+/* 2ショット写真の全面背景＋暗幕 */
+.contact-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 32%;
+  filter: grayscale(1) contrast(1.04);
 }
 
-.contact-bull img { width: 100%; height: auto; display: block; transform: scaleX(-1); }
+.section--contact::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg,
+    rgba(12, 12, 13, .82) 0%,
+    rgba(12, 12, 13, .55) 32%,
+    rgba(12, 12, 13, .72) 66%,
+    rgba(12, 12, 13, .95) 100%);
+}
 
 .contact-mail {
   font-size: 15px;
@@ -751,6 +709,13 @@ a { color: inherit; }
 .footer-word {
   padding: 0 var(--pad-x);
   margin-bottom: clamp(28px, 4vw, 56px);
+  text-align: center;
+}
+
+.footer-word img {
+  width: min(78%, 620px);
+  height: auto;
+  margin: 0 auto;
 }
 
 .footer-bottom {
@@ -843,7 +808,7 @@ a { color: inherit; }
 
   .hero-bottom { flex-direction: column; align-items: flex-start; }
 
-  .contact-bull { width: 72vw; opacity: .35; top: 2%; }
+  .contact-photo { object-position: center 26%; }
 
   .pc { display: none; }
 }

@@ -60,7 +60,6 @@
 
 - 正式ロゴマーク（2026-07-06受領）→ assets/logo.png（ブランド赤に着色・透過済み）
   ヘッダー / ファビコン / メンバー写真プレースホルダーで使用
-- 闘牛の全身イラスト（著作権フリー・クライアント支給）→ assets/bull.png（ヒーロー背景）
 
 - 創業者ポートレート2点（2026-07-07受領）→ assets/member-01.jpg（千田）/ member-02.jpg（池田）
 
@@ -70,7 +69,7 @@
 - 公式ロゴ一式（2026-07-26受領）→ assets/logo-lockup.png（ヘッダー）/
   assets/wordmark.png（ヒーロー・フッター）/ assets/logo.png（ファビコン用マーク）
 - 2ショット写真（2026-07-26受領）→ assets/team-duo.jpg
-  MEMBERS と SPONSORS の間に全面写真バンドとして配置
+  CONTACT セクションの全面背景として使用
 
 ## 受領待ちの素材・情報
 
