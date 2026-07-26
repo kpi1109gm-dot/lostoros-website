@@ -73,21 +73,19 @@ a { color: inherit; }
 /* 下スクロールで隠れ、上スクロールで現れる */
 .site-header.is-hidden { transform: translateY(-110%); }
 
-/* ロゴ画像以外は difference で背景色に応じて反転させる */
-.header-word, .site-nav, .nav-toggle { mix-blend-mode: difference; }
+/* 背景色に応じて反転させる（白ロゴが白背景でも読める） */
+.header-logo, .site-nav, .nav-toggle { mix-blend-mode: difference; }
 
 .header-brand {
   display: flex;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
 }
 
-.header-word {
-  font-family: var(--disp);
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: .06em;
+.header-logo {
+  width: clamp(132px, 13vw, 184px);
+  height: auto;
+  display: block;
 }
 
 .site-nav {
@@ -149,20 +147,17 @@ a { color: inherit; }
   margin-bottom: auto;
 }
 
-.word-spread {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-  font-family: var(--disp);
-  font-weight: 700;
-  line-height: .95;
-}
-
+/* ワードマーク画像：常にコンテンツ幅いっぱい（画面幅に追従） */
 .hero-word {
-  /* 上限を高くして超ワイド画面でも文字間が間延びしないようにする */
-  font-size: clamp(44px, 14.4vw, 380px);
   margin: 24px 0 8px;
   animation: fade 1.4s ease .2s backwards;
+}
+
+.hero-word img,
+.footer-word img {
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* ---- 闘牛シルエットの浮かび上がり ---- */
@@ -700,8 +695,8 @@ a { color: inherit; }
 }
 
 .footer-word {
-  font-size: clamp(44px, 14.4vw, 380px);
   padding: 0 var(--pad-x);
+  margin-bottom: clamp(28px, 4vw, 56px);
 }
 
 .footer-bottom {
