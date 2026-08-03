@@ -1,0 +1,44 @@
+# Render Blueprint — この1ファイルでサイトとAPIの両方が作られる
+# 使い方: Renderダッシュボード → New → Blueprint → このリポジトリを選択
+services:
+  # 1) 公開サイト（静的サイト・無料・CDN配信・スリープなし）
+  - type: web
+    runtime: static
+    name: lostoros-site
+    rootDir: .
+    buildCommand: ""
+    staticPublishPath: .
+    pullRequestPreviewsEnabled: false
+    headers:
+      - path: /*
+        name: X-Frame-Options
+        value: SAMEORIGIN
+      - path: /*
+        name: X-Content-Type-Options
+        value: nosniff
+      - path: /*
+        name: Referrer-Policy
+        value: strict-origin-when-cross-origin
+
+  # 2) お問い合わせ受信API（Node・無料枠は一定時間で休止する）
+  - type: web
+    runtime: node
+    name: lostoros-api
+    rootDir: server
+    plan: free
+    region: singapore
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /healthz
+    envVars:
+      # 値はRenderのダッシュボードで設定する（Gitには保存しない）
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: MAIL_TO
+        sync: false

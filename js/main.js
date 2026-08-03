@@ -63,10 +63,10 @@
 
   // ---- お問い合わせフォーム ----
   //
-  // FORM_ENDPOINT が空のあいだは、送信ボタンでメールソフトを起動する方式で動く。
-  // フォーム送信サービス（Formspree等）に登録してエンドポイントURLを貼れば、
-  // 入力内容がそのまま CONTACT_EMAIL 宛のメールとして届くようになる。
-  var FORM_ENDPOINT = '';
+  // 送信先は Render の Web Service（server/index.js）。
+  // Renderでサービス名を変えた場合はこのURLも合わせて変更する。
+  // 空にするとメールソフト起動方式のフォールバックで動く。
+  var FORM_ENDPOINT = 'https://lostoros-api.onrender.com/api/contact';
   var CONTACT_EMAIL = 'chida@lostoros.net';
 
   var form = document.getElementById('contactForm');
@@ -106,7 +106,8 @@
         company: form.company.value.trim(),
         email: form.email.value.trim(),
         type: form.type.value,
-        message: form.message.value.trim()
+        message: form.message.value.trim(),
+        website: form.website ? form.website.value : ''
       };
 
       if (!FORM_ENDPOINT) {
@@ -126,7 +127,15 @@
         return;
       }
 
+      var submitBtn = form.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
       setStatus('送信中…', '');
+
+      // 無料プランのサーバーは休止から復帰するまで時間がかかることがある
+      var slowNotice = setTimeout(function () {
+        setStatus('送信中です。接続に少し時間がかかっています…', '');
+      }, 4000);
+
       fetch(FORM_ENDPOINT, {
         method: 'POST',
         headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
@@ -137,6 +146,9 @@
         setStatus('送信しました。折り返しご連絡いたします。', 'ok');
       }).catch(function () {
         setStatus('送信に失敗しました。お手数ですが ' + CONTACT_EMAIL + ' まで直接ご連絡ください。', 'error');
+      }).then(function () {
+        clearTimeout(slowNotice);
+        if (submitBtn) submitBtn.disabled = false;
       });
     });
 

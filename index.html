@@ -349,6 +349,12 @@
             <textarea id="cf-message" name="message" rows="7" required></textarea>
           </div>
 
+          <!-- ボット対策。人間には見えない項目で、入力があれば迷惑送信と判定する -->
+          <div class="cf-trap" aria-hidden="true">
+            <label for="cf-website">Website</label>
+            <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
+          </div>
+
           <div class="cform-foot">
             <button class="btn-red" type="submit">送信する</button>
             <p class="cform-status mono" id="formStatus" role="status" aria-live="polite"></p>

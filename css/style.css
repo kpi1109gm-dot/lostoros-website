@@ -827,6 +827,15 @@ a { color: inherit; }
 
 .cfield [aria-invalid="true"] { border-color: var(--red); }
 
+/* ボット対策の隠しフィールド（画面にも読み上げにも出さない） */
+.cf-trap {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .cform-foot {
   grid-column: 1 / -1;
   display: flex;
