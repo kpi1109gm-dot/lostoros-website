@@ -264,7 +264,7 @@
       </div>
 
       <div class="contact-body">
-        <a class="contact-reach" href="mailto:chida@lostoros.net" data-reveal>
+        <a class="contact-reach" href="#contact-form" data-reveal>
           <span class="contact-word">REACH OUT</span>
           <svg class="contact-arrow" viewBox="0 0 96 32" aria-hidden="true">
             <line x1="0" y1="16" x2="88" y2="16"/><polyline points="74,4 90,16 74,28"/>
@@ -272,6 +272,51 @@
         </a>
         <p class="contact-note mono" data-reveal>スポンサーシップ / イベント・出演依頼 / 取材 — お気軽にご連絡ください。</p>
         <p class="contact-mail mono keep-case" data-reveal><a href="mailto:chida@lostoros.net">chida@lostoros.net</a></p>
+      </div>
+    </section>
+
+    <!-- ======= お問い合わせフォーム ======= -->
+    <section class="section section--ink form-section" id="contact-form">
+      <div class="form-wrap">
+        <h2 class="form-title" data-reveal>お問い合わせ</h2>
+        <p class="form-lead mono" data-reveal>必要事項をご記入のうえ送信してください。担当より折り返しご連絡いたします。</p>
+
+        <form class="cform" id="contactForm" novalidate data-reveal>
+          <div class="cfield">
+            <label class="mono" for="cf-name">お名前 <span class="req">必須</span></label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required>
+          </div>
+
+          <div class="cfield">
+            <label class="mono" for="cf-company">会社・団体名</label>
+            <input id="cf-company" name="company" type="text" autocomplete="organization">
+          </div>
+
+          <div class="cfield">
+            <label class="mono" for="cf-email">メールアドレス <span class="req">必須</span></label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required>
+          </div>
+
+          <div class="cfield">
+            <label class="mono" for="cf-type">お問い合わせ種別</label>
+            <select id="cf-type" name="type">
+              <option>スポンサーシップについて</option>
+              <option>イベント・出演のご依頼</option>
+              <option>取材のご依頼</option>
+              <option>その他</option>
+            </select>
+          </div>
+
+          <div class="cfield cfield--full">
+            <label class="mono" for="cf-message">お問い合わせ内容 <span class="req">必須</span></label>
+            <textarea id="cf-message" name="message" rows="7" required></textarea>
+          </div>
+
+          <div class="cform-foot">
+            <button class="btn-red" type="submit">送信する</button>
+            <p class="cform-status mono" id="formStatus" role="status" aria-live="polite"></p>
+          </div>
+        </form>
       </div>
     </section>
 
