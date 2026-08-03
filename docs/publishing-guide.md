@@ -1,5 +1,7 @@
 # LosToros サイト公開手順書
 
+**2026-08-03 公開完了 → https://lostoros.net （HTTPS有効）**
+
 対象ドメイン: lostoros.net（Wixで契約中 / メール chida@lostoros.net もWix管理）
 公開先: GitHub Pages（無料）
 

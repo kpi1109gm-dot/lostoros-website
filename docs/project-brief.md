@@ -85,6 +85,15 @@
 1. 会社概要の追加情報（所在地・設立年月など、掲載する場合）
 2. 動画の高解像度版（1080x1920）があれば大画面での鮮明度が向上する
 
+## 公開情報
+
+- 本番URL: https://lostoros.net （www も同URLへ転送）
+- ホスティング: GitHub Pages（kpi1109gm-dot/lostoros-website、
+  claude/lostoros-corporate-site-dzn7az ブランチ / root）
+- ドメイン: Wix管理のまま、DNSのA・CNAMEレコードのみGitHub Pagesへ向けた
+- メール: chida@lostoros.net は Google のMXレコードで従来通り稼働
+- 更新方法: ブランチにプッシュすると数分で自動反映
+
 ## 制作状況
 
 - 2026-07-06: サイト実装完了（index.html / css/style.css / js/main.js）。
