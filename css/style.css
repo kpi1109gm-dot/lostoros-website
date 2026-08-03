@@ -551,11 +551,35 @@ a { color: inherit; }
   margin-top: 12px;
 }
 
+.member-en {
+  font-size: 12px;
+  letter-spacing: .18em;
+  opacity: .5;
+  margin-top: 8px;
+}
+
 .member-bio {
   font-size: 15px;
   opacity: .85;
   margin-top: 18px;
   max-width: 32em;
+}
+
+/* 実績リスト（営業資料より抜粋） */
+.member-creds {
+  list-style: none;
+  margin-top: 22px;
+  max-width: 30em;
+  border-top: 1px solid rgba(244, 242, 236, .2);
+  text-transform: none;
+}
+
+.member-creds li {
+  font-size: 12px;
+  letter-spacing: .08em;
+  opacity: .75;
+  padding: 9px 0;
+  border-bottom: 1px solid rgba(244, 242, 236, .12);
 }
 
 /* ---------- sponsors ---------- */
@@ -568,7 +592,7 @@ a { color: inherit; }
   margin-bottom: clamp(48px, 7vw, 90px);
 }
 
-.sponsor-intro p:not(.lead) {
+.sponsor-copy p:not(.lead) {
   font-size: 15px;
   margin-top: 1.4em;
   max-width: 34em;
