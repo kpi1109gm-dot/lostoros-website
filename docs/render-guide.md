@@ -38,10 +38,14 @@ Renderは「フォーム送信サービス」ではなく「アプリを動か�
 
 ## STEP 2: メール送信の設定（Gmailアプリパスワード）
 
-chida@lostoros.net はGoogleのメールサーバーを使っているため、
-Googleの「アプリパスワード」を発行してRenderに登録する。
+アプリパスワードは**作業する本人のアカウント**で発行する。
+池田さんが設定するなら ikeda@lostoros.net でログインして発行すればよく、
+千田さんのアカウント情報は不要。
 
-1. https://myaccount.google.com/apppasswords を開く
+受信先（MAIL_TO）はカンマ区切りで複数指定でき、両名に同時に届く。
+
+1. 発行する本人のアカウント（例: ikeda@lostoros.net）でGoogleにログインし
+   https://myaccount.google.com/apppasswords を開く
    （2段階認証が未設定なら先に有効化する必要がある）
 2. アプリ名に `LosToros Site` などと入力して作成
 3. 表示される **16桁のパスワード**をコピー（この画面を閉じると二度と見られない）
@@ -51,9 +55,9 @@ Googleの「アプリパスワード」を発行してRenderに登録する。
 |---|---|
 | SMTP_HOST | smtp.gmail.com |
 | SMTP_PORT | 465 |
-| SMTP_USER | chida@lostoros.net |
+| SMTP_USER | アプリパスワードを発行したアドレス（例: ikeda@lostoros.net） |
 | SMTP_PASS | 発行した16桁のアプリパスワード |
-| MAIL_TO | chida@lostoros.net |
+| MAIL_TO | chida@lostoros.net,ikeda@lostoros.net ← カンマ区切りで両名に届く |
 
 5. 保存すると自動で再デプロイされる
 6. `https://lostoros-api.onrender.com/healthz` を開き
