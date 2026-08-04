@@ -44,6 +44,19 @@ a { color: inherit; }
 
 .keep-case { text-transform: none; }
 
+/* 画面には出さず、検索エンジンと読み上げソフトにだけ伝えるテキスト */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------- grain overlay ---------- */
 
 .grain {
