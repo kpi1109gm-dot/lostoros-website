@@ -36,33 +36,63 @@ Renderは「フォーム送信サービス」ではなく「アプリを動か�
 ※サービス名が重複して別名になった場合は、APIのURLを控えて
 `js/main.js` の `FORM_ENDPOINT` を書き換えること（Claudeに伝えれば対応する）。
 
-## STEP 2: メール送信の設定（Gmailアプリパスワード）
+## STEP 2: メール送信の設定
 
-アプリパスワードは**作業する本人のアカウント**で発行する。
-池田さんが設定するなら ikeda@lostoros.net でログインして発行すればよく、
-千田さんのアカウント情報は不要。
+> **重要**: Renderの無料プランは2025年9月から **SMTPポート(25/465/587)への
+> 送信を遮断** している。そのためGmailのSMTPは無料プランでは使えない。
+> 下記のどちらかを選ぶ。
 
-受信先（MAIL_TO）はカンマ区切りで複数指定でき、両名に同時に届く。
+### 方式A: Resend（HTTP API）を使う — 無料のまま動く【推奨】
 
-1. 発行する本人のアカウント（例: ikeda@lostoros.net）でGoogleにログインし
-   https://myaccount.google.com/apppasswords を開く
-   （2段階認証が未設定なら先に有効化する必要がある）
-2. アプリ名に `LosToros Site` などと入力して作成
-3. 表示される **16桁のパスワード**をコピー（この画面を閉じると二度と見られない）
-4. Renderダッシュボード → `lostoros-api` → **Environment** で以下を登録:
+RenderがブロックするのはSMTPポートのみで、HTTPS経由のメールAPIは使える。
+Resendは月3,000通まで無料。
+
+1. https://resend.com/ で登録（GitHubアカウントで可）
+2. **Domains** → **Add Domain** → `lostoros.net` を入力
+3. 表示されるDNSレコード（3件程度）をWixの「DNSレコードを管理」で追加
+   - **既存のMXレコードには触らない**。Resendは `send.lostoros.net` など
+     サブドメイン向けのレコードを使うので、今のメール受信とは共存できる
+4. Resend側で **Verified** になるまで待つ（数分〜数十分）
+5. **API Keys** → **Create API Key** → 発行されたキー（`re_` で始まる）をコピー
+6. Renderダッシュボード → `lostoros-api` → **Environment** に登録:
+
+| キー | 値 |
+|---|---|
+| RESEND_API_KEY | `re_` で始まるAPIキー |
+| MAIL_FROM | `LosToros サイト <noreply@lostoros.net>` |
+| MAIL_TO | `chida@lostoros.net,ikeda@lostoros.net` |
+
+7. SMTP_* の環境変数は削除してよい（残っていてもResendが優先される）
+
+### 方式B: Renderを有料プラン（Starter $7/月）にしてSMTPを使う
+
+有料にするとSMTPの遮断が解除される。あわせて**サービスの休止もなくなる**ため、
+フォーム送信時の待ち時間もなくなる。
+
+1. Renderダッシュボード → `lostoros-api` → **Settings** → Instance Type を
+   **Starter** に変更
+2. アプリパスワードは**設定する本人のアカウント**で発行してよい
+   （池田さんなら ikeda@lostoros.net。千田さんのアカウント情報は不要）
+   https://myaccount.google.com/apppasswords
+3. **Environment** に登録:
 
 | キー | 値 |
 |---|---|
 | SMTP_HOST | smtp.gmail.com |
 | SMTP_PORT | 465 |
-| SMTP_USER | アプリパスワードを発行したアドレス（例: ikeda@lostoros.net） |
-| SMTP_PASS | 発行した16桁のアプリパスワード |
-| MAIL_TO | chida@lostoros.net,ikeda@lostoros.net ← カンマ区切りで両名に届く |
+| SMTP_USER | アプリパスワードを発行したアドレス |
+| SMTP_PASS | 発行した16桁 |
+| MAIL_TO | `chida@lostoros.net,ikeda@lostoros.net` |
 
-5. 保存すると自動で再デプロイされる
-6. `https://lostoros-api.onrender.com/healthz` を開き
-   `{"ok":true,"mail":true}` になっていれば設定完了
-7. サイトのフォームからテスト送信して受信を確認する
+### 設定できたかの確認（共通）
+
+`https://lostoros-api.onrender.com/healthz` を開く。
+
+- `{"ok":true,"mail":true,"mode":"resend"}` → 方式Aで設定済み
+- `{"ok":true,"mail":true,"mode":"smtp"}` → 方式Bで設定済み
+- `"mode":"none"` → 未設定
+
+そのうえでサイトのフォームからテスト送信し、受信を確認する。
 
 ## STEP 3: 独自ドメイン lostoros.net をRenderへ向ける
 

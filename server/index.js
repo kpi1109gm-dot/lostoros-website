@@ -1,11 +1,20 @@
 // LosToros お問い合わせフォーム受信API（Render の Web Service で動かす）
 //
-// 必要な環境変数（Renderのダッシュボードで設定する）:
+// 送信方式は2通り。環境変数の設定内容で自動的に切り替わる。
+//
+// 【A】HTTP API方式（Renderの無料プランでも動く。推奨）
+//   RESEND_API_KEY  Resend（https://resend.com）のAPIキー
+//   MAIL_FROM       送信元 例: LosToros <noreply@lostoros.net>
+//   MAIL_TO         届け先。カンマ区切りで複数指定できる
+//
+// 【B】SMTP方式（Renderの有料プランが必要。無料プランはSMTPが遮断される）
 //   SMTP_HOST  例: smtp.gmail.com
 //   SMTP_PORT  例: 465
-//   SMTP_USER  送信に使うメールアドレス（例: chida@lostoros.net）
+//   SMTP_USER  送信に使うメールアドレス
 //   SMTP_PASS  アプリパスワード（Googleアカウントで発行する16桁）
-//   MAIL_TO    問い合わせの届け先（省略時は SMTP_USER）
+//   MAIL_TO    届け先（省略時は SMTP_USER）
+//
+// 共通:
 //   ALLOWED_ORIGINS  カンマ区切り。省略時は下の既定値
 
 const express = require('express');
@@ -53,14 +62,57 @@ function buildTransport() {
     port,
     secure: port === 465,
     auth: { user: SMTP_USER, pass: SMTP_PASS },
+    connectionTimeout: 15000,
+    greetingTimeout: 15000,
   });
+}
+
+function recipients() {
+  const raw = process.env.MAIL_TO || process.env.SMTP_USER || '';
+  return raw.split(',').map((s) => s.trim()).filter(Boolean);
+}
+
+function senderAddress() {
+  return process.env.MAIL_FROM ||
+    (process.env.SMTP_USER ? `LosToros サイト <${process.env.SMTP_USER}>` : '');
+}
+
+// 現在有効な送信方式を返す
+function mailMode() {
+  if (process.env.RESEND_API_KEY && senderAddress() && recipients().length) return 'resend';
+  if (buildTransport()) return 'smtp';
+  return null;
+}
+
+// Resend（HTTP API）で送る。RenderのSMTP遮断を受けない
+async function sendViaResend(mail) {
+  const url = process.env.RESEND_API_URL || 'https://api.resend.com/emails';
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: mail.from,
+      to: mail.to,
+      reply_to: mail.replyTo,
+      subject: mail.subject,
+      text: mail.text,
+    }),
+  });
+  if (!res.ok) {
+    const detail = await res.text().catch(() => '');
+    throw new Error(`resend ${res.status}: ${detail.slice(0, 200)}`);
+  }
 }
 
 app.get('/', (req, res) => res.type('text/plain').send('LosToros contact API'));
 
 // Renderのヘルスチェック用
 app.get('/healthz', (req, res) => {
-  res.json({ ok: true, mail: Boolean(buildTransport()) });
+  const mode = mailMode();
+  res.json({ ok: true, mail: Boolean(mode), mode: mode || 'none' });
 });
 
 app.post('/api/contact', async (req, res) => {
@@ -89,9 +141,9 @@ app.post('/api/contact', async (req, res) => {
     return res.status(429).json({ ok: false, error: '送信が集中しています。時間をおいてお試しください' });
   }
 
-  const transport = buildTransport();
-  if (!transport) {
-    console.error('SMTPの環境変数が未設定のため送信できません');
+  const mode = mailMode();
+  if (!mode) {
+    console.error('メール送信の環境変数が未設定です');
     return res.status(503).json({ ok: false, error: 'メール送信が未設定です' });
   }
 
@@ -107,14 +159,20 @@ app.post('/api/contact', async (req, res) => {
     message,
   ].join('\n');
 
+  const mail = {
+    from: senderAddress(),
+    to: recipients(),
+    replyTo: `"${name}" <${email}>`,
+    subject: `【お問い合わせ】${type || 'その他'} / ${name}`,
+    text,
+  };
+
   try {
-    await transport.sendMail({
-      from: `"LosToros サイト" <${process.env.SMTP_USER}>`,
-      to: process.env.MAIL_TO || process.env.SMTP_USER,
-      replyTo: `"${name}" <${email}>`,
-      subject: `【お問い合わせ】${type || 'その他'} / ${name}`,
-      text,
-    });
+    if (mode === 'resend') {
+      await sendViaResend(mail);
+    } else {
+      await buildTransport().sendMail({ ...mail, to: mail.to.join(', ') });
+    }
     res.json({ ok: true });
   } catch (err) {
     console.error('送信失敗:', err && err.message);
