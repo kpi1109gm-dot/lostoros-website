@@ -489,17 +489,111 @@ a { color: inherit; }
   text-transform: uppercase;
 }
 
-.biz-body h4 {
-  font-size: 17px;
-  font-weight: 700;
-  letter-spacing: .05em;
+.biz-lead-note {
+  font-size: 14px;
+  line-height: 2;
+  margin-top: 20px;
+  max-width: 40em;
+  opacity: .85;
 }
 
-.biz-body p {
-  font-size: 14.5px;
+.biz-head { padding-top: 2px; }
+
+.biz-jp {
+  font-size: 11px;
+  letter-spacing: .12em;
+  opacity: .6;
   margin-top: 12px;
-  max-width: 38em;
+  text-transform: none;
 }
+
+.biz-summary {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.95;
+  max-width: 40em;
+}
+
+/* 提供内容は縦に長くなりすぎないよう2列に流す */
+.biz-items {
+  list-style: none;
+  margin-top: 22px;
+  columns: 2;
+  column-gap: 40px;
+  max-width: 46em;
+}
+
+.biz-items li {
+  font-size: 13.5px;
+  line-height: 1.7;
+  padding: 5px 0 5px 16px;
+  position: relative;
+  break-inside: avoid;
+  opacity: .88;
+}
+
+.biz-items li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 13px;
+  width: 6px;
+  height: 1px;
+  background: var(--red);
+}
+
+/* 健康経営の一気通貫フロー */
+.biz-flow {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 22px;
+  counter-reset: flow;
+}
+
+.biz-flow li {
+  font-size: 11px;
+  letter-spacing: .08em;
+  padding: 7px 14px;
+  border: 1px solid rgba(12, 12, 13, .3);
+  position: relative;
+}
+
+.biz-flow li:not(:last-child)::after {
+  content: '→';
+  margin-left: 14px;
+  position: absolute;
+  right: -17px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--red);
+  font-size: 12px;
+}
+
+.biz-core {
+  font-size: 10.5px;
+  letter-spacing: .16em;
+  color: var(--red);
+  margin-top: 22px;
+}
+
+.biz-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 26px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  color: var(--ink);
+  text-decoration: none;
+  border-bottom: 1px solid var(--red);
+  padding-bottom: 5px;
+  transition: gap .25s ease, color .25s ease;
+}
+
+.biz-cta:hover { gap: 16px; color: var(--red); }
 
 /* ---------- members ---------- */
 
@@ -694,26 +788,317 @@ a { color: inherit; }
   max-width: 34em;
 }
 
-.sponsor-grid {
+/* ---------- partner ---------- */
+
+.pt-block {
+  padding-top: clamp(44px, 5.5vw, 72px);
+  border-top: 1px solid rgba(12, 12, 13, .3);
+  margin-top: clamp(44px, 5.5vw, 72px);
+}
+
+.pt-h {
+  font-size: 11px;
+  letter-spacing: .24em;
+  color: var(--red);
+  margin-bottom: 28px;
+}
+
+.pt-note {
+  font-size: 14px;
+  margin: -14px 0 28px;
+  opacity: .8;
+}
+
+/* ② WHY PARTNER */
+.pt-why {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 1px;
+  background: rgba(12, 12, 13, .22);
+  border: 1px solid rgba(12, 12, 13, .22);
+}
+
+.pt-why li {
+  background: var(--paper);
+  padding: 26px 24px 30px;
+}
+
+.pt-why-en {
+  display: block;
+  font-size: 11px;
+  letter-spacing: .18em;
+  color: var(--red);
+  margin-bottom: 14px;
+}
+
+.pt-why p {
+  font-size: 13.5px;
+  line-height: 1.85;
+}
+
+/* ③ EXAMPLES */
+.pt-ex {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 0 48px;
+}
+
+.pt-ex > div {
+  padding: 20px 0;
+  border-bottom: 1px solid rgba(12, 12, 13, .18);
+}
+
+.pt-ex dt {
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.pt-ex dd {
+  font-size: 13.5px;
+  line-height: 1.8;
+  margin-top: 8px;
+  opacity: .82;
+}
+
+/* ④ PLAN */
+.pt-plan {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: start;
+}
+
+.pt-plan-copy {
+  font-size: clamp(18px, 2.1vw, 26px);
+  font-weight: 700;
+  line-height: 1.7;
+  margin-bottom: 18px;
+}
+
+.pt-plan-main p:not(.pt-plan-copy) {
+  font-size: 14.5px;
+  line-height: 1.95;
+  max-width: 34em;
+  margin-bottom: 30px;
+}
+
+.pt-plan-entry {
+  border: 1px solid var(--ink);
+  padding: clamp(24px, 3vw, 36px);
+  background: rgba(12, 12, 13, .03);
+}
+
+.pt-entry-label {
+  font-size: 10px;
+  letter-spacing: .22em;
+  color: var(--red);
+}
+
+.pt-entry-name {
+  font-family: var(--disp);
+  font-size: clamp(20px, 2.2vw, 27px);
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+.pt-entry-price {
+  font-size: 15px;
+  margin-top: 10px;
+}
+
+.pt-entry-price strong { font-size: 28px; letter-spacing: .02em; }
+
+.pt-entry-note {
+  font-size: 13px;
+  line-height: 1.8;
+  margin: 14px 0 22px;
+  opacity: .82;
+}
+
+/* ⑥ FOUNDING PARTNER */
+.pt-founding {
+  margin-top: clamp(44px, 5.5vw, 72px);
+  padding: clamp(32px, 5vw, 60px);
+  background: var(--ink);
+  color: var(--paper);
+  text-align: center;
+}
+
+.pt-founding-label {
+  font-size: 11px;
+  letter-spacing: .24em;
+  color: var(--red);
+}
+
+.pt-founding-title {
+  font-size: clamp(21px, 3vw, 36px);
+  font-weight: 900;
+  line-height: 1.6;
+  margin: 18px 0 16px;
+}
+
+.pt-founding-copy {
+  font-size: 14.5px;
+  line-height: 1.95;
+  max-width: 40em;
+  margin: 0 auto;
+  opacity: .85;
+}
+
+.pt-slots {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 14px;
+  gap: 12px;
+  margin-top: 34px;
 }
 
-.sponsor-slot {
+.pt-slot {
   aspect-ratio: 3 / 2;
-  border: 1px dashed rgba(12, 12, 13, .35);
+  border: 1px dashed rgba(244, 242, 236, .35);
   display: grid;
   place-items: center;
-  font-size: 11px;
+  font-size: 10px;
   letter-spacing: .22em;
-  opacity: .5;
+  opacity: .45;
 }
 
-.sponsor-cta {
-  text-align: center;
-  margin-top: clamp(48px, 6vw, 80px);
+/* ⑦ CTA */
+.pt-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: clamp(44px, 6vw, 72px);
 }
+
+.btn-outline {
+  display: inline-block;
+  border: 1px solid currentColor;
+  color: var(--ink);
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: .08em;
+  text-decoration: none;
+  padding: 19px 44px;
+  transition: background .3s ease, color .3s ease, transform .3s ease;
+}
+
+.btn-outline:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translateY(-2px);
+}
+
+.pt-founding .btn-outline { color: var(--paper); }
+.pt-founding .btn-outline:hover { background: var(--paper); color: var(--ink); }
+
+/* ---------- business supporter ---------- */
+
+.sp-intro {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: clamp(32px, 6vw, 96px);
+  align-items: end;
+  margin-bottom: clamp(40px, 6vw, 72px);
+}
+
+.sp-copy p:not(.lead):not(.sp-price) {
+  font-size: 15px;
+  line-height: 1.95;
+  margin-top: 1.4em;
+  max-width: 34em;
+}
+
+.sp-price {
+  font-size: 14px;
+  letter-spacing: .1em;
+  margin-top: 22px;
+}
+
+.sp-price strong { font-size: 30px; }
+
+.sp-flow {
+  padding: clamp(26px, 3.4vw, 40px);
+  border: 1px solid rgba(12, 12, 13, .25);
+  margin-bottom: clamp(36px, 5vw, 56px);
+}
+
+.sp-steps {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 26px;
+  counter-reset: sp;
+}
+
+.sp-steps li {
+  font-size: 11.5px;
+  letter-spacing: .08em;
+  counter-increment: sp;
+  position: relative;
+  padding-left: 26px;
+}
+
+.sp-steps li::before {
+  content: counter(sp, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  color: var(--red);
+  font-size: 10px;
+}
+
+.sp-note {
+  font-size: 13px;
+  line-height: 1.85;
+  margin-top: 22px;
+  opacity: .8;
+}
+
+/* 白背景セクション内のフォームは配色を反転させる */
+.sp-form .cfield input,
+.sp-form .cfield textarea {
+  background: rgba(12, 12, 13, .03);
+  border-color: rgba(12, 12, 13, .28);
+  color: var(--ink);
+}
+
+.sp-form .cfield input:hover,
+.sp-form .cfield textarea:hover { border-color: rgba(12, 12, 13, .55); }
+
+.sp-form .cfield input:focus-visible,
+.sp-form .cfield textarea:focus-visible {
+  border-color: var(--red);
+  background: rgba(12, 12, 13, .05);
+}
+
+/* チェックボックス行はflexだと子の縮小で崩れるため、通常の行送りで組む */
+.sp-check {
+  display: block;
+  position: relative;
+  padding-left: 32px;
+  font-size: 14px;
+  line-height: 1.7;
+  cursor: pointer;
+}
+
+/* .cfield input の width:100% を打ち消すため属性セレクタで詳細度を上げる */
+.sp-check input[type="checkbox"] {
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  min-width: 0;
+  accent-color: var(--red);
+}
+
+/* 文頭に置く「必須」バッジ（行末だと狭い画面ではみ出すため）。
+   .req が後方で margin-left を指定しているため詳細度を上げて打ち消す */
+.sp-check .req--lead { margin: 0 8px 0 0; }
+
+.sp-form .cform-status[data-state="ok"] { color: var(--ink); }
 
 .btn-red {
   display: inline-block;
@@ -1035,7 +1420,7 @@ a { color: inherit; }
   .nav-toggle[aria-expanded="true"] span:nth-child(1) { top: 16px; transform: rotate(45deg); }
   .nav-toggle[aria-expanded="true"] span:nth-child(2) { top: 16px; transform: rotate(-45deg); }
 
-  .about-grid, .biz-intro, .sponsor-intro { grid-template-columns: 1fr; }
+  .about-grid, .biz-intro, .sponsor-intro, .sp-intro { grid-template-columns: 1fr; }
 
   .phil-row { grid-template-columns: 1fr; gap: 14px; }
   .phil-num { display: none; }
@@ -1046,7 +1431,13 @@ a { color: inherit; }
   .member-row { grid-template-columns: 1fr; gap: 20px; }
   .member-num { display: none; }
 
-  .sponsor-grid { grid-template-columns: 1fr 1fr; }
+  .pt-slots { grid-template-columns: 1fr 1fr; }
+  .biz-items { columns: 1; }
+  .pt-plan { grid-template-columns: 1fr; }
+  .pt-cta { flex-direction: column; }
+  .pt-cta .btn-red, .pt-cta .btn-outline { text-align: center; }
+  /* 矢印が画面外にはみ出すのを防ぐ */
+  .biz-flow li:not(:last-child)::after { display: none; }
 
   .hero-bottom { flex-direction: column; align-items: flex-start; }
 
