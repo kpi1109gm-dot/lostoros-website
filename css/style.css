@@ -962,6 +962,33 @@ a { color: inherit; }
   font-size: 10px;
   letter-spacing: .22em;
   opacity: .45;
+  /* グリッド項目は既定で中身の幅より縮まないため、
+     大きなロゴ画像が入ると列が広がってはみ出す。それを防ぐ */
+  min-width: 0;
+}
+
+/* 掲載済みのパートナーロゴ。原色のロゴを正しく見せるため白地のタイルに載せる */
+.pt-slot--filled {
+  background: #fff;
+  border: 1px solid rgba(244, 242, 236, .2);
+  opacity: 1;
+  padding: 14px 18px;
+}
+
+/* 枠の比率を保ったままロゴを内側に収める（縦横比の異なるロゴでも崩れない） */
+.pt-slot--filled img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.pt-slots-note {
+  font-size: 10px;
+  letter-spacing: .2em;
+  opacity: .55;
+  margin-top: 18px;
 }
 
 /* ⑦ CTA */

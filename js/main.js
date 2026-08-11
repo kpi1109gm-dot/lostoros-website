@@ -69,7 +69,7 @@
   var FORM_ENDPOINT = 'https://lostoros-api.onrender.com/api/contact';
   var CONTACT_EMAIL = 'chida@lostoros.net';
 
-  // お問い合わせフォームと Business Supporter 申込フォームの2つを同じ処理で扱う
+  // お問い合わせフォームと Business Partner 申込フォームの2つを同じ処理で扱う
   function setupForm(opts) {
     var form = document.getElementById(opts.formId);
     var status = document.getElementById(opts.statusId);
@@ -186,12 +186,12 @@
   setupForm({
     formId: 'supporterForm',
     statusId: 'supporterStatus',
-    fixedType: 'Business Supporter 申込',
+    fixedType: 'Business Partner 申込',
     invalidMessage: '未入力の項目、または未同意の項目があります。ご確認ください。',
     successMessage: 'お申し込みを受け付けました。担当より振込先をご案内いたします。',
     buildMessage: function (val) {
       return [
-        '■ Business Supporter 申込',
+        '■ Business Partner 申込',
         '電話番号: ' + (val('tel') || '—'),
         '',
         '【ご連絡事項】',
