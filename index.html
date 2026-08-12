@@ -143,69 +143,6 @@
         "knowsAbout": ["110mハードル", "ハードル走", "陸上競技"],
         "worksFor": { "@id": "https://lostoros.net/#organization" },
         "memberOf": { "@id": "https://lostoros.net/#team" }
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://lostoros.net/#faq",
-        "isPartOf": { "@id": "https://lostoros.net/#webpage" },
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "合同会社LosToros（ロストロス）はどんな会社ですか？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "合同会社LosToros（ロストロス）は、陸上スプリントチーム「LosToros Track Team」を運営するスポーツ事業ブランドです。オリンピック出場を目指す現役スプリンター2名が創業し、チーム運営を軸に、企業とのブランドパートナーシップ、スポーツ・地域事業、クリエイティブ制作、健康経営コンサルティングを行っています。"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "合同会社LosTorosの代表者・役員は誰ですか？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "代表（CEO）は千田杜真寿（ちだ とます）で、100m・200mを専門とする現役スプリンターです。副代表（COO）は池田海（いけだ かい）で、110mハードルを専門とする現役ハードラーです。2名はいずれも創業メンバーであり、現役アスリートとして競技を続けながら経営を担っています。"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "LosToros Track Teamとはどんなチームですか？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "LosToros Track Teamは、合同会社LosTorosが運営する陸上スプリント特化のトラックチームです。100m・200mの短距離種目と110mハードルを中心に、オリンピック出場とメダル獲得を目指す選手が所属しています。"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "「LosToros」の読み方と社名の由来を教えてください。",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "「LosToros」は「ロストロス」と読みます。スペイン語で「闘牛」を意味する Los Toros に由来し、闘牛があらゆる障壁を薙ぎ倒して突き進むように、道なき道を切り拓いて最速へ突き進むという姿勢を表しています。表記はLとTのみ大文字の「LosToros」が正式です。"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "合同会社LosTorosはどんな事業を行っていますか？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "TRACK TEAM（チーム運営・競技活動）を起点に、BRAND PARTNERSHIP（企業とのパートナーシップ）、SPORTS & COMMUNITY（スポーツ・教育・地域事業）、CREATIVE & CONTENT（コンテンツ制作）、HEALTH & PRODUCTIVITY MANAGEMENT（健康経営コンサルティング）の5領域で事業を行っています。競技が生み出す熱狂と物語を、企業のブランド・採用・健康経営の価値へ変換することを事業の中心に据えています。"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "パートナー企業になるにはどうすればよいですか？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "企業ごとの課題や目的に合わせてパートナーシップ内容を設計します。ブランド向上・コンテンツ制作・社員向け施策・地域や学校での取り組みなど、ロゴ露出だけで終わらない関わり方をご提案します。また、商談なしでお申し込みいただける年額50,000円の「Business Partner」もご用意しています。詳細は公式サイトのお問い合わせフォーム、または chida@lostoros.net までご連絡ください。"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "取材やイベント出演の依頼はできますか？",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "可能です。メディア取材、企業イベントや学校でのランニング教室・講演、SNSやコンテンツへの出演などのご依頼を承っています。公式サイトのお問い合わせフォーム、または chida@lostoros.net までご相談ください。"
-            }
-          }
-        ]
       }
     ]
   }
@@ -229,7 +166,6 @@
       <a href="#business">BUSINESS</a>
       <a href="#members">MEMBERS</a>
       <a href="#partner">PARTNER</a>
-      <a href="#faq">FAQ</a>
       <a href="#contact" class="nav-contact">CONTACT</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="メニュー" aria-expanded="false">
@@ -612,20 +548,21 @@
       </div>
 
       <!-- ⑥ FOUNDING PARTNER -->
+      <!-- パートナーロゴは明るい地に枠線なしで置き、ロゴ本来の色をそのまま見せる -->
+      <div class="pt-partners" data-reveal>
+        <p class="pt-h mono">OUR PARTNERS</p>
+        <ul class="pt-logos">
+          <li>
+            <img src="assets/partner-freezia.png" alt="FreeZia Sports" width="600" height="479" loading="lazy">
+          </li>
+        </ul>
+      </div>
+
+      <!-- ⑥ FOUNDING PARTNER -->
       <div class="pt-founding" data-reveal>
         <p class="pt-founding-label mono">FOUNDING PARTNER 募集中</p>
         <h3 class="pt-founding-title">LosTorosの創設期を、<br class="pc">ともにつくる企業へ。</h3>
         <p class="pt-founding-copy">完成したチームに協賛するのではなく、これから成長するブランドをともにつくる。創設期だからこそ実現できる関わり方があります。</p>
-        <!-- 決定済みパートナーはロゴを、未定枠は OPEN を並べる -->
-        <div class="pt-slots">
-          <span class="pt-slot pt-slot--filled">
-            <img src="assets/partner-freezia.png" alt="FreeZia Sports" width="600" height="479" loading="lazy">
-          </span>
-          <span class="pt-slot mono" aria-hidden="true">OPEN</span>
-          <span class="pt-slot mono" aria-hidden="true">OPEN</span>
-          <span class="pt-slot mono" aria-hidden="true">OPEN</span>
-        </div>
-        <p class="pt-slots-note mono">PARTNER — FreeZia Sports</p>
       </div>
 
       <!-- ⑦ CTA -->
@@ -635,60 +572,13 @@
       </div>
     </section>
 
-    <!-- ======= FAQ ======= -->
-    <!-- 検索・AIに引用されやすいよう、質問と答えを一問一答の形で常時表示している -->
-    <section class="section section--ink" id="faq">
-      <div class="section-head mono" data-reveal>
-        <span>(006) FAQ</span><span class="rule"></span><span>よくあるご質問</span>
-      </div>
-
-      <h2 class="section-title" data-reveal>Q &amp; A</h2>
-
-      <dl class="faq-list">
-        <div class="faq-item" data-reveal>
-          <dt class="faq-q"><span class="faq-mark mono">Q</span><span>合同会社LosToros（ロストロス）はどんな会社ですか？</span></dt>
-          <dd class="faq-a"><span class="faq-mark mono">A</span><span>合同会社LosToros（ロストロス）は、陸上スプリントチーム「LosToros Track Team」を運営するスポーツ事業ブランドです。オリンピック出場を目指す現役スプリンター2名が創業し、チーム運営を軸に、企業とのブランドパートナーシップ、スポーツ・地域事業、クリエイティブ制作、健康経営コンサルティングを行っています。</span></dd>
-        </div>
-
-        <div class="faq-item" data-reveal>
-          <dt class="faq-q"><span class="faq-mark mono">Q</span><span>代表者・役員はどなたですか？</span></dt>
-          <dd class="faq-a"><span class="faq-mark mono">A</span><span>代表（CEO）は<strong>千田杜真寿（ちだ とます）</strong>で、100m・200mを専門とする現役スプリンターです。副代表（COO）は<strong>池田海（いけだ かい）</strong>で、110mハードルを専門とする現役ハードラーです。2名はいずれも創業メンバーであり、現役アスリートとして競技を続けながら経営を担っています。</span></dd>
-        </div>
-
-        <div class="faq-item" data-reveal>
-          <dt class="faq-q"><span class="faq-mark mono">Q</span><span>LosToros Track Teamとはどんなチームですか？</span></dt>
-          <dd class="faq-a"><span class="faq-mark mono">A</span><span>LosToros Track Teamは、合同会社LosTorosが運営する陸上スプリント特化のトラックチームです。100m・200mの短距離種目と110mハードルを中心に、オリンピック出場とメダル獲得を目指す選手が所属しています。</span></dd>
-        </div>
-
-        <div class="faq-item" data-reveal>
-          <dt class="faq-q"><span class="faq-mark mono">Q</span><span>「LosToros」の読み方と社名の由来を教えてください。</span></dt>
-          <dd class="faq-a"><span class="faq-mark mono">A</span><span>「LosToros」は<strong>「ロストロス」</strong>と読みます。スペイン語で「闘牛」を意味する Los Toros に由来し、闘牛があらゆる障壁を薙ぎ倒して突き進むように、道なき道を切り拓いて最速へ突き進むという姿勢を表しています。表記はLとTのみ大文字の「LosToros」が正式です。</span></dd>
-        </div>
-
-        <div class="faq-item" data-reveal>
-          <dt class="faq-q"><span class="faq-mark mono">Q</span><span>どんな事業を行っていますか？</span></dt>
-          <dd class="faq-a"><span class="faq-mark mono">A</span><span>TRACK TEAM（チーム運営・競技活動）を起点に、BRAND PARTNERSHIP（企業とのパートナーシップ）、SPORTS & COMMUNITY（スポーツ・教育・地域事業）、CREATIVE & CONTENT（コンテンツ制作）、HEALTH & PRODUCTIVITY MANAGEMENT（健康経営コンサルティング）の5領域で事業を行っています。競技が生み出す熱狂と物語を、企業のブランド・採用・健康経営の価値へ変換することを事業の中心に据えています。</span></dd>
-        </div>
-
-        <div class="faq-item" data-reveal>
-          <dt class="faq-q"><span class="faq-mark mono">Q</span><span>パートナー企業になるにはどうすればよいですか？</span></dt>
-          <dd class="faq-a"><span class="faq-mark mono">A</span><span>企業ごとの課題や目的に合わせてパートナーシップ内容を設計します。ブランド向上・コンテンツ制作・社員向け施策・地域や学校での取り組みなど、ロゴ露出だけで終わらない関わり方をご提案します。また、商談なしでお申し込みいただける年額50,000円の「Business Partner」もご用意しています。詳細は<a href="#partner">PARTNERSHIP</a>のご案内をご覧いただくか、<a href="#contact-form">お問い合わせフォーム</a>、または chida@lostoros.net までご連絡ください。</span></dd>
-        </div>
-
-        <div class="faq-item" data-reveal>
-          <dt class="faq-q"><span class="faq-mark mono">Q</span><span>取材やイベント出演の依頼はできますか？</span></dt>
-          <dd class="faq-a"><span class="faq-mark mono">A</span><span>可能です。メディア取材、企業イベントや学校でのランニング教室・講演、SNSやコンテンツへの出演などのご依頼を承っています。<a href="#contact-form">お問い合わせフォーム</a>、または chida@lostoros.net までご相談ください。</span></dd>
-        </div>
-      </dl>
-    </section>
-
     <!-- ======= CONTACT ======= -->
     <section class="section section--ink section--contact" id="contact">
       <!-- 2ショット写真を全面背景に（ヒーロー動画と同じ扱い） -->
       <img class="contact-photo" src="assets/team-duo.jpg" alt="トラックに立つ千田杜真寿と池田海" width="1800" height="2400">
 
       <div class="section-head mono" data-reveal>
-        <span>(007) CONTACT</span><span class="rule"></span><span>お問い合わせ</span>
+        <span>(006) CONTACT</span><span class="rule"></span><span>お問い合わせ</span>
       </div>
 
       <div class="contact-body">
@@ -760,7 +650,7 @@
     <!-- ======= BUSINESS PARTNER 申込 ======= -->
     <section class="section section--paper supporter-section" id="supporter">
       <div class="section-head mono" data-reveal>
-        <span>(009) BUSINESS PARTNER</span><span class="rule"></span><span>お申し込み</span>
+        <span>(007) BUSINESS PARTNER</span><span class="rule"></span><span>お申し込み</span>
       </div>
 
       <div class="sp-intro" data-reveal>

@@ -947,48 +947,37 @@ a { color: inherit; }
   opacity: .85;
 }
 
-.pt-slots {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  margin-top: 34px;
-}
+.pt-founding { margin-top: clamp(24px, 3vw, 36px); }
 
-.pt-slot {
-  aspect-ratio: 3 / 2;
-  border: 1px dashed rgba(244, 242, 236, .35);
-  display: grid;
-  place-items: center;
-  font-size: 10px;
-  letter-spacing: .22em;
-  opacity: .45;
-  /* グリッド項目は既定で中身の幅より縮まないため、
-     大きなロゴ画像が入ると列が広がってはみ出す。それを防ぐ */
-  min-width: 0;
-}
-
-/* 掲載済みのパートナーロゴ。原色のロゴを正しく見せるため白地のタイルに載せる */
-.pt-slot--filled {
+/* パートナーロゴ：明るい地に枠線なしで置く（Bath Rugby等の見せ方を参照）。
+   ロゴは各社の規定色をそのまま使うため、白背景の帯に載せるのが最も自然。 */
+.pt-partners {
+  margin-top: clamp(44px, 5.5vw, 72px);
+  padding: clamp(36px, 5vw, 64px) clamp(24px, 4vw, 56px);
   background: #fff;
-  border: 1px solid rgba(244, 242, 236, .2);
-  opacity: 1;
-  padding: 14px 18px;
+  border: 1px solid rgba(12, 12, 13, .12);
+  text-align: center;
 }
 
-/* 枠の比率を保ったままロゴを内側に収める（縦横比の異なるロゴでも崩れない） */
-.pt-slot--filled img {
+.pt-partners .pt-h { margin-bottom: clamp(26px, 3.4vw, 40px); }
+
+.pt-logos {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(32px, 6vw, 88px);
+}
+
+.pt-logos li { min-width: 0; }
+
+.pt-logos img {
   width: auto;
   height: auto;
-  max-width: 100%;
-  max-height: 100%;
+  max-width: min(300px, 68vw);
+  max-height: 150px;
   object-fit: contain;
-}
-
-.pt-slots-note {
-  font-size: 10px;
-  letter-spacing: .2em;
-  opacity: .55;
-  margin-top: 18px;
 }
 
 /* ⑦ CTA */
@@ -1458,7 +1447,6 @@ a { color: inherit; }
   .member-row { grid-template-columns: 1fr; gap: 20px; }
   .member-num { display: none; }
 
-  .pt-slots { grid-template-columns: 1fr 1fr; }
   .biz-items { columns: 1; }
   .pt-plan { grid-template-columns: 1fr; }
   .pt-cta { flex-direction: column; }
