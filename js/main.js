@@ -38,11 +38,25 @@
     }, { passive: true });
   }
 
-  // ---- hero video: 動きを減らす設定のユーザーには自動再生しない ----
+  // ---- hero video: 画面幅に合わせて動画を選び、必要なときだけ読み込む ----
+  // スマホに重いPC版を配信すると表示が遅くなるため、幅860px以下では軽いスマホ版を使う。
+  // 「動きを減らす」設定のユーザーには動画を読み込まず、poster の静止画のままにする。
   var heroVideo = document.querySelector('.hero-video video');
-  if (heroVideo && reduceMotion) {
-    heroVideo.removeAttribute('autoplay');
-    heroVideo.pause();
+
+  if (heroVideo) {
+    if (reduceMotion) {
+      heroVideo.removeAttribute('autoplay');
+    } else {
+      var isNarrow = window.matchMedia('(max-width: 860px)').matches;
+      var heroSrc = heroVideo.getAttribute(isNarrow ? 'data-src-mobile' : 'data-src');
+
+      if (heroSrc) {
+        heroVideo.src = heroSrc;
+        var playing = heroVideo.play();
+        // ブラウザが自動再生を拒否した場合もエラーを出さずに静止画のままにする
+        if (playing && playing.catch) { playing.catch(function () {}); }
+      }
+    }
   }
 
   // ---- header: hide on scroll down, show on scroll up ----

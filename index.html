@@ -181,10 +181,14 @@
         <span></span><span></span><span></span><span></span><span></span><span></span>
       </div>
 
-      <!-- トレーニング映像：全面背景（無劣化のまま使用）＋暗幕グラデーション -->
+      <!-- トレーニング映像：全面背景＋暗幕グラデーション
+           src は js/main.js が画面幅を見て PC版・スマホ版から選んで設定する。
+           JSが動かない環境では poster の静止画がそのまま表示される -->
       <div class="hero-video" aria-hidden="true">
-        <video src="assets/hero-video.mp4" poster="assets/hero-poster.jpg"
-               autoplay muted loop playsinline preload="metadata" width="404" height="720"></video>
+        <video poster="assets/hero-poster.jpg"
+               data-src="assets/hero-video.mp4"
+               data-src-mobile="assets/hero-video-mobile.mp4"
+               autoplay muted loop playsinline preload="metadata" width="1440" height="2560"></video>
       </div>
 
       <p class="hero-kicker mono keep-case">LLC LosToros <span class="sq" aria-hidden="true">■</span> Track Team, Tokyo Japan</p>
