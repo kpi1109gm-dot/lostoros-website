@@ -78,8 +78,8 @@ favicon.ico                   ルート必須（Googleが最初に見に来る�
 render.yaml                   Render Blueprint（static site + web service）
 
 assets/
-  hero-video.mp4              ヒーロー全面背景・PC用（1440x2560・18.3秒・無音・4.7MB）
-  hero-video-mobile.mp4       同・スマホ用（810x1440・18.3秒・無音・2.2MB）
+  hero-video.mp4              ヒーロー全面背景・PC用（1440x2560・24秒・無音・5.1MB）
+  hero-video-mobile.mp4       同・スマホ用（810x1440・24秒・無音・2.4MB）
   hero-poster.jpg             動画読み込み前の静止画（動画の先頭フレームと一致させる）
   team-duo.jpg                2ショット写真（CONTACTの全面背景）
   member-01.jpg / member-02.jpg  千田さん / 池田さんのポートレート（800x1067）
@@ -255,11 +255,14 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
   高いCRFでも破綻しない。次回も等倍比較で確認してから決めること
 - **CSSで `filter: grayscale(1)` をかけているので、エンコード時点でモノクロ化している**
   （`format=gray`）。カラーで使いたくなったら元素材から作り直す
-- **元の映像は 18.28秒からロゴのアウトロ（黒背景＋闘牛マーク・約5.4秒）が始まる。
-  ループ背景では黒画面が繰り返し出てヒーローのロゴとぶつかるため、18.28秒でカットした**
+- **素材は 18.28秒からロゴのアウトロ（黒背景＋闘牛マーク・約5.7秒）が始まる。
+  ループ背景では24秒に1回、全体の約24%が黒画面になる。**
+  一度これを避けて18.28秒でカットしたが、比較ページで見比べた結果
+  **池田さんの判断で全編24秒（ロゴあり）を採用**した（2026-08-14）。
+  短縮版に戻す場合は下のコマンドに `-t 18.28` を足すだけでよい
 - 再現コマンド（PC用）:
   ```
-  ffmpeg -i src.mp4 -t 18.28 -an \
+  ffmpeg -i src.mp4 -an \
     -vf "scale=1440:2560:flags=lanczos,format=gray,format=yuv420p" \
     -c:v libx264 -profile:v high -preset slow -crf 31 \
     -pix_fmt yuv420p -movflags +faststart assets/hero-video.mp4
