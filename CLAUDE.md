@@ -316,10 +316,12 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 - [ ] **表示速度**。以前はスマホ実測で表示完了まで約13秒（動画4.4MB＋画像）。
       2026-08-14に**スマホは2.2MBの軽量動画を配信**するようにしたので改善見込み。
       **実機での再計測が必要**。残る改善案は team-duo.jpg(349KB)のWebP化、画像の遅延読み込み
-- [x] ~~**SNSプロフィールへのURL記載**~~ → **池田さん分は完了**（2026-08-17）。
-      Instagram / X / LinkedIn を Person「池田 海」の `sameAs` に追加済み。
-      **千田さんのアカウントと、会社の公式アカウントが未受領。** 受領したら
-      千田さんは Person「千田 杜真寿」に、会社アカウントは Organization に追加する
+- [x] ~~**SNSプロフィールへのURL記載（創業者2名分）**~~ → **完了**（2026-08-17）。
+      池田さん = Instagram / X / LinkedIn、千田さん = Instagram / LinkedIn を
+      それぞれ Person の `sameAs` に追加済み。両者のプロフィール側にもURL記載済み
+- [ ] **会社の公式SNSアカウント**が未開設または未受領。開設したらURLを受け取り、
+      Organization（`#organization`）の `sameAs` に追加する。
+      個人アカウントより会社の実在確認として強く働く
 - [ ] **FreeZia Sports社からの被リンク**（池田さんが依頼中）。
       SNSのリンクは多くが nofollow で順位への効果は限定的。
       同業種の実サイトからの1本が、新しいドメインには最も効く
