@@ -197,22 +197,10 @@
     successMessage: '送信しました。折り返しご連絡いたします。'
   });
 
-  setupForm({
-    formId: 'supporterForm',
-    statusId: 'supporterStatus',
-    fixedType: 'Business Partner 申込',
-    invalidMessage: '未入力の項目、または未同意の項目があります。ご確認ください。',
-    successMessage: 'お申し込みを受け付けました。担当より振込先をご案内いたします。',
-    buildMessage: function (val) {
-      return [
-        '■ Business Partner 申込',
-        '電話番号: ' + (val('tel') || '—'),
-        '',
-        '【ご連絡事項】',
-        val('message') || '（記載なし）'
-      ].join('\n');
-    }
-  });
+  // Business Partner の申込フォームは廃止した（2026-09-21）。
+  // 会社名・担当者名・連絡先はSquareの決済ページが収集するため、
+  // サイト側で先に入力させると同じ項目を2回打たせることになっていた。
+  // 申込は #supporter セクションのボタンからSquareへ直接遷移する。
 
   // 事業ごとの「この事業について相談する」から、問い合わせ種別を引き継ぐ
   var typeSelect = document.getElementById('cf-type');

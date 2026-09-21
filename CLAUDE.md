@@ -1,7 +1,7 @@
 # CLAUDE.md — 合同会社LosToros コーポレートサイト
 
 新しいセッションで前提説明なしに作業を再開するための引き継ぎ書。
-最終更新: 2026-08-14
+最終更新: 2026-09-21
 
 **依頼者は COO・池田海さん**（ikeda@lostoros.net）。代表の千田さんではないため、
 千田さん個人のアカウントが必要な作業は依頼できない。
@@ -69,7 +69,7 @@ git push -u origin claude/lostoros-corporate-site-dzn7az
 ```
 index.html                    サイト本体（1ファイル完結のシングルページ）
 css/style.css                 全スタイル
-js/main.js                    スクロール演出・ナビ・2つのフォーム送信処理
+js/main.js                    スクロール演出・ナビ・お問い合わせフォーム送信処理
 CNAME                         "lostoros.net"
 .nojekyll                     GitHub PagesのJekyll処理を無効化
 robots.txt                    AI検索クローラー（GPTBot/ClaudeBot等）も明示的に許可
@@ -105,7 +105,7 @@ docs/
 
 ヒーロー（全面動画）→ マーキー(赤) → (001) ABOUT → (002) PHILOSOPHY →
 (003) BUSINESS → (004) MEMBERS → (005) PARTNER → (006) CONTACT →
-お問い合わせフォーム → (007) BUSINESS PARTNER 申込 → フッター
+お問い合わせフォーム → (007) BUSINESS PARTNER 申込（Square決済へのリンク）→ フッター
 
 ### BUSINESS：5事業領域（2026-08-10に再編）
 
@@ -123,7 +123,7 @@ docs/
 HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(5例) →
 「PARTNERSHIP PLAN」→ OUR PARTNERS（ロゴ）→ FOUNDING PARTNER 募集 → CTA(2導線)
 
-- **高額プランは商談導線、Business Partner（年額50,000円）のみ申込フォーム直結**
+- **高額プランは商談導線、Business Partner（年額50,000円）のみSquareの決済ページへ直結**
 - **各パートナープランの名称・金額・内容は未受領**。憶測で書かず
   「企業ごとに設計します」に留めている
 
@@ -201,6 +201,17 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
    - スクロール量が増え離脱が懸念されたため。
      **表示と構造化データは一致必須**なので、FAQPageのJSON-LDも同時に削除した。
      復活させるなら別ページ（/faq）に切り出すのが望ましい
+9. **Business Partner の申込をSquare決済に一本化**（2026-09-21）
+   - Squareの決済ページが**会社名・ご担当者名・電話・メールをすべて収集する**ため、
+     サイト側の申込フォームは必須項目が完全に重複していた。
+     同じ項目を2回入力させると離脱するため、**サイトのフォームを廃止**し
+     ボタンから決済ページへ直接飛ばす形にした（池田さんの判断）
+   - 失われたのは「ご連絡事項（任意）」のみ。お問い合わせフォームで代替できる
+   - **決済は年額50,000円のサブスクリプションで、12ヶ月ごとに自動更新される。**
+     サイトに自動更新の明記が必須（`.sp-renew` と CTA下の注記）。
+     金額や更新条件をSquare側で変えたら、**サイトの記載も必ず合わせること**
+   - 決済リンク: `https://checkout.square.site/merchant/ML0T9EW3MMN9M/checkout/W4OKDYD2RMRS367KOMCCIICW`
+     （index.html 内に2か所。PARTNERセクションのCTAと(007)セクションのCTA）
 
 ---
 
@@ -309,8 +320,10 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 - [ ] **パートナープランの詳細**（Business Partner 以外の名称・金額・内容）が未受領。
       受領したら PARTNERSHIP PLAN に反映する
 - [ ] **利用規約ページ**。Business Partner 申込前の規約確認用。規約本文が未受領
-- [ ] **決済・振込フロー**。現状は申込フォーム送信 → メール通知 → 手動で振込先案内。
-      クライアント側で「別途決める」とされている
+- [x] ~~**決済・振込フロー**~~ → **Square決済に決定**（2026-09-21）。振込運用は廃止
+- [ ] **Square側の商品名が「Business Supporter」のまま**。サイトは「Business Partner」で
+      統一しているため表記が食い違う。**池田さんがSquare管理画面で商品名を変更する**
+      （2026-09-21時点で依頼済み・未反映）
 - [ ] **ページが長い**（スマホで約17,000px）。短縮案は
       ①BUSINESSの提供内容を折りたたむ ②EXAMPLESを横スクロール ③PARTNERを別ページ化
 - [ ] **表示速度**。以前はスマホ実測で表示完了まで約13秒（動画4.4MB＋画像）。
