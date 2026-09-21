@@ -1481,6 +1481,20 @@ a { color: inherit; }
   .pt-plan { grid-template-columns: 1fr; }
   .pt-cta { flex-direction: column; }
   .pt-cta .btn-red, .pt-cta .btn-outline { text-align: center; }
+
+  /* 全幅になるボタンは左右の余白を詰める。
+     44〜52pxの余白が効きすぎて、文字が1〜2文字だけ次の行に落ちていた
+     （「…相談す／る」。実測で最小1pxの不足だった）。
+     全幅ボタンは文字が中央に来るので、余白を詰めても見た目は変わらない。
+     それでも入らない極端に狭い端末では、balanceで行の長さを揃えて孤立字を防ぐ */
+  .pt-plan-main .btn-red,
+  .pt-cta .btn-red,
+  .pt-cta .btn-outline,
+  .sp-cta .btn-red {
+    padding-left: 16px;
+    padding-right: 16px;
+    text-wrap: balance;
+  }
   /* 矢印が画面外にはみ出すのを防ぐ */
   .biz-flow li:not(:last-child)::after { display: none; }
 
