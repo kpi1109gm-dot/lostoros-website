@@ -83,7 +83,7 @@
   var FORM_ENDPOINT = 'https://lostoros-api.onrender.com/api/contact';
   var CONTACT_EMAIL = 'chida@lostoros.net';
 
-  // お問い合わせフォームと Business Partner 申込フォームの2つを同じ処理で扱う
+  // お問い合わせフォームと Business Supporter 申込フォームの2つを同じ処理で扱う
   function setupForm(opts) {
     var form = document.getElementById(opts.formId);
     var status = document.getElementById(opts.statusId);
@@ -197,7 +197,7 @@
     successMessage: '送信しました。折り返しご連絡いたします。'
   });
 
-  // Business Partner の申込フォームは廃止した（2026-09-21）。
+  // Business Supporter の申込フォームは廃止した（2026-09-21）。
   // 会社名・担当者名・連絡先はSquareの決済ページが収集するため、
   // サイト側で先に入力させると同じ項目を2回打たせることになっていた。
   // 申込は #supporter セクションのボタンからSquareへ直接遷移する。

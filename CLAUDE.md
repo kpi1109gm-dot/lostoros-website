@@ -105,7 +105,7 @@ docs/
 
 ヒーロー（全面動画）→ マーキー(赤) → (001) ABOUT → (002) PHILOSOPHY →
 (003) BUSINESS → (004) MEMBERS → (005) PARTNER → (006) CONTACT →
-お問い合わせフォーム → (007) BUSINESS PARTNER 申込（Square決済へのリンク）→ フッター
+お問い合わせフォーム → (007) BUSINESS SUPPORTER 申込（Square決済へのリンク）→ フッター
 
 ### BUSINESS：5事業領域（2026-08-10に再編）
 
@@ -123,7 +123,7 @@ docs/
 HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(5例) →
 「PARTNERSHIP PLAN」→ OUR PARTNERS（ロゴ）→ FOUNDING PARTNER 募集 → CTA(2導線)
 
-- **高額プランは商談導線、Business Partner（年額50,000円）のみSquareの決済ページへ直結**
+- **高額プランは商談導線、Business Supporter（年額50,000円）のみSquareの決済ページへ直結**
 - **各パートナープランの名称・金額・内容は未受領**。憶測で書かず
   「企業ごとに設計します」に留めている
 
@@ -193,7 +193,11 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
      有料化で解決し、サーバー休止による待ち時間もなくなった
 6. **「スポンサー」ではなく「パートナー」で統一**（2026-08-10）
    - 「企業に応援してもらう」関係ではなく「企業と共に価値をつくる」位置づけにするため。
-     5万円プランも当初 Business Supporter だったが **Business Partner に統一**
+     5万円プランも当初 Business Supporter だったが Business Partner に統一した。
+   - **ただし2026-09-21に5万円プランのみ Business Supporter へ戻した**（池田さん判断）。
+     Squareの商品名が「LosToros Business Supporter」で、そちらに合わせたため。
+     **「パートナー」で統一する方針自体は、それ以外の箇所では今も有効**
+     （PARTNERセクション名・パートナーシップ・OUR PARTNERS などは変更していない）
 7. **営業資料の情報を全部は載せない**
    - 料金プラン表・比較表・資金使途は商談で見せる情報。
      サイトに載せると読ませる圧が強くなり問い合わせのハードルが上がる
@@ -201,7 +205,7 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
    - スクロール量が増え離脱が懸念されたため。
      **表示と構造化データは一致必須**なので、FAQPageのJSON-LDも同時に削除した。
      復活させるなら別ページ（/faq）に切り出すのが望ましい
-9. **Business Partner の申込をSquare決済に一本化**（2026-09-21）
+9. **Business Supporter の申込をSquare決済に一本化**（2026-09-21）
    - Squareの決済ページが**会社名・ご担当者名・電話・メールをすべて収集する**ため、
      サイト側の申込フォームは必須項目が完全に重複していた。
      同じ項目を2回入力させると離脱するため、**サイトのフォームを廃止**し
@@ -317,13 +321,10 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 
 ## 未対応のTODO
 
-- [ ] **パートナープランの詳細**（Business Partner 以外の名称・金額・内容）が未受領。
+- [ ] **パートナープランの詳細**（Business Supporter 以外の名称・金額・内容）が未受領。
       受領したら PARTNERSHIP PLAN に反映する
-- [ ] **利用規約ページ**。Business Partner 申込前の規約確認用。規約本文が未受領
+- [ ] **利用規約ページ**。Business Supporter 申込前の規約確認用。規約本文が未受領
 - [x] ~~**決済・振込フロー**~~ → **Square決済に決定**（2026-09-21）。振込運用は廃止
-- [ ] **Square側の商品名が「Business Supporter」のまま**。サイトは「Business Partner」で
-      統一しているため表記が食い違う。**池田さんがSquare管理画面で商品名を変更する**
-      （2026-09-21時点で依頼済み・未反映）
 - [ ] **ページが長い**（スマホで約17,000px）。短縮案は
       ①BUSINESSの提供内容を折りたたむ ②EXAMPLESを横スクロール ③PARTNERを別ページ化
 - [ ] **表示速度**。以前はスマホ実測で表示完了まで約13秒（動画4.4MB＋画像）。
