@@ -235,3 +235,29 @@
     });
   }
 })();
+
+// Show the mobile entry point only when it does not compete with visible actions.
+(function () {
+  'use strict';
+  var sticky = document.getElementById('supporterSticky');
+  var nav = document.getElementById('siteNav');
+  if (!sticky || !('IntersectionObserver' in window)) return;
+  var blockers = document.querySelectorAll('.hero, #supporter, #contact-form, .site-footer');
+  var visible = new Set();
+  var narrow = window.matchMedia('(max-width: 860px)');
+  function update() {
+    var show = narrow.matches && visible.size === 0 && !nav.classList.contains('open');
+    sticky.hidden = !show;
+  }
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) visible.add(entry.target);
+      else visible.delete(entry.target);
+    });
+    update();
+  });
+  blockers.forEach(function (el) { observer.observe(el); });
+  document.body.classList.add('has-supporter-sticky');
+  new MutationObserver(update).observe(nav, { attributes: true, attributeFilter: ['class'] });
+  narrow.addEventListener('change', update);
+})();

@@ -101,11 +101,38 @@ docs/
 
 ---
 
-## ページ構成（2026-08-10時点）
+## ページ構成（2026-09-21更新）
 
-ヒーロー（全面動画）→ マーキー(赤) → (001) ABOUT → (002) PHILOSOPHY →
-(003) BUSINESS → (004) MEMBERS → (005) PARTNER → (006) CONTACT →
-お問い合わせフォーム → (007) BUSINESS SUPPORTER 申込（Square決済へのリンク）→ フッター
+ヒーロー（全面動画＋加入CTA）→ マーキー(赤) → チームの短い紹介 →
+(001) BUSINESS SUPPORTER 申込（Square決済へのリンク）→ (002) ABOUT →
+(003) PHILOSOPHY → (004) BUSINESS → (005) MEMBERS → (006) PARTNER →
+(007) CONTACT → お問い合わせフォーム → フッター
+
+### 最新変更：Business Supporterの加入導線強化（Codex・2026-09-21）
+
+**直近の最優先は年額50,000円（税込）のBusiness Supporter加入獲得。**
+企業支援の実績は現時点ではないため、実績セクション追加は後日とする（池田さん指示）。
+
+- トップに3特典・税込年額・自動更新と `#supporter` への加入CTAを追加。
+- 既存の申込セクションをチーム紹介の直後へ移動。番号を全体で更新。
+- ナビのPHILOSOPHY枠を「年額5万円で参画」に変更（理念の本文は残す）。
+  CONTACTは `#contact-form` へ直接移動する。
+- 決済リンクは `#supporter` 内の1か所に集約。PARTNER内の加入CTAも内容確認へ誘導。
+  **決済は外部Squareページで完結する。埋め込み決済ではない。**
+- 幅860px以下の固定CTAは `.hero`・`#supporter`・`#contact-form`・`.site-footer` が
+  少しでも見えている間、およびモバイルメニューが開いている間は非表示。
+  IntersectionObserver非対応時も非表示とし、通常リンクを使う。
+- JS末尾の独立IIFEで制御。HTMLは `hidden` で開始。CSSは末尾の
+  `Supporter conversion` ブロックにまとめている。
+- 320px幅での見出し・事業欄・パートナー例・CONTACTのはみ出しも修正。
+- 金額・特典・自動更新条件・Squareリンク・受信APIは変更なし。
+  未確認の解約期限・返金条件・交流会日程・ロゴ掲載時期は創作しない。
+- ローカル検証：PC / 390px / 320px表示、ページ内リンク、メニュー、固定CTAの
+  表示切替、問い合わせへの移動、JS構文・差分チェック。実決済とメール送信は未実施。
+
+詳細と再確認手順は [変更記録](docs/changes/2026-09-21-supporter-conversion.md) を参照。
+別の作業環境から再開するときは、公開ブランチの最新を取得してから編集すること。
+古いローカル変更をそのままpushして本変更を上書きしない。
 
 ### BUSINESS：5事業領域（2026-08-10に再編）
 
@@ -123,7 +150,7 @@ docs/
 HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(5例) →
 「PARTNERSHIP PLAN」→ OUR PARTNERS（ロゴ）→ FOUNDING PARTNER 募集 → CTA(2導線)
 
-- **高額プランは商談導線、Business Supporter（年額50,000円）のみSquareの決済ページへ直結**
+- **個別プランは商談導線、Business Supporterは `#supporter` で条件確認後にSquare決済へ進む**
 - **各パートナープランの名称・金額・内容は未受領**。憶測で書かず
   「企業ごとに設計します」に留めている
 
@@ -171,7 +198,7 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 
 - **シングルページ**。黒(`section--ink`)と白(`section--paper`)を交互に配置し、
   白セクションの上辺は `clip-path` で斜めに切ってスピード感を出す
-- セクション見出しは `(001) ABOUT` の**番号+罫線**の編集デザイン
+- セクション見出しは `(001) BUSINESS SUPPORTER` の**番号+罫線**の編集デザイン
 - メンバー紹介は**写真左・テキスト右**を縦に積む（千田さんが上）
 - アニメーションは IntersectionObserver。`prefers-reduced-motion` を尊重
 
@@ -215,7 +242,7 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
      サイトに自動更新の明記が必須（`.sp-renew` と CTA下の注記）。
      金額や更新条件をSquare側で変えたら、**サイトの記載も必ず合わせること**
    - 決済リンク: `https://checkout.square.site/merchant/ML0T9EW3MMN9M/checkout/W4OKDYD2RMRS367KOMCCIICW`
-     （index.html 内に2か所。PARTNERセクションのCTAと(007)セクションのCTA）
+     （現在はindex.html内の `#supporter` に1か所。PARTNER内の加入CTAは `#supporter` へ移動）
 
 ---
 

@@ -160,7 +160,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css?v=supporter-20260921-3">
 </head>
 <body>
 
@@ -171,11 +171,11 @@
     </a>
     <nav class="site-nav" id="siteNav" aria-label="メインナビゲーション">
       <a href="#about">ABOUT</a>
-      <a href="#philosophy">PHILOSOPHY</a>
+      <a href="#supporter" class="nav-supporter">年額5万円で参画</a>
       <a href="#business">BUSINESS</a>
       <a href="#members">MEMBERS</a>
       <a href="#partner">PARTNER</a>
-      <a href="#contact" class="nav-contact">CONTACT</a>
+      <a href="#contact-form" class="nav-contact">CONTACT</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="メニュー" aria-expanded="false">
       <span></span><span></span>
@@ -212,11 +212,15 @@
         <p class="hero-sub mono">SPRINT INTO THE UNKNOWN.</p>
       </div>
 
-      <div class="hero-bottom">
-        <p class="mono">オリンピックを目指すスプリンターとつくる、<br>スポーツ事業ブランド。</p>
-        <div class="hero-stamp mono" aria-hidden="true">
-          <svg viewBox="0 0 120 60" class="stamp-ellipse"><ellipse cx="60" cy="30" rx="56" ry="24" /></svg>
-          <span>LT<i class="dot"></i></span>
+      <div class="hero-offer">
+        <div>
+          <p class="hero-offer-title">LosTorosの挑戦を、創設期からともに。</p>
+          <p class="hero-offer-copy">オリンピックを目指す選手と、企業をつなぐBusiness Supporter。</p>
+          <p class="hero-offer-benefits">公式サイトへのロゴ掲載 ／ 交流会への参加機会 ／ スポンサー呼称権</p>
+        </div>
+        <div class="hero-offer-action">
+          <a class="btn-red" href="#supporter">加入内容・申込へ <span aria-hidden="true">→</span></a>
+          <p>年額50,000円（税込）・12ヶ月ごとに自動更新</p>
         </div>
       </div>
     </section>
@@ -229,10 +233,72 @@
       </div>
     </div>
 
+    <section class="supporter-story" aria-label="LosTorosの紹介">
+      <img src="assets/team-duo.jpg" alt="LosTorosを創業した千田杜真寿と池田海" width="1800" height="2400" loading="lazy">
+      <div>
+        <p class="mono">TWO ATHLETES. ONE CHALLENGE.</p>
+        <h2>走り続ける2人と、<br>チームのこれからをつくる。</h2>
+        <p>100m・200mの千田杜真寿と、110mハードルの池田海。オリンピックを目指す現役選手が、自ら運営するLosToros Track Teamです。</p>
+        <a href="#members">創業メンバーを知る <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+
+    <!-- ======= BUSINESS SUPPORTER 申込 ======= -->
+    <section class="section section--paper supporter-section" id="supporter">
+      <div class="section-head mono">
+        <span>(001) BUSINESS SUPPORTER</span><span class="rule"></span><span>お申し込み</span>
+      </div>
+
+      <div class="sp-intro">
+        <h2 class="section-title">BUSINESS<br>SUPPORTER</h2>
+        <div class="sp-copy">
+          <p class="lead">創設期の挑戦を、<br>あなたの企業とともに。</p>
+          <p>Business Supporterは、年額50,000円でLosTorosに参画できる企業向けプランです。商談は不要。このページで内容を確認し、そのままお申し込みいただけます。</p>
+          <p class="sp-price mono">年額 <strong>50,000</strong> 円（税込）</p>
+          <p class="sp-renew mono">12ヶ月ごとに自動更新／解約はいつでも可能です</p>
+        </div>
+      </div>
+
+      <div class="sp-flow">
+        <div class="sp-block">
+          <p class="pt-h mono">ご提供内容</p>
+          <ul class="sp-benefits">
+            <li>公式サイトへのロゴ掲載</li>
+            <li>交流会へのご参加機会</li>
+            <li>スポンサー呼称権</li>
+          </ul>
+        </div>
+
+        <div class="sp-block">
+          <p class="pt-h mono">お申し込みの流れ</p>
+          <ol class="sp-steps mono">
+            <li>Squareで企業・ご担当者情報を入力</li>
+            <li>カードでお支払い</li>
+            <li>担当からの連絡を受け取る</li>
+          </ol>
+        </div>
+
+        <p class="sp-note">お申し込みとお支払いは、決済サービス「Square」のページで完了します。カード決済のためお振込は不要です。お支払い後、担当よりご連絡いたします。</p>
+      </div>
+
+      <!-- 申込フォームは置かない。会社名・担当者名・連絡先はSquare側が収集するため、
+           サイトで先に入力させると同じ項目を2回打たせることになる -->
+      <div class="sp-cta">
+        <a class="btn-red sp-apply" href="https://checkout.square.site/merchant/ML0T9EW3MMN9M/checkout/W4OKDYD2RMRS367KOMCCIICW">
+          <span>申し込む・決済へ進む <span aria-hidden="true">→</span></span>
+          <span class="sp-apply-price mono">年額 50,000円（税込）</span>
+        </a>
+        <p class="sp-note sp-note--cta">
+          Squareの決済ページへ移動します。年額50,000円（税込）・12ヶ月ごとの自動更新です。<br class="pc">
+          特典の詳細・解約についてのご質問は<a class="sp-link" href="#contact-form" data-inquiry="PARTNERSHIP / 企業とのパートナーシップ">お問い合わせ</a>ください。
+        </p>
+      </div>
+    </section>
+
     <!-- ======= ABOUT ======= -->
     <section class="section section--paper" id="about">
       <div class="section-head mono" data-reveal>
-        <span>(001) ABOUT</span><span class="rule"></span><span>私たちについて</span>
+        <span>(002) ABOUT</span><span class="rule"></span><span>私たちについて</span>
       </div>
 
       <div class="about-grid">
@@ -260,7 +326,7 @@
     <!-- ======= PHILOSOPHY ======= -->
     <section class="section section--ink" id="philosophy">
       <div class="section-head mono" data-reveal>
-        <span>(002) PHILOSOPHY</span><span class="rule"></span><span>理念</span>
+        <span>(003) PHILOSOPHY</span><span class="rule"></span><span>理念</span>
       </div>
 
       <ol class="phil-list">
@@ -294,7 +360,7 @@
     <!-- ======= BUSINESS ======= -->
     <section class="section section--paper" id="business">
       <div class="section-head mono" data-reveal>
-        <span>(003) BUSINESS</span><span class="rule"></span><span>事業内容</span>
+        <span>(004) BUSINESS</span><span class="rule"></span><span>事業内容</span>
       </div>
 
       <div class="biz-intro" data-reveal>
@@ -424,7 +490,7 @@
     <!-- ======= MEMBERS ======= -->
     <section class="section section--ink" id="members">
       <div class="section-head mono" data-reveal>
-        <span>(004) MEMBERS</span><span class="rule"></span><span>創業メンバー</span>
+        <span>(005) MEMBERS</span><span class="rule"></span><span>創業メンバー</span>
       </div>
 
       <h2 class="section-title" data-reveal>FOUNDERS</h2>
@@ -474,7 +540,7 @@
     <!-- ======= PARTNER ======= -->
     <section class="section section--paper" id="partner">
       <div class="section-head mono" data-reveal>
-        <span>(005) PARTNER</span><span class="rule"></span><span>パートナーシップ</span>
+        <span>(006) PARTNER</span><span class="rule"></span><span>パートナーシップ</span>
       </div>
 
       <!-- ① HERO -->
@@ -553,7 +619,7 @@
           <aside class="pt-plan-entry">
             <p class="pt-entry-label mono">ENTRY PLAN</p>
             <p class="pt-entry-name">Business Supporter</p>
-            <p class="pt-entry-price">年額 <strong>50,000</strong> 円</p>
+            <p class="pt-entry-price">年額 <strong>50,000</strong> 円（税込）</p>
             <p class="pt-entry-note">商談なしでお申し込みいただける、最もシンプルな参画方法です。</p>
             <a class="btn-outline" href="#supporter">内容を見る</a>
           </aside>
@@ -581,7 +647,7 @@
       <!-- ⑦ CTA -->
       <!-- 申込はSquareの決済ページで完結する。金額を押す前に見せるためラベルに入れている -->
       <div class="pt-cta" data-reveal>
-        <a class="btn-red sp-apply" href="https://checkout.square.site/merchant/ML0T9EW3MMN9M/checkout/W4OKDYD2RMRS367KOMCCIICW">Business Supporter に申し込む</a>
+        <a class="btn-red sp-apply" href="#supporter">年額5万円の加入内容・申込へ</a>
         <a class="btn-outline" href="#contact-form" data-inquiry="PARTNERSHIP / 企業とのパートナーシップ">パートナーシップについて相談する</a>
       </div>
     </section>
@@ -592,7 +658,7 @@
       <img class="contact-photo" src="assets/team-duo.jpg" alt="トラックに立つ千田杜真寿と池田海" width="1800" height="2400">
 
       <div class="section-head mono" data-reveal>
-        <span>(006) CONTACT</span><span class="rule"></span><span>お問い合わせ</span>
+        <span>(007) CONTACT</span><span class="rule"></span><span>お問い合わせ</span>
       </div>
 
       <div class="contact-body">
@@ -661,59 +727,7 @@
       </div>
     </section>
 
-    <!-- ======= BUSINESS SUPPORTER 申込 ======= -->
-    <section class="section section--paper supporter-section" id="supporter">
-      <div class="section-head mono" data-reveal>
-        <span>(007) BUSINESS SUPPORTER</span><span class="rule"></span><span>お申し込み</span>
-      </div>
 
-      <div class="sp-intro" data-reveal>
-        <h2 class="section-title">BUSINESS<br>SUPPORTER</h2>
-        <div class="sp-copy">
-          <p class="lead">LosTorosの挑戦を、<br class="pc">企業として支える<span class="circle-red">最もシンプル</span>な参画方法。</p>
-          <p>商談を経ずにお申し込みいただけるエントリープランです。まずは関わってみたいという企業様に向けて、年額50,000円でご用意しています。</p>
-          <p class="sp-price mono">年額 <strong>50,000</strong> 円（税込）</p>
-          <p class="sp-renew mono">12ヶ月ごとに自動更新／解約はいつでも可能です</p>
-        </div>
-      </div>
-
-      <div class="sp-flow" data-reveal>
-        <div class="sp-block">
-          <p class="pt-h mono">ご提供内容</p>
-          <ul class="sp-benefits">
-            <li>公式サイトへのロゴ掲載</li>
-            <li>交流会へのご参加機会</li>
-            <li>スポンサー呼称権</li>
-          </ul>
-        </div>
-
-        <div class="sp-block">
-          <p class="pt-h mono">お申し込みの流れ</p>
-          <ol class="sp-steps mono">
-            <li>内容の確認</li>
-            <li>決済ページへ移動</li>
-            <li>会社名・ご担当者名を入力</li>
-            <li>カードでお支払い</li>
-            <li>参画完了</li>
-          </ol>
-        </div>
-
-        <p class="sp-note">お申し込みとお支払いは、決済サービス「Square」のページで完了します。カード決済のためお振込は不要です。お支払い後、担当よりご連絡いたします。</p>
-      </div>
-
-      <!-- 申込フォームは置かない。会社名・担当者名・連絡先はSquare側が収集するため、
-           サイトで先に入力させると同じ項目を2回打たせることになる -->
-      <div class="sp-cta" data-reveal>
-        <a class="btn-red sp-apply" href="https://checkout.square.site/merchant/ML0T9EW3MMN9M/checkout/W4OKDYD2RMRS367KOMCCIICW">
-          <span>Business Supporter に申し込む</span>
-          <span class="sp-apply-price mono">年額 50,000円（税込）</span>
-        </a>
-        <p class="sp-note sp-note--cta">
-          Squareの決済ページへ移動します。年額50,000円（税込）・12ヶ月ごとの自動更新です。<br class="pc">
-          ご不明な点は<a class="sp-link" href="#contact-form" data-inquiry="PARTNERSHIP / 企業とのパートナーシップ">お問い合わせ</a>ください。
-        </p>
-      </div>
-    </section>
 
 
   </main>
@@ -729,8 +743,12 @@
     </div>
   </footer>
 
+  <aside class="supporter-sticky" id="supporterSticky" aria-label="Business Supporterへの参画" hidden>
+    <a href="#supporter"><span>年額50,000円（税込）</span><strong>加入内容・申込へ <span aria-hidden="true">→</span></strong></a>
+  </aside>
+
   <div class="grain" aria-hidden="true"></div>
 
-  <script src="js/main.js"></script>
+  <script src="js/main.js?v=supporter-20260921"></script>
 </body>
 </html>

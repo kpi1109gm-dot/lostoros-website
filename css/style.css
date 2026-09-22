@@ -1506,3 +1506,69 @@ a { color: inherit; }
 
   .pc { display: none; }
 }
+/* Supporter conversion: preserve the monochrome brand and one red action. */
+.hero-offer { display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center; border-top:1px solid #ffffff40; padding-top:22px; }
+.hero-offer-title { font-size:clamp(17px,1.8vw,24px); font-weight:700; }
+.hero-offer-copy { font-size:13px; margin-top:6px; }
+.hero-offer-benefits { font-size:12px; color:#d4d2cc; margin-top:8px; }
+.hero-offer-action .btn-red { padding:16px 28px; }
+.hero-offer-action p { font-size:11px; margin-top:10px; }
+.site-nav { gap:clamp(12px,1.8vw,28px); }
+.site-nav .nav-supporter { border-bottom:2px solid currentColor; font-family:var(--jp); letter-spacing:.04em; }
+.supporter-story { padding:56px var(--pad-x); display:grid; grid-template-columns:180px 1fr; gap:36px; align-items:center; max-width:1050px; margin:auto; }
+.supporter-story img { width:100%; height:220px; object-fit:cover; object-position:50% 40%; filter:grayscale(1); }
+.supporter-story .mono { font-size:10px; color:#c9c7c1; }
+.supporter-story h2 { font-size:clamp(22px,3vw,36px); line-height:1.5; margin:10px 0 16px; }
+.supporter-story p:not(.mono) { font-size:14px; max-width:42em; }
+.supporter-story a { display:inline-block; margin-top:14px; font-size:13px; text-underline-offset:5px; }
+.supporter-section { scroll-margin-top:60px; padding-top:76px; padding-bottom:64px; }
+.supporter-section .section-head { margin-bottom:36px; }
+.supporter-section .section-title { font-size:clamp(38px,6.5vw,92px); overflow-wrap:anywhere; }
+.supporter-section .sp-intro { align-items:start; gap:32px; margin-bottom:32px; }
+.supporter-section .sp-price strong { font-size:44px; }
+.supporter-section .sp-flow { margin-bottom:28px; }
+.supporter-section .sp-benefits { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; font-size:16px; font-weight:700; }
+.supporter-section .sp-renew { font-size:13px; opacity:1; }
+.supporter-section .sp-cta .btn-red { min-width:min(100%,420px); }
+.supporter-sticky { display:none; }
+a:focus-visible,button:focus-visible { outline:3px solid #c8102e; outline-offset:5px; }
+@media(max-width:860px) {
+  .hero { padding-top:92px; }
+  .hero-offer { grid-template-columns:1fr; gap:16px; }
+  .hero-offer-action .btn-red { width:100%; text-align:center; font-size:15px; }
+  .hero-offer-action p { text-align:center; font-size:10px; }
+  .hero-offer-benefits { font-size:11px; }
+  .hero-sub { font-size:10px; }
+  .hero-tagline { margin:20px 0; }
+  .hero-word { margin-top:36px; }
+  .supporter-story { grid-template-columns:80px 1fr; gap:18px; padding-top:36px; padding-bottom:36px; }
+  .supporter-story img { height:160px; }
+  .supporter-story h2 { font-size:20px; }
+  .supporter-story p:not(.mono) { font-size:12px; }
+  .supporter-story .mono { font-size:8px; letter-spacing:.06em; }
+  .supporter-section .sp-benefits { grid-template-columns:1fr; gap:14px; }
+  .supporter-section .sp-steps { flex-direction:column; }
+  .supporter-section .section-head { font-size:10px; gap:8px; }
+  .supporter-section .section-head > span:last-child { white-space:nowrap; }
+  .supporter-section .sp-cta .btn-red { width:100%; padding:18px 12px; }
+  .supporter-sticky:not([hidden]) { display:block; position:fixed; bottom:0; left:0; right:0; z-index:90; padding:10px 16px calc(10px + env(safe-area-inset-bottom)); background:var(--ink); border-top:1px solid #ffffff30; }
+  .supporter-sticky a { display:flex; align-items:center; justify-content:space-between; gap:10px; background:var(--red); color:var(--paper); padding:14px 16px; text-decoration:none; }
+  .supporter-sticky a > span { font-size:11px; }
+  .supporter-sticky strong { font-size:13px; }
+  body.has-supporter-sticky { padding-bottom:calc(84px + env(safe-area-inset-bottom)); }
+}
+@media(prefers-reduced-motion:reduce) { .hero-offer { animation:none; } }
+@media(max-width:380px) {
+  .supporter-section .section-title { font-size:30px; }
+  .supporter-section .sp-price { letter-spacing:0; }
+  .supporter-section .sp-price strong { font-size:38px; }
+  .supporter-section .sp-renew { font-size:12px; }
+  .biz-row { grid-template-columns:28px minmax(0,1fr); gap:12px; }
+  .biz-head,.biz-body { min-width:0; }
+  .biz-en { overflow-wrap:anywhere; }
+  .contact-word { font-size:30px; }
+  .contact-arrow { width:42px; }
+}
+@media(max-width:380px) { .pt-ex { grid-template-columns:minmax(0,1fr); } }
+/* Decorative transforms must not widen the mobile document. */
+html { overflow-x:clip; }
