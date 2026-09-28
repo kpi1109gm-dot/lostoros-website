@@ -155,7 +155,7 @@ docs/
   `begin_checkout`（Squareへ進むボタン・50,000円）/ `supporter_cta`（加入案内ボタン・設置場所つき）/
   `inquiry_cta`（事業ごとの相談ボタン）/ `generate_lead`（フォーム送信成功）/
   `section_view`（1秒以上表示されたセクション。どこで離脱したかを見る）
-- ID設定後、GAの管理画面で `begin_checkout` と `generate_lead` を「キーイベント」に指定する
+- `begin_checkout` と `generate_lead` はGA側で「キーイベント」に登録済み
 - プライバシーポリシーにGA利用を明記済み（GAの規約上必要）
 
 ### Business Supporterの加入導線強化（Codex・2026-09-21）
@@ -417,8 +417,9 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 - [ ] **パートナープランの詳細**（Business Supporter 以外の名称・金額・内容）が未受領。
       受領したら PARTNERSHIP PLAN に反映する
 - [x] ~~**Googleアナリティクスの測定ID**~~ → 設定済み（2026-09-28）
-- [ ] **GAでキーイベントを指定**。`begin_checkout` と `generate_lead` がGAに1回届いた後
-      （管理 → イベント に表示される）、それぞれの「キーイベントとしてマーク」をONにする
+- [x] ~~**GAでキーイベントを指定**~~ → `begin_checkout` と `generate_lead` を登録済み（2026-09-28・池田さん作業）。
+      作成方法は「コードを使用して作成」、デフォルト値は「設定しない」（サイト側が50,000円を送るため）。
+      ※「コードなしで作成」は page_view を条件にした別イベントが作られてしまうので使わない
 - [ ] **利用規約ページ**。Business Supporter 申込前の規約確認用。**解約の方法・返金の有無・
       特典の提供時期**が未決定。サイトには「解約はいつでも可能」とだけあり、方法の記載がない
 - [ ] **特定商取引法に基づく表記**。企業向け取引なら不要の可能性が高いが、個人事業主の申込も
