@@ -17,7 +17,7 @@
 (function () {
   'use strict';
 
-  var GA_MEASUREMENT_ID = '';
+  var GA_MEASUREMENT_ID = 'G-YTYQ8HKRXS';
 
   var enabled = /^G-[A-Z0-9]+$/.test(GA_MEASUREMENT_ID);
 

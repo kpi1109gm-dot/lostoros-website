@@ -135,7 +135,7 @@ docs/
   スマホのページ全体で約1,000px短縮（17,040px → 16,045px）
 - ABOUTの「単なる陸上クラブでも、スクールでもありません。」を削除
   （以前FAQから同趣旨の文を消した池田さんの方針「余計な角は立てない」に合わせた）
-- `/supporter/`・`/privacy/` を新設。Googleアナリティクスの仕組みを実装（**測定IDは未設定**）
+- `/supporter/`・`/privacy/` を新設。Googleアナリティクスを実装（同日中に測定IDを設定し計測開始）
 - 2ショット写真をWebP化（349KB → 202KB）、スマホの8px文字を10pxに
 
 ### 価格・条件の記載箇所（変更時はすべて直す）
@@ -148,8 +148,9 @@ docs/
 
 ### アクセス解析（Googleアナリティクス 4）
 
-- `js/analytics.js` の `GA_MEASUREMENT_ID` に「G-」で始まるIDを入れると計測開始。
-  **2026-09-28時点では未設定**（池田さんがIDを取得するのを待っている）
+- **測定ID `G-YTYQ8HKRXS`**（ストリーム名「合同会社LosToros（ロストロス）」・2026-09-28設定）。
+  `js/analytics.js` の `GA_MEASUREMENT_ID` に記載。空にすると計測が止まる
+- GAプロパティは池田さんのGoogleアカウント（ikeda@…）で作成。拡張計測機能はON
 - 標準の計測に加えて次のイベントを送る:
   `begin_checkout`（Squareへ進むボタン・50,000円）/ `supporter_cta`（加入案内ボタン・設置場所つき）/
   `inquiry_cta`（事業ごとの相談ボタン）/ `generate_lead`（フォーム送信成功）/
@@ -415,8 +416,9 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 
 - [ ] **パートナープランの詳細**（Business Supporter 以外の名称・金額・内容）が未受領。
       受領したら PARTNERSHIP PLAN に反映する
-- [ ] **Googleアナリティクスの測定ID**（池田さんが取得中）。受け取ったら `js/analytics.js` に入れ、
-      GA側で `begin_checkout` と `generate_lead` をキーイベントに指定する
+- [x] ~~**Googleアナリティクスの測定ID**~~ → 設定済み（2026-09-28）
+- [ ] **GAでキーイベントを指定**。`begin_checkout` と `generate_lead` がGAに1回届いた後
+      （管理 → イベント に表示される）、それぞれの「キーイベントとしてマーク」をONにする
 - [ ] **利用規約ページ**。Business Supporter 申込前の規約確認用。**解約の方法・返金の有無・
       特典の提供時期**が未決定。サイトには「解約はいつでも可能」とだけあり、方法の記載がない
 - [ ] **特定商取引法に基づく表記**。企業向け取引なら不要の可能性が高いが、個人事業主の申込も
