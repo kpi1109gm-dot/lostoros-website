@@ -170,6 +170,7 @@
         if (!res.ok) throw new Error(res.status);
         form.reset();
         setStatus(opts.successMessage, 'ok');
+        if (window.lostorosTrack) window.lostorosTrack('generate_lead', { inquiry_type: data.type });
       }).catch(function () {
         setStatus('送信に失敗しました。お手数ですが ' + CONTACT_EMAIL + ' まで直接ご連絡ください。', 'error');
       }).then(function () {
@@ -217,6 +218,23 @@
     });
   });
 
+  // ---- BUSINESSの提供内容：PCでは常に開き、スマホでは折りたたむ ----
+  // JSが動かない環境では閉じた状態＋開閉ボタンが残るので、内容は必ず読める
+  var bizMore = document.querySelectorAll('.biz-more');
+  var wideBiz = window.matchMedia('(min-width: 861px)');
+
+  function syncBizMore() {
+    bizMore.forEach(function (d) {
+      d.classList.toggle('is-static', wideBiz.matches);
+      d.open = wideBiz.matches;
+    });
+  }
+
+  if (bizMore.length) {
+    syncBizMore();
+    wideBiz.addEventListener('change', syncBizMore);
+  }
+
   // ---- mobile nav ----
   var toggle = document.getElementById('navToggle');
   var nav = document.getElementById('siteNav');
@@ -225,12 +243,14 @@
     toggle.addEventListener('click', function () {
       var open = nav.classList.toggle('open');
       toggle.setAttribute('aria-expanded', String(open));
+      if (header) header.classList.toggle('is-menu-open', open);
     });
 
     nav.addEventListener('click', function (e) {
       if (e.target.tagName === 'A') {
         nav.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
+        if (header) header.classList.remove('is-menu-open');
       }
     });
   }
