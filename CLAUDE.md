@@ -1,7 +1,7 @@
 # CLAUDE.md — 合同会社LosToros コーポレートサイト
 
 新しいセッションで前提説明なしに作業を再開するための引き継ぎ書。
-最終更新: 2026-09-21
+最終更新: 2026-09-28
 
 **依頼者は COO・池田海さん**（ikeda@lostoros.net）。代表の千田さんではないため、
 千田さん個人のアカウントが必要な作業は依頼できない。
@@ -35,6 +35,7 @@
 - **フロントエンド**: 素のHTML / CSS / JavaScript。**ビルドツール・フレームワークなし**
   - 外部JSライブラリはゼロ（vanilla JSで実装）
   - フォントのみ Google Fonts をCDN読み込み
+  - 例外：Googleアナリティクス（`js/analytics.js` に測定IDを入れた場合のみ読み込む）
 - **バックエンド**: `server/` に Express。お問い合わせフォームの受信専用
   - 依存: express / cors / nodemailer
 
@@ -67,9 +68,12 @@ git push -u origin claude/lostoros-corporate-site-dzn7az
 ## ディレクトリ構造
 
 ```
-index.html                    サイト本体（1ファイル完結のシングルページ）
-css/style.css                 全スタイル
-js/main.js                    スクロール演出・ナビ・お問い合わせフォーム送信処理
+index.html                    トップページ（シングルページ）
+supporter/index.html          Business Supporter専用ページ（営業先に送る用・専用OGPあり）
+privacy/index.html            プライバシーポリシー
+css/style.css                 全スタイル（3ページ共通）
+js/main.js                    スクロール演出・ナビ・お問い合わせフォーム送信・BUSINESS折りたたみ
+js/analytics.js               Googleアナリティクス。測定ID未設定の間は何もしない
 CNAME                         "lostoros.net"
 .nojekyll                     GitHub PagesのJekyll処理を無効化
 robots.txt                    AI検索クローラー（GPTBot/ClaudeBot等）も明示的に許可
@@ -81,13 +85,15 @@ assets/
   hero-video.mp4              ヒーロー全面背景・PC用（1440x2560・24秒・無音・5.1MB）
   hero-video-mobile.mp4       同・スマホ用（810x1440・24秒・無音・2.4MB）
   hero-poster.jpg             動画読み込み前の静止画（動画の先頭フレームと一致させる）
-  team-duo.jpg                2ショット写真（CONTACTの全面背景）
+  team-duo.jpg / .webp        2ショット写真（CONTACT・/supporter/の全面背景）。
+                              <picture>でWebP（品質90・202KB）を優先、JPGは予備
   member-01.jpg / member-02.jpg  千田さん / 池田さんのポートレート（800x1067）
   logo-lockup.png             マーク+文字の横組みロゴ（ヘッダー・フッター・白）
   wordmark.png                文字のみロゴタイプ（ヒーロー巨大表示・白）
   logo.png                    闘牛マーク単体（赤・透過）
   favicon-{48,96,144,192,512}.png / apple-touch-icon.png
   ogp.jpg                     SNSシェア用カード（1200x630）
+  ogp-supporter.jpg           /supporter/ 用のシェアカード（価格入り。価格を変えたら作り直す）
   partner-freezia.png         パートナー企業ロゴ（FreeZia Sports・掲載許諾済み）
 
 server/index.js               Express。POST /api/contact と GET /healthz
@@ -96,19 +102,62 @@ docs/
   design-analysis.md          参考サイトのデザイン分解メモ
   publishing-guide.md         GitHub Pages公開手順
   render-guide.md             Render設定・メール送信・ドメイン移行手順
+  supporter-onboarding.md     加入企業が入ったときの対応とロゴ掲載手順
+  changes/                    大きな変更ごとの記録
 .claude/skills/reference-build/  「参照→分解→実装」フローのSkill
 ```
 
 ---
 
-## ページ構成（2026-09-21更新）
+## ページ構成（2026-09-28更新）
+
+| URL | 内容 |
+|---|---|
+| `/` | トップページ（下記） |
+| `/supporter/` | Business Supporter専用ページ。ヒーロー → (001) PLAN（特典・流れ・Square決済）→ (002) ATHLETES → (003) PARTNERS。**営業先にはこのURLを送る**（価格入りのシェアカードが出る） |
+| `/privacy/` | プライバシーポリシー。フッターとお問い合わせフォームからリンク |
+
+トップページ：
 
 ヒーロー（全面動画＋加入CTA）→ マーキー(赤) → チームの短い紹介 →
 (001) BUSINESS SUPPORTER 申込（Square決済へのリンク）→ (002) ABOUT →
 (003) PHILOSOPHY → (004) BUSINESS → (005) MEMBERS → (006) PARTNER →
 (007) CONTACT → お問い合わせフォーム → フッター
 
-### 最新変更：Business Supporterの加入導線強化（Codex・2026-09-21）
+### 最新変更：サイト点検にもとづく改善（Claude Code・2026-09-28）
+
+池田さんの「今できる対応をすべて」という依頼で実施。詳細は
+[変更記録](docs/changes/2026-09-28-site-review.md)。
+
+- PCで見出しが「SUPPORT／ER」と単語の途中で折り返されていたのを修正
+- **白いセクションの上でヘッダーのロゴとメニューが見えなかった**のを修正（公開当初からの不具合）
+- BUSINESSの提供内容リストを、スマホでは「＋提供内容を見る」で開く形に（PCは常に表示）。
+  スマホのページ全体で約1,000px短縮（17,040px → 16,045px）
+- ABOUTの「単なる陸上クラブでも、スクールでもありません。」を削除
+  （以前FAQから同趣旨の文を消した池田さんの方針「余計な角は立てない」に合わせた）
+- `/supporter/`・`/privacy/` を新設。Googleアナリティクスの仕組みを実装（**測定IDは未設定**）
+- 2ショット写真をWebP化（349KB → 202KB）、スマホの8px文字を10pxに
+
+### 価格・条件の記載箇所（変更時はすべて直す）
+
+年額50,000円（税込）・12ヶ月自動更新・3特典は次の場所に書かれている。
+`index.html`：ヒーロー（`.hero-offer`）、`#supporter`、PARTNERの `.pt-plan-entry`、
+固定CTA（`#supporterSticky`）／ `supporter/index.html`：ヒーロー、`#plan`／
+`assets/ogp-supporter.jpg`（画像。作り直しが必要）／ `js/analytics.js` の `value: 50000`。
+**Squareの決済リンクは `index.html` と `supporter/index.html` に1か所ずつ。**
+
+### アクセス解析（Googleアナリティクス 4）
+
+- `js/analytics.js` の `GA_MEASUREMENT_ID` に「G-」で始まるIDを入れると計測開始。
+  **2026-09-28時点では未設定**（池田さんがIDを取得するのを待っている）
+- 標準の計測に加えて次のイベントを送る:
+  `begin_checkout`（Squareへ進むボタン・50,000円）/ `supporter_cta`（加入案内ボタン・設置場所つき）/
+  `inquiry_cta`（事業ごとの相談ボタン）/ `generate_lead`（フォーム送信成功）/
+  `section_view`（1秒以上表示されたセクション。どこで離脱したかを見る）
+- ID設定後、GAの管理画面で `begin_checkout` と `generate_lead` を「キーイベント」に指定する
+- プライバシーポリシーにGA利用を明記済み（GAの規約上必要）
+
+### Business Supporterの加入導線強化（Codex・2026-09-21）
 
 **直近の最優先は年額50,000円（税込）のBusiness Supporter加入獲得。**
 企業支援の実績は現時点ではないため、実績セクション追加は後日とする（池田さん指示）。
@@ -196,7 +245,7 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 
 ### レイアウトとトーン
 
-- **シングルページ**。黒(`section--ink`)と白(`section--paper`)を交互に配置し、
+- トップは**シングルページ**（下層は `/supporter/` と `/privacy/` のみ）。黒(`section--ink`)と白(`section--paper`)を交互に配置し、
   白セクションの上辺は `clip-path` で斜めに切ってスピード感を出す
 - セクション見出しは `(001) BUSINESS SUPPORTER` の**番号+罫線**の編集デザイン
 - メンバー紹介は**写真左・テキスト右**を縦に積む（千田さんが上）
@@ -242,7 +291,8 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
      サイトに自動更新の明記が必須（`.sp-renew` と CTA下の注記）。
      金額や更新条件をSquare側で変えたら、**サイトの記載も必ず合わせること**
    - 決済リンク: `https://checkout.square.site/merchant/ML0T9EW3MMN9M/checkout/W4OKDYD2RMRS367KOMCCIICW`
-     （現在はindex.html内の `#supporter` に1か所。PARTNER内の加入CTAは `#supporter` へ移動）
+     （`index.html` の `#supporter` と `supporter/index.html` の `#plan` に1か所ずつ。
+     それ以外の加入ボタンはすべて内容確認のセクションへ移動させてから決済へ進ませる）
 
 ---
 
@@ -264,6 +314,14 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
   大きなロゴ画像を入れると列が広がり枠外へはみ出す → `min-width: 0` が必要
 - **同じ詳細度なら後に書いた方が勝つ**。`.cfield input { width:100% }` が
   後方にあるため、チェックボックスは `input[type="checkbox"]` で詳細度を上げて打ち消している
+- **`mix-blend-mode` は固定ヘッダー本体に指定する**。`position:fixed` + `z-index` の要素は
+  独立した重なり層になるので、中のロゴやナビに指定しても背景のページとは合成されない。
+  公開当初から白セクション上でロゴが白く消えていた原因（2026-09-28に修正）。
+  メニューを開いている間は `.is-menu-open` で反転を止めている
+- **WebP用の `<picture>` は `display: contents`、中の `<source>` は `display: none`**。
+  これをしないと、グリッドの中で `<source>` が1マスを占有し、写真が隣の列にずれる
+- **英語見出しの `<br class="pc">` の前には半角スペースを入れる**。スマホではbrが消えて
+  「BRANDPARTNERSHIP」のように単語がつながる
 
 ### 3. Wixの DNS設定は「@」が使えない
 
@@ -325,6 +383,13 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
   ローカル(127.0.0.1)へは proxy を外すこと
 - `pkill -f "node index.js"` は**自分のシェル自身にマッチして落ちる**。PIDを特定して kill する
 - コンテナ再起動後は Pillow / playwright の再インストールが必要な場合がある
+- **ローカル確認でGoogle Fontsを効かせる方法**：ブラウザはプロキシなしで起動し、
+  `fonts.googleapis.com / fonts.gstatic.com` へのリクエストだけを
+  `playwright.request.newContext({ proxy })` 経由で取得して `route.fulfill` で返す。
+  フォントなしで測ると見出しの折り返し判定が狂う
+- **画像生成用のフォントファイル**は GitHub（raw）からは403で取れない。
+  Google Fonts API（`fonts.googleapis.com/css2?family=...`）を古いUser-Agentで叩くと
+  TTFのURLが返る。日本語は `&text=使う文字` を付けると必要な字だけの小さなファイルになる
 
 ### 8. 検索から一時的に消えた（2026-08-17に解消）
 
@@ -350,13 +415,28 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 
 - [ ] **パートナープランの詳細**（Business Supporter 以外の名称・金額・内容）が未受領。
       受領したら PARTNERSHIP PLAN に反映する
-- [ ] **利用規約ページ**。Business Supporter 申込前の規約確認用。規約本文が未受領
+- [ ] **Googleアナリティクスの測定ID**（池田さんが取得中）。受け取ったら `js/analytics.js` に入れ、
+      GA側で `begin_checkout` と `generate_lead` をキーイベントに指定する
+- [ ] **利用規約ページ**。Business Supporter 申込前の規約確認用。**解約の方法・返金の有無・
+      特典の提供時期**が未決定。サイトには「解約はいつでも可能」とだけあり、方法の記載がない
+- [ ] **特定商取引法に基づく表記**。企業向け取引なら不要の可能性が高いが、個人事業主の申込も
+      あり得るため置くのが無難。所在地・電話番号が必要。最終判断は専門家へ（未確認）
+- [ ] **インボイス登録番号・領収書の発行方法**。企業の経理から必ず聞かれる。登録の有無は**未確認**
+- [x] ~~**プライバシーポリシー**~~ → `/privacy/` に掲載（2026-09-28）。
+      所在地は「ご請求に応じて遅滞なくお知らせします」としている（法令上この形も認められる）。
+      **千田さん・池田さんの内容確認は未了**。所在地を載せる場合は窓口の表に追記
+- [x] ~~**Business Supporter専用ページ**~~ → `/supporter/` に掲載（2026-09-28）
+- [ ] **BUSINESSの「BRAND PARTNERSHIP」とPARTNERの「WHY」「EXAMPLES」の内容が重複**。
+      統合すればさらに短くなるが、修正案PDFで承認された文面を削ることになるため池田さんの判断待ち
+- [ ] **活動報告（NEWS）**。大会出場報告だけでも「動いているチーム」だと伝わり、検索評価にも効く。
+      内容（記事）が揃うまで枠は作らない（空の枠は逆効果）
 - [x] ~~**決済・振込フロー**~~ → **Square決済に決定**（2026-09-21）。振込運用は廃止
-- [ ] **ページが長い**（スマホで約17,000px）。短縮案は
-      ①BUSINESSの提供内容を折りたたむ ②EXAMPLESを横スクロール ③PARTNERを別ページ化
+- [ ] **ページが長い**。①BUSINESSの折りたたみは実施済み（スマホ17,040px → 16,045px）。
+      残る案は ②EXAMPLESを横スクロール ③PARTNERを別ページ化 ④上記の重複統合
 - [ ] **表示速度**。以前はスマホ実測で表示完了まで約13秒（動画4.4MB＋画像）。
       2026-08-14に**スマホは2.2MBの軽量動画を配信**するようにしたので改善見込み。
-      **実機での再計測が必要**。残る改善案は team-duo.jpg(349KB)のWebP化、画像の遅延読み込み
+      2026-09-28の計測では、こちらの回線で約2秒で表示完了（スマホ合計3.8MB）。
+      team-duo はWebP化済み（349KB → 202KB）。**実機での再計測はまだ**
 - [x] ~~**SNSプロフィールへのURL記載（創業者2名分）**~~ → **完了**（2026-08-17）。
       池田さん = Instagram / X / LinkedIn、千田さん = Instagram / LinkedIn を
       それぞれ Person の `sameAs` に追加済み。両者のプロフィール側にもURL記載済み
@@ -377,7 +457,10 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 - Wixのサイトプランを解約するか**未確認**。解約前に「メールの契約がサイトプランに
   含まれていないか」をWixサポートに確認する必要がある
 - ドメイン更新（2027-06-14）後の方針。池田さんは「切れたらonrender.comのURLで」と
-  言っているが、他社へ移管して `lostoros.net` を維持する案も提示済み。**結論は未定**
+  言っているが、他社へ移管して `lostoros.net` を維持する案も提示済み。**結論は未定**。
+  なお現在サイトはGitHub Pagesで動いているため、ドメインを手放した場合のURLは
+  `onrender.com` ではなく `kpi1109gm-dot.github.io/lostoros-website/` になる
+  （Renderへ引っ越せば `lostoros-site.onrender.com`）。`@lostoros.net` のメールも使えなくなる
 - 会話中にGoogle検索結果として「所在地: 東京都世田谷区経堂1丁目15番22号キョウドウゲート102、
   法人番号9010903011019、設立2026年7月」が表示されたが、これは**公開登記情報を
   第三者サイトが掲載したもの**で、クライアントから直接受領した情報ではない。
