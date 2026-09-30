@@ -1,7 +1,11 @@
 # CLAUDE.md — 合同会社LosToros コーポレートサイト
 
 新しいセッションで前提説明なしに作業を再開するための引き継ぎ書。
-最終更新: 2026-09-28
+最終更新: 2026-09-30
+
+**まず「作業開始時に必ず最新へ同期する」を読むこと。**
+このリポジトリは Claude Code・Codex・手作業が交代で触るため、
+作業コピーが古いまま始まると他の人の変更を巻き戻す。
 
 **依頼者は COO・池田海さん**（ikeda@lostoros.net）。代表の千田さんではないため、
 千田さん個人のアカウントが必要な作業は依頼できない。
@@ -51,6 +55,25 @@
   DNSレコードのみGitHub Pagesへ向けている。ネームサーバーはWixのまま
 - **1年間はこの構成のまま運用する方針**（池田さん判断）
 
+### 作業開始時に必ず最新へ同期する（最優先）
+
+**作業コピーが古い状態で始まることがある。** 何かを変更する前に必ず実行する:
+
+```bash
+git fetch origin
+git checkout claude/lostoros-corporate-site-dzn7az
+git reset --hard origin/claude/lostoros-corporate-site-dzn7az
+git log --oneline -3
+```
+
+2026-09-30のセッションは、作業コピーが2026-09-21時点のまま始まった。
+確認せずに変更していたら、**Codexの変更（9/22）と別セッションの変更（9/28）
+の計5コミットを巻き戻すところだった。**
+
+このリポジトリは Claude Code・Codex・手作業が入れ替わりで触る。
+**「前回の自分のコミットが最新」とは限らない。**
+`git log --oneline -3` の日付が、この引き継ぎ書の「最新変更」と合うか必ず確かめる。
+
 ### デプロイ手順
 
 ```bash
@@ -62,6 +85,43 @@ git push -u origin claude/lostoros-corporate-site-dzn7az
 - GitHub Pages が数分で自動再デプロイ（**公開元は `main` ではなくこのブランチ**）
 - Renderも同ブランチを監視し、`server/` の変更で自動再デプロイ
 - 確認: `curl -sSI https://lostoros.net/` / `curl -sS https://lostoros-api.onrender.com/healthz`
+
+---
+
+## 別のPC・別環境から作業を再開する
+
+**作業に必要なものはすべてクラウド側にある。手元のPCには何も保存されていない。**
+PCを買い替えても、返却しても、**サイトは動き続ける**。
+
+| もの | 置き場所 | PCを変えたときの影響 |
+|---|---|---|
+| サイトのソース一式 | GitHub `kpi1109gm-dot/lostoros-website` | なし |
+| 公開中のサイト | GitHub Pages | なし。動き続ける |
+| お問い合わせフォームの受信 | Render `lostoros-api` | なし |
+| ドメイン `lostoros.net` | Wixで契約 | なし |
+| この引き継ぎ書 | リポジトリ内の CLAUDE.md | なし |
+| 作業の会話履歴 | Claudeのアカウント | ブラウザでログインすれば見られる |
+
+**注意: このリポジトリは公開（Public）設定。** パスワード・APIキー・
+未公開の契約条件は絶対に書かない。メール送信の認証情報はすべて
+Renderの環境変数にあり、リポジトリには入っていない（2026-09-30に全履歴を点検済み）。
+
+### 再開手順
+
+1. ブラウザで **https://claude.ai/code** を開く（オーナーのGoogleアカウントでログイン）
+2. リポジトリ **kpi1109gm-dot/lostoros-website** を選ぶ
+3. ブランチに **`claude/lostoros-corporate-site-dzn7az`** を指定する（`main` ではない）
+4. 最初に「**CLAUDE.mdを読んで現状を把握してから始めて**」と伝える
+5. 続きの作業を依頼する
+
+**必要なのはブラウザとアカウントだけ。** 特定のPCやソフトのインストールは不要。
+
+### 変更の記録を残す慣習
+
+大きめの変更をしたら `docs/changes/YYYY-MM-DD-内容.md` に記録を残す。
+**誰が（Claude Code / Codex / 手作業）・何を・なぜ**変えたかを書く。
+複数のツールが交代で触るため、これがないと経緯を追えなくなる。
+
 
 ---
 
