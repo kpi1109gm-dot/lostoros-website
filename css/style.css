@@ -1085,6 +1085,15 @@ a { color: inherit; }
 
 .sp-price strong { font-size: 30px; }
 
+/* 実際の請求額（税込）。税別だけ出すと決済画面で金額が増えて驚かせるため併記する */
+.sp-price-incl {
+  display: inline-block;
+  margin-left: 12px;
+  font-size: 11.5px;
+  letter-spacing: .06em;
+  opacity: .75;
+}
+
 /* 自動更新は申し込み前に必ず見せる。価格のすぐ下に置く */
 .sp-renew {
   font-size: 11.5px;

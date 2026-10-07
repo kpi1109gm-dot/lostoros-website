@@ -1,7 +1,7 @@
 # CLAUDE.md — 合同会社LosToros コーポレートサイト
 
 新しいセッションで前提説明なしに作業を再開するための引き継ぎ書。
-最終更新: 2026-09-30
+最終更新: 2026-10-07
 
 **まず「作業開始時に必ず最新へ同期する」を読むこと。**
 このリポジトリは Claude Code・Codex・手作業が交代で触るため、
@@ -200,10 +200,11 @@ docs/
 
 ### 価格・条件の記載箇所（変更時はすべて直す）
 
-年額50,000円（税込）・12ヶ月自動更新・3特典は次の場所に書かれている。
+年額50,000円（**税別**。請求額は税込55,000円）・12ヶ月自動更新・3特典は次の場所に書かれている。
 `index.html`：ヒーロー（`.hero-offer`）、`#supporter`、PARTNERの `.pt-plan-entry`、
 固定CTA（`#supporterSticky`）／ `supporter/index.html`：ヒーロー、`#plan`／
-`assets/ogp-supporter.jpg`（画像。作り直しが必要）／ `js/analytics.js` の `value: 50000`。
+`assets/ogp-supporter.jpg`（画像の赤いバッジに焼き込み。作り直しが必要）／
+`js/analytics.js` の `value` と `price`（**請求額に合わせて 55000**）。
 **Squareの決済リンクは `index.html` と `supporter/index.html` に1か所ずつ。**
 
 ### アクセス解析（Googleアナリティクス 4）
@@ -212,7 +213,7 @@ docs/
   `js/analytics.js` の `GA_MEASUREMENT_ID` に記載。空にすると計測が止まる
 - GAプロパティは池田さんのGoogleアカウント（ikeda@…）で作成。拡張計測機能はON
 - 標準の計測に加えて次のイベントを送る:
-  `begin_checkout`（Squareへ進むボタン・50,000円）/ `supporter_cta`（加入案内ボタン・設置場所つき）/
+  `begin_checkout`（Squareへ進むボタン・税込55,000円）/ `supporter_cta`（加入案内ボタン・設置場所つき）/
   `inquiry_cta`（事業ごとの相談ボタン）/ `generate_lead`（フォーム送信成功）/
   `section_view`（1秒以上表示されたセクション。どこで離脱したかを見る）
 - `begin_checkout` と `generate_lead` はGA側で「キーイベント」に登録済み
@@ -220,10 +221,10 @@ docs/
 
 ### Business Supporterの加入導線強化（Codex・2026-09-21）
 
-**直近の最優先は年額50,000円（税込）のBusiness Supporter加入獲得。**
+**直近の最優先は年額50,000円（税別）のBusiness Supporter加入獲得。**
 企業支援の実績は現時点ではないため、実績セクション追加は後日とする（池田さん指示）。
 
-- トップに3特典・税込年額・自動更新と `#supporter` への加入CTAを追加。
+- トップに3特典・年額・自動更新と `#supporter` への加入CTAを追加。
 - 既存の申込セクションをチーム紹介の直後へ移動。番号を全体で更新。
 - ナビのPHILOSOPHY枠を「年額5万円で参画」に変更（理念の本文は残す）。
   CONTACTは `#contact-form` へ直接移動する。
@@ -348,7 +349,8 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
      同じ項目を2回入力させると離脱するため、**サイトのフォームを廃止**し
      ボタンから決済ページへ直接飛ばす形にした（池田さんの判断）
    - 失われたのは「ご連絡事項（任意）」のみ。お問い合わせフォームで代替できる
-   - **決済は年額50,000円のサブスクリプションで、12ヶ月ごとに自動更新される。**
+   - **決済は年額50,000円（税別）のサブスクリプションで、12ヶ月ごとに自動更新される。
+     Squareが実際に請求するのは税込55,000円**（2026-10-07にSquare・サイトとも税別表記へ統一）。
      サイトに自動更新の明記が必須（`.sp-renew` と CTA下の注記）。
      金額や更新条件をSquare側で変えたら、**サイトの記載も必ず合わせること**
    - 決済リンク: `https://checkout.square.site/merchant/ML0T9EW3MMN9M/checkout/W4OKDYD2RMRS367KOMCCIICW`
@@ -478,7 +480,7 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
       受領したら PARTNERSHIP PLAN に反映する
 - [x] ~~**Googleアナリティクスの測定ID**~~ → 設定済み（2026-09-28）
 - [x] ~~**GAでキーイベントを指定**~~ → `begin_checkout` と `generate_lead` を登録済み（2026-09-28・池田さん作業）。
-      作成方法は「コードを使用して作成」、デフォルト値は「設定しない」（サイト側が50,000円を送るため）。
+      作成方法は「コードを使用して作成」、デフォルト値は「設定しない」（サイト側が金額を送るため）。
       ※「コードなしで作成」は page_view を条件にした別イベントが作られてしまうので使わない
 - [ ] **利用規約ページ**。Business Supporter 申込前の規約確認用。**解約の方法・返金の有無・
       特典の提供時期**が未決定。サイトには「解約はいつでも可能」とだけあり、方法の記載がない

@@ -6,7 +6,7 @@
 // 標準の計測（ページの閲覧数・スクロール・外部リンクのクリック等）に加えて、
 // 加入導線の効果を測るため、次のイベントを送る。
 //
-//   begin_checkout   Squareの決済ページへ進むボタンを押した（年額50,000円）
+//   begin_checkout   Squareの決済ページへ進むボタンを押した（年額50,000円＋税・請求額55,000円）
 //   supporter_cta    「加入内容・申込へ」系のボタンを押した（どこのボタンかを location で区別）
 //   inquiry_cta      「この事業について相談する」等を押した（種別を inquiry_type で区別）
 //   generate_lead    お問い合わせフォームの送信が成功した
@@ -58,10 +58,11 @@
 
     if (href.indexOf('checkout.square.site') !== -1) {
       // 同じタブでSquareへ移動するため、ページを離れても届く送信方式を使う
+      // 金額はSquareが実際に請求する税込55,000円（年額50,000円＋消費税）に合わせている
       track('begin_checkout', {
         currency: 'JPY',
-        value: 50000,
-        items: [{ item_name: 'Business Supporter', price: 50000, quantity: 1 }],
+        value: 55000,
+        items: [{ item_name: 'Business Supporter', price: 55000, quantity: 1 }],
         link_location: locationOf(a),
         transport_type: 'beacon'
       });
