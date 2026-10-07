@@ -153,7 +153,9 @@ assets/
   logo.png                    闘牛マーク単体（赤・透過）
   favicon-{48,96,144,192,512}.png / apple-touch-icon.png
   ogp.jpg                     SNSシェア用カード（1200x630）
-  ogp-supporter.jpg           /supporter/ 用のシェアカード（価格入り。価格を変えたら作り直す）
+  ogp-supporter.jpg           /supporter/ 用のシェアカード（赤いバッジに価格を焼き込んである）。
+                              **価格を変えたら画像を作り直し、`supporter/index.html` の
+                              og:image と twitter:image の `?v=` も上げる**（後述）
   partner-freezia.png         パートナー企業ロゴ（FreeZia Sports・掲載許諾済み）
 
 server/index.js               Express。POST /api/contact と GET /healthz
@@ -203,9 +205,23 @@ docs/
 年額50,000円（**税別**。請求額は税込55,000円）・12ヶ月自動更新・3特典は次の場所に書かれている。
 `index.html`：ヒーロー（`.hero-offer`）、`#supporter`、PARTNERの `.pt-plan-entry`、
 固定CTA（`#supporterSticky`）／ `supporter/index.html`：ヒーロー、`#plan`／
-`assets/ogp-supporter.jpg`（画像の赤いバッジに焼き込み。作り直しが必要）／
+`assets/ogp-supporter.jpg`（画像の赤いバッジに焼き込み。作り直しが必要。
+**あわせて og:image / twitter:image の `?v=` を上げないとSNSが古い画像を出し続ける**）／
 `js/analytics.js` の `value` と `price`（**請求額に合わせて 55000**）。
 **Squareの決済リンクは `index.html` と `supporter/index.html` に1か所ずつ。**
+
+### シェア画像（OGP）を差し替えたときの注意
+
+**SNSはシェア画像をURL単位でキャッシュする。** ファイルを上書きしただけでは、
+X・Facebook・LINE・Slackなどは**古い画像を出し続ける**（数日〜数週間）。
+
+- 画像を差し替えたら、`supporter/index.html` の `og:image` と `twitter:image` の
+  `?v=` を必ず上げる（例 `?v=202610` → `?v=202611`）。URLが変わればキャッシュを素通りする
+- JSON-LD の `primaryImageOfPage` は正規URLを指すため `?v=` を付けない
+- すでに送ってしまったリンクの表示を更新したいときは、各サービスの
+  キャッシュ削除ツール（Facebookのシェアデバッガー等）で取り直させる
+- GitHub Pagesの画像は `cache-control: max-age=600`。ブラウザのキャッシュは10分で切れるので、
+  **自分で見るときはスーパーリロードか時間をおけば新しい画像になる**
 
 ### アクセス解析（Googleアナリティクス 4）
 
