@@ -1,7 +1,7 @@
 # CLAUDE.md — 合同会社LosToros コーポレートサイト
 
 新しいセッションで前提説明なしに作業を再開するための引き継ぎ書。
-最終更新: 2026-10-07
+最終更新: 2026-10-12
 
 **まず「作業開始時に必ず最新へ同期する」を読むこと。**
 このリポジトリは Claude Code・Codex・手作業が交代で触るため、
@@ -157,6 +157,7 @@ assets/
                               **価格を変えたら画像を作り直し、`supporter/index.html` の
                               og:image と twitter:image の `?v=` も上げる**（後述）
   partner-freezia.png         パートナー企業ロゴ（FreeZia Sports・掲載許諾済み）
+  supporter-4assist.png       Business Supporter 加入企業ロゴ（株式会社フォーアシスト・2026-10-12掲載）
 
 server/index.js               Express。POST /api/contact と GET /healthz
 docs/
@@ -278,6 +279,8 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 「PARTNERSHIP PLAN」→ OUR PARTNERS（ロゴ）→ FOUNDING PARTNER 募集 → CTA(2導線)
 
 - **個別プランは商談導線、Business Supporterは `#supporter` で条件確認後にSquare決済へ進む**
+- OUR PARTNERS の下に **BUSINESS SUPPORTERS**（パートナーより一段小さいロゴ）を設置済み。
+  1社目は株式会社フォーアシスト（2026-10-12）。2社目以降は同じ `<ul>` に `<li>` を足すだけ
 - **各パートナープランの名称・金額・内容は未受領**。憶測で書かず
   「企業ごとに設計します」に留めている
 

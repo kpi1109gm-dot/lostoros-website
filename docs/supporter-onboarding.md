@@ -33,6 +33,9 @@ Business Supporter の特典に「公式サイトへのロゴ掲載」がある�
 パートナー企業より一段小さく表示されるスタイル（`.pt-supporters` / `.pt-logos--sm`）は用意済み。
 **加入企業が0社のあいだは追加しない**（空の枠はパートナー不在の印象を与えるため）。
 
+> **2026-10-12に1社目（株式会社フォーアシスト）を掲載し、下の枠はすでに両ページにある。**
+> 2社目以降は枠を作り直さず、`.pt-logos--sm` の `<ul>` に `<li>` を1行足すだけでよい。
+
 ```html
 <div class="pt-supporters">
   <p class="pt-h mono">BUSINESS SUPPORTERS</p>
