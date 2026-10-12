@@ -157,7 +157,7 @@ assets/
                               **価格を変えたら画像を作り直し、`supporter/index.html` の
                               og:image と twitter:image の `?v=` も上げる**（後述）
   partner-freezia.png         パートナー企業ロゴ（FreeZia Sports・掲載許諾済み）
-  supporter-4assist.png       Business Supporter 加入企業ロゴ（株式会社フォーアシスト・2026-10-12掲載）
+  partner-4assist.png         パートナー企業ロゴ（株式会社フォーアシスト・2026-10-12掲載・FreeZia Sportsと同格）
 
 server/index.js               Express。POST /api/contact と GET /healthz
 docs/
@@ -279,8 +279,10 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 「PARTNERSHIP PLAN」→ OUR PARTNERS（ロゴ）→ FOUNDING PARTNER 募集 → CTA(2導線)
 
 - **個別プランは商談導線、Business Supporterは `#supporter` で条件確認後にSquare決済へ進む**
-- OUR PARTNERS の下に **BUSINESS SUPPORTERS**（パートナーより一段小さいロゴ）を設置済み。
-  1社目は株式会社フォーアシスト（2026-10-12）。2社目以降は同じ `<ul>` に `<li>` を足すだけ
+- OUR PARTNERS のロゴは **FreeZia Sports・株式会社フォーアシスト** の2社（同じ大きさ・横並び）。
+  パートナーを足すときは `.pt-logos` の `<ul>` に `<li>` を足す（トップと `/supporter/` の両方）
+- 年額5万円の Business Supporter 加入企業を載せる枠（BUSINESS SUPPORTERS・一段小さい表示）は
+  現在**設置していない**。加入企業が出たら `docs/supporter-onboarding.md` の手順で作る
 - **各パートナープランの名称・金額・内容は未受領**。憶測で書かず
   「企業ごとに設計します」に留めている
 

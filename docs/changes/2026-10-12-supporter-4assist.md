@@ -29,3 +29,18 @@
 - 掲載区分を Business Supporter（年額プラン）として扱った。
   FreeZia Sports と同格のパートナーなら、OUR PARTNERS 側へ移して同じ大きさにする
 - 会社サイトへのリンクを貼るか
+
+---
+
+## 追記：パートナー扱いへ変更（同日）
+
+池田さんに確認したところ、フォーアシスト様は **FreeZia Sports と同じ位置付け**とのこと。
+
+- BUSINESS SUPPORTERS の枠を外し、OUR PARTNERS の `.pt-logos` に FreeZia Sports と並べた
+  （空の枠は残さない方針のため、枠ごと削除）
+- 画像名を `supporter-4assist.png` → `partner-4assist.png` に変更（`partner-freezia.png` と揃えた）
+- 表示は FreeZia Sports 188×150px / フォーアシスト 197×150px。PCは横並び、スマホは縦並び
+- 1280px・390pxで表示・読み込み・はみ出し・JSエラーを確認
+
+**教訓：ロゴを受け取ったら、掲載前に「年額プランか、パートナーか」を確認する。**
+手順書にも追記した。
