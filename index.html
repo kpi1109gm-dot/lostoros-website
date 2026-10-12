@@ -160,7 +160,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261007">
+  <link rel="stylesheet" href="css/style.css?v=20261012">
 </head>
 <body>
 
@@ -648,12 +648,17 @@
       <!-- パートナーロゴは明るい地に枠線なしで置き、ロゴ本来の色をそのまま見せる -->
       <div class="pt-partners" data-reveal>
         <p class="pt-h mono">OUR PARTNERS</p>
+        <!-- パートナー企業へのリンクには rel="sponsored" を付ける（協賛関係のリンクとしてGoogleに正しく伝えるため） -->
         <ul class="pt-logos">
           <li>
-            <img src="assets/partner-freezia.png" alt="FreeZia Sports" width="600" height="479" loading="lazy">
+            <a href="https://freeziasports.com/" target="_blank" rel="sponsored noopener">
+              <img src="assets/partner-freezia.png" alt="FreeZia Sports" width="600" height="479" loading="lazy">
+            </a>
           </li>
           <li>
-            <img src="assets/partner-4assist.png" alt="株式会社フォーアシスト" width="358" height="273" loading="lazy">
+            <a href="https://www.4assist.co.jp/" target="_blank" rel="sponsored noopener">
+              <img src="assets/partner-4assist.png" alt="株式会社フォーアシスト" width="358" height="273" loading="lazy">
+            </a>
           </li>
         </ul>
       </div>
@@ -776,7 +781,7 @@
 
   <div class="grain" aria-hidden="true"></div>
 
-  <script src="js/analytics.js?v=20261007-ga"></script>
-  <script src="js/main.js?v=20261007"></script>
+  <script src="js/analytics.js?v=20261012-ga"></script>
+  <script src="js/main.js?v=20261012"></script>
 </body>
 </html>

@@ -281,6 +281,9 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 - **個別プランは商談導線、Business Supporterは `#supporter` で条件確認後にSquare決済へ進む**
 - OUR PARTNERS のロゴは **FreeZia Sports・株式会社フォーアシスト** の2社（同じ大きさ・横並び）。
   パートナーを足すときは `.pt-logos` の `<ul>` に `<li>` を足す（トップと `/supporter/` の両方）
+- 各ロゴは先方サイトへのリンク（新しいタブ・`rel="sponsored noopener"`）。
+  FreeZia Sports → https://freeziasports.com/ ／ フォーアシスト → https://www.4assist.co.jp/
+  **協賛関係のリンクには `rel="sponsored"` を必ず付ける**（付けないとGoogleのガイドライン違反とみなされる恐れ）
 - 年額5万円の Business Supporter 加入企業を載せる枠（BUSINESS SUPPORTERS・一段小さい表示）は
   現在**設置していない**。加入企業が出たら `docs/supporter-onboarding.md` の手順で作る
 - **各パートナープランの名称・金額・内容は未受領**。憶測で書かず

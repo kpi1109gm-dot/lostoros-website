@@ -1030,6 +1030,19 @@ a { color: inherit; }
   object-fit: contain;
 }
 
+/* ロゴは各社のサイトへのリンク。色は変えず、触れたときだけ少し薄くする */
+.pt-logos a {
+  display: block;
+  transition: opacity .25s ease;
+}
+
+.pt-logos a:hover { opacity: .72; }
+
+.pt-logos a:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 8px;
+}
+
 /* ⑦ CTA */
 .pt-cta {
   display: flex;
