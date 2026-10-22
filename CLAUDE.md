@@ -1,7 +1,7 @@
 # CLAUDE.md — 合同会社LosToros コーポレートサイト
 
 新しいセッションで前提説明なしに作業を再開するための引き継ぎ書。
-最終更新: 2026-10-12
+最終更新: 2026-10-22
 
 **まず「作業開始時に必ず最新へ同期する」を読むこと。**
 このリポジトリは Claude Code・Codex・手作業が交代で触るため、
@@ -41,7 +41,9 @@
   - フォントのみ Google Fonts をCDN読み込み
   - 例外：Googleアナリティクス（`js/analytics.js` に測定IDを入れた場合のみ読み込む）
 - **バックエンド**: `server/` に Express。お問い合わせフォームの受信専用
-  - 依存: express / cors / nodemailer
+  - 依存: express / cors / nodemailer。実行環境は Node.js 22 以上（`engines`）
+- **PHPは一切使っていない。** 2026-10のPHP脆弱性（PHP2Shell）の影響はないことを確認済み
+  （[変更記録](docs/changes/2026-10-22-security-review.md)）
 
 ### ホスティング（3つ存在する。混同注意）
 
@@ -540,6 +542,9 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 - [ ] **会社概要の追加情報**（所在地・設立年月・資本金）を載せるか未定。
       `index.html` の `company-table` に `<!-- TODO -->` コメントあり
 - [ ] **Render Static Site（`lostoros-site`）の扱い**。未使用。使わないなら削除してよい
+- [ ] **nodemailer 6.10.1 → 10系への更新**（npm audit で高が1件残る）。大きな版の更新のため、
+      **本番でテスト送信できる日に**行う。フォーム入力から該当処理に届く経路は2026-10-22にふさいだ
+      （返信先を `{ name, address }` で渡し、メール欄は254文字・記号を拒否）
 
 ### 判断待ち・未確認事項
 

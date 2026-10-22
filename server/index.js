@@ -22,6 +22,7 @@ const cors = require('cors');
 const nodemailer = require('nodemailer');
 
 const app = express();
+app.disable('x-powered-by'); // 使っている部品名を外部に知らせない
 app.set('trust proxy', 1);
 app.use(express.json({ limit: '32kb' }));
 
@@ -84,6 +85,31 @@ function mailMode() {
   return null;
 }
 
+// ---- 入力の安全化 ----
+//
+// フォームの値はメールの「返信先」と「件名」に入る。ここに記号や改行が混ざると、
+// 返信先に第三者のアドレスを紛れ込ませたり（返信を押すと攻撃者に届く）、
+// メール送信部品に極端に重い処理をさせたりできてしまう（2026-10-22に実際に確認して対処）。
+
+// 制御文字（改行・タブなど）を1つの空白にまとめる。1行で使う値（名前・会社名・種別）用
+function oneLine(value) {
+  return String(value || '').replace(/[\u0000-\u001f\u007f\u2028\u2029]+/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+// 本文用。改行は残し、それ以外の制御文字だけを除く
+function multiLine(value) {
+  return String(value || '').replace(/\r\n?/g, '\n').replace(/[\u0000-\u0008\u000b-\u001f\u007f]/g, '').trim();
+}
+
+// メールアドレスに使える文字だけを許す。返信先の区切りに使われる " < > ( ) , ; : [ ] \ を含むものは拒否
+const EMAIL_RE = /^[A-Za-z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?(?:\.[A-Za-z0-9](?:[A-Za-z0-9-]*[A-Za-z0-9])?)+$/;
+const EMAIL_MAX = 254; // メールアドレスの規格上の上限
+
+// 返信先の表示名から、宛先の区切りとして解釈されうる記号を取り除く
+function displayName(name) {
+  return name.replace(/["<>()\[\]\\,;:@]/g, '').trim() || 'お問い合わせ';
+}
+
 // Resend（HTTP API）で送る。RenderのSMTP遮断を受けない
 async function sendViaResend(mail) {
   const url = process.env.RESEND_API_URL || 'https://api.resend.com/emails';
@@ -96,7 +122,8 @@ async function sendViaResend(mail) {
     body: JSON.stringify({
       from: mail.from,
       to: mail.to,
-      reply_to: mail.replyTo,
+      // 表示名は displayName() で " や < > を除いてあるので、引用符で囲んでも崩れない
+      reply_to: `"${mail.replyTo.name}" <${mail.replyTo.address}>`,
       subject: mail.subject,
       text: mail.text,
     }),
@@ -121,19 +148,20 @@ app.post('/api/contact', async (req, res) => {
   // ボット対策の隠しフィールド。入力されていたら黙って成功を返す
   if (body.website) return res.json({ ok: true });
 
-  const name = String(body.name || '').trim();
-  const company = String(body.company || '').trim();
+  const name = oneLine(body.name);
+  const company = oneLine(body.company);
   const email = String(body.email || '').trim();
-  const type = String(body.type || '').trim();
-  const message = String(body.message || '').trim();
+  const type = oneLine(body.type);
+  const message = multiLine(body.message);
 
   if (!name || !email || !message) {
     return res.status(400).json({ ok: false, error: '必須項目が未入力です' });
   }
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+  // 長さを先に確かめる。長すぎる値を正規表現やメール送信部品に渡さないため
+  if (email.length > EMAIL_MAX || !EMAIL_RE.test(email)) {
     return res.status(400).json({ ok: false, error: 'メールアドレスの形式が正しくありません' });
   }
-  if (name.length > 100 || company.length > 200 || message.length > 5000) {
+  if (name.length > 100 || company.length > 200 || type.length > 100 || message.length > 5000) {
     return res.status(400).json({ ok: false, error: '入力が長すぎます' });
   }
 
@@ -162,7 +190,9 @@ app.post('/api/contact', async (req, res) => {
   const mail = {
     from: senderAddress(),
     to: recipients(),
-    replyTo: `"${name}" <${email}>`,
+    // 文字列で組み立てず「名前」と「アドレス」を分けて渡す。
+    // 送信部品が入力を解析し直さないので、名前に記号が入っても宛先が増えない
+    replyTo: { name: displayName(name), address: email },
     subject: `【お問い合わせ】${type || 'その他'} / ${name}`,
     text,
   };
