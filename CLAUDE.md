@@ -339,7 +339,7 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 
 | 変数 | フォント | 用途 |
 |---|---|---|
-| `--disp` | Goldman | 英語見出し（WHAT WE DO / FOUNDERS など） |
+| `--disp` | Goldman | 英語見出し（WHAT WE DO / FOUNDERS など）・価格の大きな数字「50,000」（2026-10-23〜） |
 | `--mono` | Space Mono | 小さいラベル・セクション番号 |
 | `--jp` | Noto Sans JP | 日本語本文 |
 
