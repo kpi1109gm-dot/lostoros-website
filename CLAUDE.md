@@ -444,6 +444,11 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 
 - ルートドメインのAレコードは**ホスト名を空欄**にする（`@` は弾かれる）
 - **MX・TXTレコードには絶対に触らない**。触ると社用メールが止まる
+- 社用メールの中身は **Google Workspace（Wix経由で購入）**。MXは `aspmx.l.google.com` 系、
+  SPFは `include:_spf.google.com`。2026-10-23時点で **DKIM（`google._domainkey`）と
+  DMARC（`_dmarc`）は未設定**。設定する場合は既存のMX・TXTを消さず「追加」のみ行う
+- メンバーを増やすときは Wix の「Business Email」→「Add Users」でメールボックスを追加購入する
+  （サイトプランの変更は不要）。購入後に Google管理コンソールでユーザーを作成する
 - ネームサーバー変更は不可だが、DNSレコード編集（ポインティング方式）は可能
 
 ### 4. GitHub Pagesの公開ブランチは `main` ではない
