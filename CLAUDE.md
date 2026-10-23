@@ -1,7 +1,7 @@
 # CLAUDE.md — 合同会社LosToros コーポレートサイト
 
 新しいセッションで前提説明なしに作業を再開するための引き継ぎ書。
-最終更新: 2026-10-22
+最終更新: 2026-10-23
 
 **まず「作業開始時に必ず最新へ同期する」を読むこと。**
 このリポジトリは Claude Code・Codex・手作業が交代で触るため、
@@ -155,7 +155,8 @@ assets/
   logo.png                    闘牛マーク単体（赤・透過）
   favicon-{48,96,144,192,512}.png / apple-touch-icon.png
   ogp.jpg                     SNSシェア用カード（1200x630）
-  ogp-supporter.jpg           /supporter/ 用のシェアカード（赤いバッジに価格を焼き込んである）。
+  ogp-supporter.jpg           /supporter/ 用のシェアカード（赤いバッジに価格、その右に
+                              「オンラインで申し込み・12ヶ月ごとに自動更新」を焼き込んである）。
                               **価格を変えたら画像を作り直し、`supporter/index.html` の
                               og:image と twitter:image の `?v=` も上げる**（後述）
   partner-freezia.png         パートナー企業ロゴ（FreeZia Sports・掲載許諾済み）
@@ -281,6 +282,8 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 「PARTNERSHIP PLAN」→ OUR PARTNERS（ロゴ）→ FOUNDING PARTNER 募集 → CTA(2導線)
 
 - **個別プランは商談導線、Business Supporterは `#supporter` で条件確認後にSquare決済へ進む**
+- **Business Supporter の案内に「商談不要」「商談なし」の表現は使わない**（2026-10-23 池田さん指示）。
+  言い換えは「オンラインでお申し込みいただけます」。シェア画像の文言も同じ
 - OUR PARTNERS のロゴは **FreeZia Sports・株式会社フォーアシスト** の2社（同じ大きさ・横並び）。
   パートナーを足すときは `.pt-logos` の `<ul>` に `<li>` を足す（トップと `/supporter/` の両方）
 - 各ロゴは先方サイトへのリンク（新しいタブ・`rel="sponsored noopener"`）。
