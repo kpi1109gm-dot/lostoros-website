@@ -1950,3 +1950,16 @@ main > .form-section:first-child { padding-top: clamp(120px, 14vw, 180px); }
   .explore-card { padding: 22px 20px; gap: 8px; }
   .explore-text { font-size: 13px; }
 }
+
+/* 下層ページの先頭が白セクションのとき、上辺の斜めカットを外す
+   （ヘッダーの裏に黒い三角が見えてしまうため） */
+main > .section--paper:first-child { clip-path: none; }
+
+/* 価格の大きな数字は見出しと同じ書体にする（2026-10-23 池田さん指示） */
+.sp-price strong,
+.sub-hero-price strong,
+.pt-entry-price strong {
+  font-family: var(--disp);
+  font-weight: 700;
+  letter-spacing: .01em;
+}
