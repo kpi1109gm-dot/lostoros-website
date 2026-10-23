@@ -204,17 +204,30 @@
   // 申込は #supporter セクションのボタンからSquareへ直接遷移する。
 
   // 事業ごとの「この事業について相談する」から、問い合わせ種別を引き継ぐ
+  //
+  // 相談ボタンは /contact/?type=種別#contact-form へ移動する（2026-10-23に複数ページ化）。
+  // お問い合わせページでは URL の type を読んで、種別の選択肢を合わせる。
+  // 選択肢の文言と data-inquiry の値は完全に一致させること。
   var typeSelect = document.getElementById('cf-type');
+
+  function selectType(want) {
+    if (!typeSelect || !want) return;
+    for (var i = 0; i < typeSelect.options.length; i++) {
+      if (typeSelect.options[i].value === want) {
+        typeSelect.selectedIndex = i;
+        break;
+      }
+    }
+  }
+
+  if (typeSelect && window.URLSearchParams) {
+    selectType(new URLSearchParams(window.location.search).get('type'));
+  }
+
+  // 同じページ内にフォームがある場合の引き継ぎ（現在はお問い合わせページのみ）
   document.querySelectorAll('[data-inquiry]').forEach(function (link) {
     link.addEventListener('click', function () {
-      if (!typeSelect) return;
-      var want = link.getAttribute('data-inquiry');
-      for (var i = 0; i < typeSelect.options.length; i++) {
-        if (typeSelect.options[i].value === want) {
-          typeSelect.selectedIndex = i;
-          break;
-        }
-      }
+      selectType(link.getAttribute('data-inquiry'));
     });
   });
 
@@ -262,7 +275,9 @@
   var sticky = document.getElementById('supporterSticky');
   var nav = document.getElementById('siteNav');
   if (!sticky || !('IntersectionObserver' in window)) return;
-  var blockers = document.querySelectorAll('.hero, #supporter, #contact-form, .site-footer');
+  // これらが画面に見えている間は、固定ボタンを出さない（同じ案内が重なるため）。
+  // .page-end は下層ページの末尾にある「お問い合わせ・ほかのページ」の帯
+  var blockers = document.querySelectorAll('.hero, #supporter, #contact-form, .page-end, .site-footer');
   var visible = new Set();
   var narrow = window.matchMedia('(max-width: 860px)');
   function update() {

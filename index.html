@@ -98,7 +98,7 @@
           "@type": "ContactPoint",
           "contactType": "パートナーシップ・取材・イベントに関するお問い合わせ",
           "email": "chida@lostoros.net",
-          "url": "https://lostoros.net/#contact",
+          "url": "https://lostoros.net/contact/",
           "availableLanguage": ["ja"]
         }
       },
@@ -107,7 +107,7 @@
         "@id": "https://lostoros.net/#team",
         "name": "LosToros Track Team",
         "alternateName": ["ロストロス トラックチーム", "LosToros"],
-        "url": "https://lostoros.net/#about",
+        "url": "https://lostoros.net/about/",
         "sport": "陸上競技（短距離・ハードル）",
         "description": "合同会社LosTorosが運営する陸上スプリントチーム。オリンピック出場を目指す短距離・ハードルの現役選手が所属する。",
         "parentOrganization": { "@id": "https://lostoros.net/#organization" },
@@ -157,25 +157,34 @@
   }
   </script>
 
+  <!-- 1ページ構成だった頃のリンク（/#partner など）で来た人を、新しいページへ移す -->
+  <script>
+    (function () {
+      var to = { '#about': '/about/', '#philosophy': '/about/#philosophy', '#business': '/business/',
+                 '#members': '/members/', '#partner': '/partner/', '#contact': '/contact/', '#contact-form': '/contact/#contact-form' };
+      if (to[location.hash]) location.replace(to[location.hash]);
+    })();
+  </script>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Goldman:wght@400;700&family=Space+Mono:wght@400;700&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=20261012">
+  <link rel="stylesheet" href="css/style.css?v=20261023">
 </head>
 <body>
 
-  <!-- ======= 固定ヘッダー ======= -->
+  <!-- ======= 固定ヘッダー（全ページ共通。変更するときは全ページを直す） ======= -->
   <header class="site-header">
     <a class="header-brand" href="#top" aria-label="LosToros ホーム">
       <img src="assets/logo-lockup.png" alt="LosToros" class="header-logo" width="900" height="148">
     </a>
     <nav class="site-nav" id="siteNav" aria-label="メインナビゲーション">
-      <a href="#about">ABOUT</a>
-      <a href="#supporter" class="nav-supporter">年額5万円で参画</a>
-      <a href="#business">BUSINESS</a>
-      <a href="#members">MEMBERS</a>
-      <a href="#partner">PARTNER</a>
-      <a href="#contact-form" class="nav-contact">CONTACT</a>
+      <a href="/about/">ABOUT</a>
+      <a href="/supporter/" class="nav-supporter">年額5万円で参画</a>
+      <a href="/business/">BUSINESS</a>
+      <a href="/members/">MEMBERS</a>
+      <a href="/partner/">PARTNER</a>
+      <a href="/contact/" class="nav-contact">CONTACT</a>
     </nav>
     <button class="nav-toggle" id="navToggle" aria-label="メニュー" aria-expanded="false">
       <span></span><span></span>
@@ -242,7 +251,7 @@
         <p class="mono">TWO ATHLETES. ONE CHALLENGE.</p>
         <h2>走り続ける2人と、<br>チームのこれからをつくる。</h2>
         <p>100m・200mの千田杜真寿と、110mハードルの池田海。オリンピックを目指す現役選手が、自ら運営するLosToros Track Teamです。</p>
-        <a href="#members">創業メンバーを知る <span aria-hidden="true">↗</span></a>
+        <a href="/members/">創業メンバーを知る <span aria-hidden="true">↗</span></a>
       </div>
     </section>
 
@@ -293,358 +302,53 @@
         </a>
         <p class="sp-note sp-note--cta">
           Squareの決済ページへ移動します。年額50,000円（税別）、お支払い額は税込55,000円です。12ヶ月ごとに自動更新されます。<br class="pc">
-          特典の詳細・解約についてのご質問は<a class="sp-link" href="#contact-form" data-inquiry="PARTNERSHIP / 企業とのパートナーシップ">お問い合わせ</a>ください。
+          特典の詳細・解約についてのご質問は<a class="sp-link" href="/contact/?type=PARTNERSHIP%20%2F%20%E4%BC%81%E6%A5%AD%E3%81%A8%E3%81%AE%E3%83%91%E3%83%BC%E3%83%88%E3%83%8A%E3%83%BC%E3%82%B7%E3%83%83%E3%83%97#contact-form" data-inquiry="PARTNERSHIP / 企業とのパートナーシップ">お問い合わせ</a>ください。
         </p>
       </div>
     </section>
 
-    <!-- ======= ABOUT ======= -->
-    <section class="section section--paper" id="about">
+    <!-- ======= 各ページへの入口 ======= -->
+    <section class="section section--ink" id="explore">
       <div class="section-head mono" data-reveal>
-        <span>(002) ABOUT</span><span class="rule"></span><span>私たちについて</span>
+        <span>(002) EXPLORE</span><span class="rule"></span><span>LosTorosを知る</span>
       </div>
-
-      <div class="about-grid">
-        <h2 class="section-title" data-reveal>WHO<br>WE ARE</h2>
-        <div class="about-body">
-          <p class="lead" data-reveal>LosToros —— スペイン語で<span class="u-red">「闘牛」</span>。</p>
-          <p data-reveal>闘牛があらゆる障壁を薙ぎ倒して突き進むように。合同会社LosTorosは、オリンピックを目指すスプリンターが所属するトラックチーム「LosToros Track Team」を運営する、スプリント特化のスポーツ事業ブランドです。</p>
-          <p data-reveal>競技が生み出す熱狂と物語を、企業のブランド・採用・健康経営の価値へ変換する。それが私たちの仕事です。</p>
-          <p data-reveal>創業したのは、いまも第一線で走り続ける2人のアスリート。代表（CEO）の<strong>千田杜真寿</strong>は100m・200mを専門とする現役スプリンター、副代表（COO）の<strong>池田海</strong>は110mハードルを専門とする現役ハードラーです。競技者自身が経営を担うことが、私たちの一番の強みです。</p>
-
-          <dl class="company-table mono" data-reveal>
-            <div><dt>COMPANY</dt><dd>合同会社LosToros（ロストロス）</dd></div>
-            <div><dt>TEAM</dt><dd>LosToros Track Team</dd></div>
-            <div><dt>ORIGIN</dt><dd>スペイン語で「闘牛」を意味する Los Toros に由来</dd></div>
-            <div><dt>CEO</dt><dd>千田 杜真寿（代表）／ 現役スプリンター・100m・200m</dd></div>
-            <div><dt>COO</dt><dd>池田 海（副代表）／ 現役ハードラー・110mH</dd></div>
-            <div><dt>BUSINESS</dt><dd>トラックチームの運営 / ブランドパートナーシップ / スポーツ・教育・地域事業 / クリエイティブ制作 / 健康経営コンサルティング</dd></div>
-            <div><dt>CONTACT</dt><dd>chida@lostoros.net</dd></div>
-            <!-- TODO: 所在地・設立年月・資本金は情報提供後に追加 -->
-          </dl>
-        </div>
-      </div>
+      <nav class="explore" aria-label="ページ一覧">
+        <a class="explore-card" href="/about/" data-reveal>
+          <span class="explore-num mono">001</span>
+          <span class="explore-en">ABOUT</span>
+          <span class="explore-jp mono">私たちについて・理念</span>
+          <span class="explore-text">LosToros —— スペイン語で「闘牛」。競技が生み出す熱狂と物語を、企業のブランド・採用・健康経営の価値へ変換する。</span>
+          <span class="explore-go mono">VIEW <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="explore-card" href="/business/" data-reveal>
+          <span class="explore-num mono">002</span>
+          <span class="explore-en">BUSINESS</span>
+          <span class="explore-jp mono">事業内容</span>
+          <span class="explore-text">アスリートの価値を、企業や社会へ変換して届ける。トラックチームを起点にした5つの事業領域。</span>
+          <span class="explore-go mono">VIEW <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="explore-card" href="/members/" data-reveal>
+          <span class="explore-num mono">003</span>
+          <span class="explore-en">MEMBERS</span>
+          <span class="explore-jp mono">創業メンバー</span>
+          <span class="explore-text">FOR SPRINTERS, BY SPRINTERS. 100m・200mの千田杜真寿と、110mハードルの池田海。</span>
+          <span class="explore-go mono">VIEW <span aria-hidden="true">→</span></span>
+        </a>
+        <a class="explore-card" href="/partner/" data-reveal>
+          <span class="explore-num mono">004</span>
+          <span class="explore-en">PARTNER</span>
+          <span class="explore-jp mono">パートナーシップ</span>
+          <span class="explore-text">応援ではなく、共創を。競技、コンテンツ、商品、社員、地域などをつなぎ、企業とともに新しい価値をつくります。</span>
+          <span class="explore-go mono">VIEW <span aria-hidden="true">→</span></span>
+        </a>
+      </nav>
     </section>
 
-    <!-- ======= PHILOSOPHY ======= -->
-    <section class="section section--ink" id="philosophy">
+    <!-- ======= パートナー（詳しくは /partner/） ======= -->
+    <section class="section section--paper" id="partners">
       <div class="section-head mono" data-reveal>
-        <span>(003) PHILOSOPHY</span><span class="rule"></span><span>理念</span>
+        <span>(003) PARTNERS</span><span class="rule"></span><span>パートナー</span>
       </div>
-
-      <ol class="phil-list">
-        <li class="phil-row" data-reveal>
-          <h3 class="phil-en">CONCEPT</h3>
-          <div class="phil-jp">
-            <p class="phil-copy">道なき道を切り拓き、最速へ突き進む</p>
-            <p class="phil-note mono">闘牛が障壁を突破するように、常識に囚われず最速を追求する。</p>
-          </div>
-          <span class="phil-num mono">001</span>
-        </li>
-        <li class="phil-row" data-reveal>
-          <h3 class="phil-en">VISION</h3>
-          <div class="phil-jp">
-            <p class="phil-copy">陸上スプリントを、誰もが熱狂するスポーツエンターテインメントへ</p>
-            <p class="phil-note mono">競技場の熱を、社会の熱に。</p>
-          </div>
-          <span class="phil-num mono">002</span>
-        </li>
-        <li class="phil-row" data-reveal>
-          <h3 class="phil-en">MISSION</h3>
-          <div class="phil-jp">
-            <p class="phil-copy">競技者の価値を、企業や社会の価値に変換する</p>
-            <p class="phil-note mono">アスリートの一歩に、次の意味を。</p>
-          </div>
-          <span class="phil-num mono">003</span>
-        </li>
-      </ol>
-    </section>
-
-    <!-- ======= BUSINESS ======= -->
-    <section class="section section--paper" id="business">
-      <div class="section-head mono" data-reveal>
-        <span>(004) BUSINESS</span><span class="rule"></span><span>事業内容</span>
-      </div>
-
-      <div class="biz-intro" data-reveal>
-        <h2 class="section-title">WHAT<br>WE DO</h2>
-        <div class="biz-lead-body">
-          <p class="lead">アスリートの価値を、<br class="pc">企業や社会へ<span class="circle-red">変換</span>して届ける。</p>
-          <p class="biz-lead-note">すべての事業は <strong>ATHLETE / TRACK TEAM</strong> という競技資産を起点にしています。そこで培った専門性と発信力を、企業とのパートナーシップ、地域・教育、クリエイティブ、健康経営へと広げています。</p>
-        </div>
-      </div>
-
-      <ol class="biz-list">
-        <li class="biz-row" data-reveal>
-          <span class="biz-num mono">001</span>
-          <div class="biz-head">
-            <h3 class="biz-en">TRACK TEAM</h3>
-            <p class="biz-jp mono">トラックチーム運営・競技活動</p>
-          </div>
-          <div class="biz-body">
-            <p class="biz-summary">オリンピック・世界大会を目指すスプリンターによるTrack Team。競技力の追求だけでなく、その挑戦・ストーリー・発信力を社会や企業の価値へつなげます。</p>
-            <details class="biz-more">
-              <summary class="mono"><span class="biz-more-closed">提供内容を見る（5項目）</span><span class="biz-more-opened">提供内容を閉じる</span></summary>
-              <ul class="biz-items">
-                <li>LosToros Track Teamの運営</li>
-                <li>国内外大会への出場</li>
-                <li>アスリートの競技活動</li>
-                <li>競技力向上に向けた強化活動</li>
-                <li>Track Teamを起点としたコンテンツ・ブランド形成</li>
-              </ul>
-            </details>
-            <p class="biz-core mono">CORE — すべての事業の起点となるブランド資産</p>
-            <a class="biz-cta" href="#contact-form" data-inquiry="TRACK TEAM / 競技・チームについて">この事業について相談する <span aria-hidden="true">→</span></a>
-          </div>
-        </li>
-
-        <li class="biz-row" data-reveal>
-          <span class="biz-num mono">002</span>
-          <div class="biz-head">
-            <h3 class="biz-en">BRAND <br class="pc">PARTNERSHIP</h3>
-            <p class="biz-jp mono">企業とのパートナーシップ事業</p>
-          </div>
-          <div class="biz-body">
-            <p class="biz-summary">アスリート・Track Team・スポーツコンテンツを活用し、企業のブランド、商品・サービス、採用、社内エンゲージメントなどの課題解決を支援します。</p>
-            <details class="biz-more">
-              <summary class="mono"><span class="biz-more-closed">提供内容を見る（8項目）</span><span class="biz-more-opened">提供内容を閉じる</span></summary>
-              <ul class="biz-items">
-                <li>ブランドパートナーシップ</li>
-                <li>商品／サービスPR</li>
-                <li>アスリートを活用したコンテンツ制作</li>
-                <li>SNSタイアップ</li>
-                <li>採用広報</li>
-                <li>社内向け企画</li>
-                <li>商品使用／フィードバック</li>
-                <li>企業との共同プロジェクト</li>
-              </ul>
-            </details>
-            <a class="biz-cta" href="#contact-form" data-inquiry="PARTNERSHIP / 企業とのパートナーシップ">この事業について相談する <span aria-hidden="true">→</span></a>
-          </div>
-        </li>
-
-        <li class="biz-row" data-reveal>
-          <span class="biz-num mono">003</span>
-          <div class="biz-head">
-            <h3 class="biz-en">SPORTS &amp; <br class="pc">COMMUNITY</h3>
-            <p class="biz-jp mono">スポーツ・教育・地域事業</p>
-          </div>
-          <div class="biz-body">
-            <p class="biz-summary">スプリント・陸上競技の専門性を活かし、学校・地域・企業にスポーツ体験と新たな価値を届けます。</p>
-            <details class="biz-more">
-              <summary class="mono"><span class="biz-more-closed">提供内容を見る（7項目）</span><span class="biz-more-opened">提供内容を閉じる</span></summary>
-              <ul class="biz-items">
-                <li>学校での陸上／かけっこ教室</li>
-                <li>地域企業と連携したスポーツ教室</li>
-                <li>企業向けスポーツイベント</li>
-                <li>子ども向けスポーツ体験</li>
-                <li>自治体／地域との共同事業</li>
-                <li>他競技アスリートへのスプリント指導</li>
-                <li>スポーツイベントの企画／運営</li>
-              </ul>
-            </details>
-            <a class="biz-cta" href="#contact-form" data-inquiry="イベント・スポーツ事業">この事業について相談する <span aria-hidden="true">→</span></a>
-          </div>
-        </li>
-
-        <li class="biz-row" data-reveal>
-          <span class="biz-num mono">004</span>
-          <div class="biz-head">
-            <h3 class="biz-en">CREATIVE &amp; <br class="pc">CONTENT</h3>
-            <p class="biz-jp mono">スポーツコンテンツ・クリエイティブ事業</p>
-          </div>
-          <div class="biz-body">
-            <p class="biz-summary">アスリートだからこそ生み出せるリアルなスポーツコンテンツを企画・制作します。</p>
-            <details class="biz-more">
-              <summary class="mono"><span class="biz-more-closed">提供内容を見る（7項目）</span><span class="biz-more-opened">提供内容を閉じる</span></summary>
-              <ul class="biz-items">
-                <li>SNS用動画／静止画</li>
-                <li>ブランドコンテンツ</li>
-                <li>商品使用コンテンツ</li>
-                <li>広告クリエイティブ</li>
-                <li>イベントコンテンツ</li>
-                <li>アスリート出演</li>
-                <li>企業の商品／サービスをスポーツ文脈で魅せるクリエイティブ制作</li>
-              </ul>
-            </details>
-            <a class="biz-cta" href="#contact-form" data-inquiry="コンテンツ制作">この事業について相談する <span aria-hidden="true">→</span></a>
-          </div>
-        </li>
-
-        <li class="biz-row" data-reveal>
-          <span class="biz-num mono">005</span>
-          <div class="biz-head">
-            <h3 class="biz-en">HEALTH &amp; <br class="pc">PRODUCTIVITY</h3>
-            <p class="biz-jp mono">健康経営コンサルティング事業</p>
-          </div>
-          <div class="biz-body">
-            <p class="biz-summary">企業の健康課題を可視化し、健康経営の戦略設計から施策の実行、効果測定・改善までを一貫して支援します。</p>
-
-            <ol class="biz-flow mono" aria-label="支援の流れ">
-              <li>分析する</li>
-              <li>設計する</li>
-              <li>実行する</li>
-              <li>評価する</li>
-              <li>改善する</li>
-            </ol>
-
-            <details class="biz-more">
-              <summary class="mono"><span class="biz-more-closed">提供内容を見る（6項目）</span><span class="biz-more-opened">提供内容を閉じる</span></summary>
-              <ul class="biz-items">
-                <li>企業の健康課題／現状分析、従業員アンケート・データ分析</li>
-                <li>健康経営戦略／年間計画の設計、KPI・評価指標の設定</li>
-                <li>健康施策・運動／スポーツ施策の企画・設計</li>
-                <li>セミナー／イベント等の実施と運営支援</li>
-                <li>実施後の効果測定・レポーティング</li>
-                <li>翌年度に向けた改善提案・継続的な伴走支援</li>
-              </ul>
-            </details>
-            <a class="biz-cta" href="#contact-form" data-inquiry="健康経営について">この事業について相談する <span aria-hidden="true">→</span></a>
-          </div>
-        </li>
-      </ol>
-    </section>
-
-    <!-- ======= MEMBERS ======= -->
-    <section class="section section--ink" id="members">
-      <div class="section-head mono" data-reveal>
-        <span>(005) MEMBERS</span><span class="rule"></span><span>創業メンバー</span>
-      </div>
-
-      <h2 class="section-title" data-reveal>FOUNDERS</h2>
-      <p class="members-lead mono" data-reveal>FOR SPRINTERS, BY SPRINTERS. — オリンピックを目指す創設アスリート。</p>
-
-      <div class="member-list">
-        <article class="member-row" data-reveal>
-          <div class="member-photo">
-            <img src="assets/member-01.jpg" alt="合同会社LosToros 代表（CEO）千田杜真寿 — 現役スプリンター（100m・200m）" width="800" height="1067">
-          </div>
-          <div class="member-info">
-            <p class="member-role mono">CO-FOUNDER / CEO — 100m &amp; 200m</p>
-            <h3 class="member-name">千田 杜真寿</h3>
-            <p class="member-en mono keep-case">CHIDA Tomasu</p>
-            <p class="member-title">合同会社LosToros 代表（CEO）／ 現役スプリンター（100m・200m）</p>
-            <p class="member-goal"><span class="member-goal-label mono">GOAL</span><span>2028年ロサンゼルス五輪、2032年ブリスベン五輪で<br class="pc">100mまたは200mのメダル獲得を目指す</span></p>
-            <ul class="member-creds mono" aria-label="主な実績">
-              <li>4×200mリレー 日本記録保持者</li>
-              <li>4×100mリレー 学生記録保持者</li>
-              <li>日本選手権 100m / 200m 出場</li>
-            </ul>
-          </div>
-          <span class="member-num mono">001</span>
-        </article>
-
-        <article class="member-row" data-reveal>
-          <div class="member-photo">
-            <img src="assets/member-02.jpg" alt="合同会社LosToros 副代表（COO）池田海 — 現役ハードラー（110mH）" width="800" height="1067">
-          </div>
-          <div class="member-info">
-            <p class="member-role mono">CO-FOUNDER / COO — 110mH</p>
-            <h3 class="member-name">池田 海</h3>
-            <p class="member-en mono keep-case">IKEDA Kai</p>
-            <p class="member-title">合同会社LosToros 副代表（COO）／ 現役ハードラー（110mH）</p>
-            <p class="member-goal"><span class="member-goal-label mono">GOAL</span><span>2028年ロサンゼルス五輪出場、<br class="pc">2032年ブリスベン五輪でのメダル獲得を狙う</span></p>
-            <ul class="member-creds mono" aria-label="主な実績">
-              <li>グランプリシリーズ 複数入賞</li>
-              <li>2023年 関東インカレ 110mH 優勝</li>
-              <li>日本選手権 110mH 出場</li>
-            </ul>
-          </div>
-          <span class="member-num mono">002</span>
-        </article>
-      </div>
-    </section>
-
-    <!-- ======= PARTNER ======= -->
-    <section class="section section--paper" id="partner">
-      <div class="section-head mono" data-reveal>
-        <span>(006) PARTNER</span><span class="rule"></span><span>パートナーシップ</span>
-      </div>
-
-      <!-- ① HERO -->
-      <div class="sponsor-intro" data-reveal>
-        <h2 class="section-title">PARTNER<br>SHIP</h2>
-        <div class="sponsor-copy">
-          <p class="lead">応援ではなく、<span class="circle-red">共創</span>を。</p>
-          <p>LosTorosは、企業とアスリートの関係を単なるスポンサーシップで終わらせません。競技、コンテンツ、商品、社員、地域などをつなぎ、企業とともに新しい価値をつくります。</p>
-        </div>
-      </div>
-
-      <!-- ② WHY PARTNER WITH LOSTOROS -->
-      <div class="pt-block" data-reveal>
-        <h3 class="pt-h mono">WHY PARTNER WITH LOSTOROS</h3>
-        <ul class="pt-why">
-          <li>
-            <span class="pt-why-en mono">BRANDING</span>
-            <p>挑戦するアスリート・チームとの連携によるブランド価値向上</p>
-          </li>
-          <li>
-            <span class="pt-why-en mono">CONTENT</span>
-            <p>アスリートを活用したSNS・広告・クリエイティブ制作</p>
-          </li>
-          <li>
-            <span class="pt-why-en mono">PRODUCT</span>
-            <p>商品使用・フィードバック・PR・共同コンテンツ</p>
-          </li>
-          <li>
-            <span class="pt-why-en mono">ENGAGEMENT</span>
-            <p>社員向けイベント、健康施策、社内コミュニケーション</p>
-          </li>
-          <li>
-            <span class="pt-why-en mono">COMMUNITY</span>
-            <p>学校・地域・子ども向けスポーツ事業を通じたCSR／CSV活動</p>
-          </li>
-        </ul>
-      </div>
-
-      <!-- ③ PARTNERSHIP EXAMPLES -->
-      <div class="pt-block" data-reveal>
-        <h3 class="pt-h mono">PARTNERSHIP EXAMPLES</h3>
-        <p class="pt-note">ロゴ掲出にとどまらない、さまざまな組み方があります。</p>
-        <dl class="pt-ex">
-          <div>
-            <dt>商品・サービス × アスリート</dt>
-            <dd>商品使用、レビュー、SNSコンテンツ、広告素材制作</dd>
-          </div>
-          <div>
-            <dt>企業 × Track Team</dt>
-            <dd>チームパートナー、ユニフォーム／Web／SNS露出、共同企画</dd>
-          </div>
-          <div>
-            <dt>企業 × 社員</dt>
-            <dd>運動イベント、ランニング・スプリント企画、社内イベント</dd>
-          </div>
-          <div>
-            <dt>企業 × 地域・学校</dt>
-            <dd>企業協賛による学校スポーツ教室、地域イベント</dd>
-          </div>
-          <div>
-            <dt>企業 × Content</dt>
-            <dd>アスリート出演動画、広告、SNS、ブランドコンテンツ制作</dd>
-          </div>
-        </dl>
-      </div>
-
-      <!-- ④ PARTNERSHIP PLAN -->
-      <div class="pt-block" data-reveal>
-        <h3 class="pt-h mono">PARTNERSHIP PLAN</h3>
-        <div class="pt-plan">
-          <div class="pt-plan-main">
-            <p class="pt-plan-copy">企業ごとの課題や目的に合わせ、パートナーシップ内容を設計します。</p>
-            <p>ブランド露出、コンテンツ制作、社員向け施策、地域・学校事業など、貴社の目的に応じて組み合わせをご提案します。まずはご相談ください。</p>
-            <a class="btn-red" href="#contact-form" data-inquiry="PARTNERSHIP / 企業とのパートナーシップ">パートナーシップについて相談する</a>
-          </div>
-          <aside class="pt-plan-entry">
-            <p class="pt-entry-label mono">ENTRY PLAN</p>
-            <p class="pt-entry-name">Business Supporter</p>
-            <p class="pt-entry-price">年額 <strong>50,000</strong> 円（税別）</p>
-            <p class="pt-entry-note">オンラインでお申し込みいただける、最もシンプルな参画方法です。</p>
-            <a class="btn-outline" href="#supporter">内容を見る</a>
-          </aside>
-        </div>
-      </div>
-
-      <!-- ⑥ FOUNDING PARTNER -->
       <!-- パートナーロゴは明るい地に枠線なしで置き、ロゴ本来の色をそのまま見せる -->
       <div class="pt-partners" data-reveal>
         <p class="pt-h mono">OUR PARTNERS</p>
@@ -674,8 +378,10 @@
       <!-- 申込はSquareの決済ページで完結する。金額を押す前に見せるためラベルに入れている -->
       <div class="pt-cta" data-reveal>
         <a class="btn-red sp-apply" href="#supporter">年額5万円の加入内容・申込へ</a>
-        <a class="btn-outline" href="#contact-form" data-inquiry="PARTNERSHIP / 企業とのパートナーシップ">パートナーシップについて相談する</a>
+        <a class="btn-outline" href="/contact/?type=PARTNERSHIP%20%2F%20%E4%BC%81%E6%A5%AD%E3%81%A8%E3%81%AE%E3%83%91%E3%83%BC%E3%83%88%E3%83%8A%E3%83%BC%E3%82%B7%E3%83%83%E3%83%97#contact-form" data-inquiry="PARTNERSHIP / 企業とのパートナーシップ">パートナーシップについて相談する</a>
       </div>
+
+      <p class="sub-back" data-reveal><a href="/partner/">パートナーシップについて詳しく見る <span aria-hidden="true">→</span></a></p>
     </section>
 
     <!-- ======= CONTACT ======= -->
@@ -687,11 +393,11 @@
       </picture>
 
       <div class="section-head mono" data-reveal>
-        <span>(007) CONTACT</span><span class="rule"></span><span>お問い合わせ</span>
+        <span>(004) CONTACT</span><span class="rule"></span><span>お問い合わせ</span>
       </div>
 
       <div class="contact-body">
-        <a class="contact-reach" href="#contact-form" data-reveal>
+        <a class="contact-reach" href="/contact/#contact-form" data-reveal>
           <span class="contact-word">REACH OUT</span>
           <svg class="contact-arrow" viewBox="0 0 96 32" aria-hidden="true">
             <line x1="0" y1="16" x2="88" y2="16"/><polyline points="74,4 90,16 74,28"/>
@@ -702,75 +408,16 @@
       </div>
     </section>
 
-    <!-- ======= お問い合わせフォーム ======= -->
-    <section class="section section--ink form-section" id="contact-form">
-      <div class="form-wrap">
-        <h2 class="form-title" data-reveal>お問い合わせ</h2>
-        <p class="form-lead mono" data-reveal>必要事項をご記入のうえ送信してください。担当より折り返しご連絡いたします。</p>
-
-        <form class="cform" id="contactForm" novalidate data-reveal>
-          <div class="cfield">
-            <label class="mono" for="cf-name">お名前 <span class="req">必須</span></label>
-            <input id="cf-name" name="name" type="text" autocomplete="name" required>
-          </div>
-
-          <div class="cfield">
-            <label class="mono" for="cf-company">会社・団体名</label>
-            <input id="cf-company" name="company" type="text" autocomplete="organization">
-          </div>
-
-          <div class="cfield">
-            <label class="mono" for="cf-email">メールアドレス <span class="req">必須</span></label>
-            <input id="cf-email" name="email" type="email" autocomplete="email" required>
-          </div>
-
-          <div class="cfield">
-            <label class="mono" for="cf-type">お問い合わせ種別</label>
-            <select id="cf-type" name="type">
-              <option>PARTNERSHIP / 企業とのパートナーシップ</option>
-              <option>イベント・スポーツ事業</option>
-              <option>コンテンツ制作</option>
-              <option>取材・メディア</option>
-              <option>TRACK TEAM / 競技・チームについて</option>
-              <option>健康経営について</option>
-              <option>その他</option>
-            </select>
-          </div>
-
-          <div class="cfield cfield--full">
-            <label class="mono" for="cf-message">お問い合わせ内容 <span class="req">必須</span></label>
-            <textarea id="cf-message" name="message" rows="7" required></textarea>
-          </div>
-
-          <!-- ボット対策。人間には見えない項目で、入力があれば迷惑送信と判定する -->
-          <div class="cf-trap" aria-hidden="true">
-            <label for="cf-website">Website</label>
-            <input id="cf-website" name="website" type="text" tabindex="-1" autocomplete="off">
-          </div>
-
-          <div class="cform-foot">
-            <button class="btn-red" type="submit">送信する</button>
-            <p class="cform-status mono" id="formStatus" role="status" aria-live="polite"></p>
-          </div>
-
-          <p class="cform-privacy">ご入力いただいた情報は、<a href="/privacy/">プライバシーポリシー</a>に基づいて取り扱います。</p>
-        </form>
-      </div>
-    </section>
-
-
-
-
   </main>
 
-  <!-- ======= フッター ======= -->
+  <!-- ======= フッター（全ページ共通。変更するときは全ページを直す） ======= -->
   <footer class="site-footer">
     <p class="footer-word" aria-hidden="true" data-reveal>
       <img src="assets/logo-lockup.png" alt="" width="900" height="148">
     </p>
     <div class="footer-bottom mono keep-case">
       <span>&copy; 2026 合同会社LosToros</span>
-      <span class="footer-links"><a href="/supporter/">Business Supporter</a><a href="/privacy/">プライバシーポリシー</a></span>
+      <span class="footer-links"><a href="/about/">ABOUT</a><a href="/business/">BUSINESS</a><a href="/members/">MEMBERS</a><a href="/partner/">PARTNER</a><a href="/supporter/">Business Supporter</a><a href="/contact/">お問い合わせ</a><a href="/privacy/">プライバシーポリシー</a></span>
       <span>LosToros Track Team <span class="sq">■</span> Sprint Into The Unknown</span>
     </div>
   </footer>
@@ -781,7 +428,7 @@
 
   <div class="grain" aria-hidden="true"></div>
 
-  <script src="js/analytics.js?v=20261012-ga"></script>
-  <script src="js/main.js?v=20261012"></script>
+  <script src="js/analytics.js?v=20261023-ga"></script>
+  <script src="js/main.js?v=20261023"></script>
 </body>
 </html>

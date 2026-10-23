@@ -1838,3 +1838,115 @@ html { overflow-x:clip; }
   max-width: min(180px, 40vw);
   max-height: 72px;
 }
+
+/* ==========================================================================
+   複数ページ構成（2026-10-23）
+   トップ = 入口、/about/ /business/ /members/ /partner/ /contact/ = 詳細ページ
+   ========================================================================== */
+
+/* ナビ：今いるページに下線を出す（「年額5万円で参画」は元から下線があるので重ねない） */
+.site-nav a[aria-current="page"] { background-size: 100% 1px; }
+.site-nav .nav-supporter[aria-current="page"] { background-size: 0 1px; }
+
+/* 各ページへの入口カード。線はカードの隙間に背景色を見せて引く（黒・白どちらの地でも使える） */
+.explore {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  background: color-mix(in srgb, currentColor 22%, transparent);
+  border: 1px solid color-mix(in srgb, currentColor 22%, transparent);
+}
+
+.explore--compact { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+.explore-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-width: 0;
+  padding: clamp(24px, 2.8vw, 40px) clamp(18px, 2vw, 28px);
+  color: inherit;
+  text-decoration: none;
+  transition: background .3s ease;
+}
+
+.section--ink .explore-card { background: var(--ink); }
+.section--paper .explore-card { background: var(--paper); }
+.section--ink .explore-card:hover { background: var(--ink-soft); }
+.section--paper .explore-card:hover { background: #ebe8e0; }
+
+.explore-card:focus-visible { outline: 2px solid var(--red); outline-offset: -2px; }
+
+.explore-num { font-size: 11px; color: var(--red); }
+
+.explore-en {
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: clamp(26px, 2.5vw, 38px);
+  line-height: 1;
+  letter-spacing: .02em;
+}
+
+.explore-jp { font-size: 11px; opacity: .7; text-transform: none; }
+
+.explore-text {
+  flex: 1;
+  margin-top: 6px;
+  font-size: 13.5px;
+  line-height: 1.9;
+  opacity: .85;
+}
+
+.explore-go {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 6px;
+  font-size: 11px;
+}
+
+.explore-go span { color: var(--red); transition: transform .3s ease; }
+.explore-card:hover .explore-go span { transform: translateX(6px); }
+
+/* 下層ページの末尾：お問い合わせへの案内と、ほかのページへの入口 */
+.page-end-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+  margin-bottom: clamp(56px, 7vw, 96px);
+}
+
+.page-end-contact .pt-h { margin-bottom: 0; }
+
+.page-end-title {
+  font-family: var(--disp);
+  font-weight: 700;
+  font-size: clamp(48px, 8.4vw, 128px);
+  line-height: 1;
+}
+
+.page-end-note { font-size: 13px; opacity: .8; }
+.page-end-contact .btn-red { margin-top: 10px; }
+.page-end-more { margin-bottom: 18px; }
+
+/* お問い合わせページはフォームが先頭に来るので、固定ヘッダーの分だけ余白を足す */
+main > .form-section:first-child { padding-top: clamp(120px, 14vw, 180px); }
+
+.form-sub {
+  margin-top: 10px;
+  font-size: 12px;
+  opacity: .75;
+  text-transform: none;
+}
+
+.form-sub a { color: inherit; text-underline-offset: 3px; }
+.form-sub a:hover { color: var(--red); }
+
+@media (max-width: 860px) {
+  .explore,
+  .explore--compact { grid-template-columns: minmax(0, 1fr); }
+  .explore-card { padding: 22px 20px; gap: 8px; }
+  .explore-text { font-size: 13px; }
+}
