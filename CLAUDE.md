@@ -130,11 +130,16 @@ Renderの環境変数にあり、リポジトリには入っていない（2026-
 ## ディレクトリ構造
 
 ```
-index.html                    トップページ（シングルページ）
+index.html                    トップページ（入口。動画・Business Supporter・各ページへの案内）
+about/index.html              私たちについて＋理念
+business/index.html           5つの事業
+members/index.html            創業メンバー
+partner/index.html            パートナーシップ
+contact/index.html            お問い合わせフォーム（サイトで唯一のフォーム）
 supporter/index.html          Business Supporter専用ページ（営業先に送る用・専用OGPあり）
 privacy/index.html            プライバシーポリシー
-css/style.css                 全スタイル（3ページ共通）
-js/main.js                    スクロール演出・ナビ・お問い合わせフォーム送信・BUSINESS折りたたみ
+css/style.css                 全スタイル（全ページ共通）
+js/main.js                    スクロール演出・ナビ・お問い合わせフォーム送信・種別の引き継ぎ・BUSINESS折りたたみ
 js/analytics.js               Googleアナリティクス。測定ID未設定の間は何もしない
 CNAME                         "lostoros.net"
 .nojekyll                     GitHub PagesのJekyll処理を無効化
@@ -175,22 +180,40 @@ docs/
 
 ---
 
-## ページ構成（2026-09-28更新）
+## ページ構成（2026-10-23に複数ページ化）
 
 | URL | 内容 |
 |---|---|
-| `/` | トップページ（下記） |
+| `/` | トップ。ヒーロー（全面動画＋加入CTA）→ マーキー → チームの短い紹介 → (001) BUSINESS SUPPORTER（Square決済）→ (002) EXPLORE（4ページへの入口カード）→ (003) PARTNERS（ロゴ・FOUNDING PARTNER）→ (004) CONTACT（写真の帯）→ フッター |
+| `/about/` | (001) ABOUT（会社概要の表を含む）→ (002) PHILOSOPHY |
+| `/business/` | (001) BUSINESS（5事業） |
+| `/members/` | (001) MEMBERS（千田さん・池田さん） |
+| `/partner/` | (001) PARTNER（WHY・EXAMPLES・PLAN・OUR PARTNERS・FOUNDING PARTNER） |
+| `/contact/` | お問い合わせフォームのみ。**サイトで唯一のフォーム** |
 | `/supporter/` | Business Supporter専用ページ。ヒーロー → (001) PLAN（特典・流れ・Square決済）→ (002) ATHLETES → (003) PARTNERS。**営業先にはこのURLを送る**（価格入りのシェアカードが出る） |
 | `/privacy/` | プライバシーポリシー。フッターとお問い合わせフォームからリンク |
 
-トップページ：
+- about / business / members / partner の末尾には共通の帯（`.page-end`）がある：
+  「REACH OUT」＋赤い「お問い合わせはこちら →」（`/contact/#contact-form`）＋ほかの3ページへのカード
+- **ヘッダーのメニューとフッターのリンクは、8ページそれぞれのHTMLに書かれている**（共通部品の仕組みはない）。
+  メニュー名やリンク先を変えるときは**8ファイルすべて**を直す。現在のページには `aria-current="page"` を付ける
+- 事業ごとの「相談する」ボタンは `/contact/?type=種別#contact-form` へ移動し、
+  `js/main.js` が `type` を読んで種別を選ぶ。**種別の文言と `data-inquiry` は完全一致させる**
+- 旧URL（`/#about` `/#philosophy` `/#business` `/#members` `/#partner` `/#contact` `/#contact-form`）は
+  `index.html` の `<head>` 内のスクリプトで新しいページへ転送している。送付済みのリンクのため残すこと
+- 下層ページの見出しは最初の1つが `<h1>`（各ページh1は1つだけ）。画像・CSS・JSのパスは `/` から始まる絶対パス
 
-ヒーロー（全面動画＋加入CTA）→ マーキー(赤) → チームの短い紹介 →
-(001) BUSINESS SUPPORTER 申込（Square決済へのリンク）→ (002) ABOUT →
-(003) PHILOSOPHY → (004) BUSINESS → (005) MEMBERS → (006) PARTNER →
-(007) CONTACT → お問い合わせフォーム → フッター
+### 最新変更：複数ページ化（Claude Code・2026-10-23）
 
-### 最新変更：サイト点検にもとづく改善（Claude Code・2026-09-28）
+池田さんの「文字が多く、内容が増えて見づらい」という相談を受けて実施。詳細は
+[変更記録](docs/changes/2026-10-23-multipage.md)。
+
+- **文面は一字も変えずに**各ページへ移した（元のトップの文章303か所を機械照合し、欠落0）
+- トップのスマホでの長さ 16,120px → 6,133px、PC 15,014px → 5,803px
+- お問い合わせは「案A：専用ページ＋各ページ末尾にボタン」（池田さん選択）
+- sitemap.xml に新しい5ページを追加。**Search Consoleでサイトマップの再送信を池田さんに依頼**
+
+### 以前の変更：サイト点検にもとづく改善（Claude Code・2026-09-28）
 
 池田さんの「今できる対応をすべて」という依頼で実施。詳細は
 [変更記録](docs/changes/2026-09-28-site-review.md)。
@@ -207,8 +230,9 @@ docs/
 ### 価格・条件の記載箇所（変更時はすべて直す）
 
 年額50,000円（**税別**。請求額は税込55,000円）・12ヶ月自動更新・3特典は次の場所に書かれている。
-`index.html`：ヒーロー（`.hero-offer`）、`#supporter`、PARTNERの `.pt-plan-entry`、
-固定CTA（`#supporterSticky`）／ `supporter/index.html`：ヒーロー、`#plan`／
+`index.html`：ヒーロー（`.hero-offer`）、`#supporter`、固定CTA（`#supporterSticky`）／
+`partner/index.html`：`.pt-plan-entry`／`about` `business` `members` `partner` の固定CTA（`#supporterSticky`）／
+`supporter/index.html`：ヒーロー、`#plan`／
 `assets/ogp-supporter.jpg`（画像の赤いバッジに焼き込み。作り直しが必要。
 **あわせて og:image / twitter:image の `?v=` を上げないとSNSが古い画像を出し続ける**）／
 `js/analytics.js` の `value` と `price`（**請求額に合わせて 55000**）。
@@ -250,8 +274,9 @@ X・Facebook・LINE・Slackなどは**古い画像を出し続ける**（数日�
   CONTACTは `#contact-form` へ直接移動する。
 - 決済リンクは `#supporter` 内の1か所に集約。PARTNER内の加入CTAも内容確認へ誘導。
   **決済は外部Squareページで完結する。埋め込み決済ではない。**
-- 幅860px以下の固定CTAは `.hero`・`#supporter`・`#contact-form`・`.site-footer` が
-  少しでも見えている間、およびモバイルメニューが開いている間は非表示。
+- 幅860px以下の固定CTAは `.hero`・`#supporter`・`#contact-form`・`.page-end`・`.site-footer` が
+  少しでも見えている間、およびモバイルメニューが開いている間は非表示（`.page-end` は2026-10-23追加）。
+  `/contact/`・`/supporter/`・`/privacy/` には固定CTAを置いていない。
   IntersectionObserver非対応時も非表示とし、通常リンクを使う。
 - JS末尾の独立IIFEで制御。HTMLは `hidden` で開始。CSSは末尾の
   `Supporter conversion` ブロックにまとめている。
@@ -285,7 +310,7 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 - **Business Supporter の案内に「商談不要」「商談なし」の表現は使わない**（2026-10-23 池田さん指示）。
   言い換えは「オンラインでお申し込みいただけます」。シェア画像の文言も同じ
 - OUR PARTNERS のロゴは **FreeZia Sports・株式会社フォーアシスト** の2社（同じ大きさ・横並び）。
-  パートナーを足すときは `.pt-logos` の `<ul>` に `<li>` を足す（トップと `/supporter/` の両方）
+  パートナーを足すときは `.pt-logos` の `<ul>` に `<li>` を足す（トップ・`/partner/`・`/supporter/` の3か所）
 - 各ロゴは先方サイトへのリンク（新しいタブ・`rel="sponsored noopener"`）。
   FreeZia Sports → https://freeziasports.com/ ／ フォーアシスト → https://www.4assist.co.jp/
   **協賛関係のリンクには `rel="sponsored"` を必ず付ける**（付けないとGoogleのガイドライン違反とみなされる恐れ）
@@ -336,7 +361,7 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 
 ### レイアウトとトーン
 
-- トップは**シングルページ**（下層は `/supporter/` と `/privacy/` のみ）。黒(`section--ink`)と白(`section--paper`)を交互に配置し、
+- 2026-10-23から**複数ページ構成**（上の「ページ構成」参照）。黒(`section--ink`)と白(`section--paper`)を交互に配置し、
   白セクションの上辺は `clip-path` で斜めに切ってスピード感を出す
 - セクション見出しは `(001) BUSINESS SUPPORTER` の**番号+罫線**の編集デザイン
 - メンバー紹介は**写真左・テキスト右**を縦に積む（千田さんが上）
@@ -525,8 +550,8 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 - [ ] **活動報告（NEWS）**。大会出場報告だけでも「動いているチーム」だと伝わり、検索評価にも効く。
       内容（記事）が揃うまで枠は作らない（空の枠は逆効果）
 - [x] ~~**決済・振込フロー**~~ → **Square決済に決定**（2026-09-21）。振込運用は廃止
-- [ ] **ページが長い**。①BUSINESSの折りたたみは実施済み（スマホ17,040px → 16,045px）。
-      残る案は ②EXAMPLESを横スクロール ③PARTNERを別ページ化 ④上記の重複統合
+- [x] ~~**ページが長い**~~ → 複数ページ化で解消（2026-10-23。トップのスマホ 16,120px → 6,133px）。
+      BUSINESSとPARTNERの内容重複（上記）は別ページに分かれたので、統合の必要性は下がった
 - [ ] **表示速度**。以前はスマホ実測で表示完了まで約13秒（動画4.4MB＋画像）。
       2026-08-14に**スマホは2.2MBの軽量動画を配信**するようにしたので改善見込み。
       2026-09-28の計測では、こちらの回線で約2秒で表示完了（スマホ合計3.8MB）。
