@@ -207,6 +207,7 @@ docs/
 
 池田さんの指示で、ヒーロー・マーキー・8ページのフッターからタグラインを削除。
 **今後このタグラインは使わない。** 詳細は [変更記録](docs/changes/2026-10-31-remove-sprint-into-the-unknown.md)。
+同日、会社の公式Instagram（`lostoros_trackteam`）を構造化データの `sameAs` に追加。
 
 ### 以前の変更：複数ページ化（Claude Code・2026-10-23）
 
@@ -569,9 +570,10 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 - [x] ~~**SNSプロフィールへのURL記載（創業者2名分）**~~ → **完了**（2026-08-17）。
       池田さん = Instagram / X / LinkedIn、千田さん = Instagram / LinkedIn を
       それぞれ Person の `sameAs` に追加済み。両者のプロフィール側にもURL記載済み
-- [ ] **会社の公式SNSアカウント**が未開設または未受領。開設したらURLを受け取り、
-      Organization（`#organization`）の `sameAs` に追加する。
-      個人アカウントより会社の実在確認として強く働く
+- [x] ~~**会社の公式SNSアカウント**~~ → Instagram `lostoros_trackteam` を開設（2026-10-31）。
+      Organization（`#organization`）と SportsTeam（`#team`）の `sameAs` に追加済み。
+      プロフィールのリンク欄に `https://lostoros.net` と `/contact/` を設定。
+      ほかのSNSを開設したら同じ2か所の `sameAs` に足す
 - [ ] **FreeZia Sports社からの被リンク**（池田さんが依頼中）。
       SNSのリンクは多くが nofollow で順位への効果は限定的。
       同業種の実サイトからの1本が、新しいドメインには最も効く

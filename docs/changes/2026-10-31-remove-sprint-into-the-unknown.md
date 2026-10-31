@@ -23,3 +23,12 @@ Instagramのプロフィール文を作る中で、池田さんから「SPRINT I
 ## 確認
 
 PC（1440px）とスマホ（390px）で、ヒーロー・マーキー・フッターの表示を確認した。
+
+## 追加：公式Instagramを構造化データに登録
+
+同日、会社の公式Instagram `https://www.instagram.com/lostoros_trackteam/` を開設したと池田さんから共有があり、
+了承を得て `index.html` の構造化データ（JSON-LD）に追加した。
+
+- Organization（`#organization`）と SportsTeam（`#team`）の両方に `sameAs` を新設
+- 会社の実在確認としてGoogleに伝わる（引き継ぎ書のTODO「会社の公式SNSアカウント」を完了）
+- JSONとして読み込めることを確認済み
