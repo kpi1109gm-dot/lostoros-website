@@ -246,13 +246,6 @@ a { color: inherit; }
   transform: rotate(-1.2deg);
 }
 
-.hero-sub {
-  font-size: 13px;
-  letter-spacing: .34em;
-  opacity: .55;
-  margin-top: 14px;
-}
-
 .hero-bottom {
   display: flex;
   justify-content: space-between;
@@ -1613,7 +1606,6 @@ a:focus-visible,button:focus-visible { outline:3px solid #c8102e; outline-offset
   .hero-offer-action .btn-red { width:100%; text-align:center; font-size:15px; }
   .hero-offer-action p { text-align:center; font-size:11px; }
   .hero-offer-benefits { font-size:11px; }
-  .hero-sub { font-size:10px; }
   .hero-tagline { margin:20px 0; }
   .hero-word { margin-top:36px; }
   .supporter-story { grid-template-columns:80px 1fr; gap:18px; padding-top:36px; padding-bottom:36px; }
