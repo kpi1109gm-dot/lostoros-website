@@ -1955,3 +1955,17 @@ main > .section--paper:first-child { clip-path: none; }
   font-weight: 700;
   letter-spacing: .01em;
 }
+
+/* 価格まわりの小さい数字（税込額・12ヶ月）も見出しと同じ書体にそろえる（2026-10-31 池田さん指示）。
+   Goldmanに日本語の字はないので、日本語部分は本文の書体で表示される */
+.sp-price,
+.sp-renew,
+.sub-hero-price,
+.sp-apply-price {
+  font-family: var(--disp), var(--jp);
+  text-transform: none;
+}
+.sp-price-incl,
+.sp-renew,
+.sub-hero-price span,
+.sp-apply-price { letter-spacing: .04em; }
