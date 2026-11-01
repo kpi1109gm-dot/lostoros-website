@@ -1,7 +1,7 @@
 # CLAUDE.md — 合同会社LosToros コーポレートサイト
 
 新しいセッションで前提説明なしに作業を再開するための引き継ぎ書。
-最終更新: 2026-10-31
+最終更新: 2026-11-01
 
 **まず「作業開始時に必ず最新へ同期する」を読むこと。**
 このリポジトリは Claude Code・Codex・手作業が交代で触るため、
@@ -147,6 +147,7 @@ robots.txt                    AI検索クローラー（GPTBot/ClaudeBot等）�
 sitemap.xml                   検索エンジン向け
 favicon.ico                   ルート必須（Googleが最初に見に来る）
 render.yaml                   Render Blueprint（static site + web service）
+tools/wbr.cjs                 日本語の文節ごとに <wbr> を入れる作業用スクリプト（表示には不要。後述）
 
 assets/
   hero-video.mp4              ヒーロー全面背景・PC用（1440x2560・24秒・無音・5.1MB）
@@ -201,9 +202,19 @@ docs/
   `js/main.js` が `type` を読んで種別を選ぶ。**種別の文言と `data-inquiry` は完全一致させる**
 - 旧URL（`/#about` `/#philosophy` `/#business` `/#members` `/#partner` `/#contact` `/#contact-form`）は
   `index.html` の `<head>` 内のスクリプトで新しいページへ転送している。送付済みのリンクのため残すこと
+- **日本語の文章には文節ごとに `<wbr>`（ここで改行してよい目印）が入っている**（2026-11-01〜）。
+  CSSの `word-break: keep-all` と組み合わせ、スマホで「る。」のように1〜2文字だけ改行されるのを防ぐ。
+  **文章を書き換えたら `npm install --no-save budoux && node tools/wbr.cjs` を実行**（何度実行しても同じ結果）。
+  実行し忘れても壊れはせず、その文章が普通の折り返しになるだけ。`<wbr>` は画面にも検索にも影響しない
 - 下層ページの見出しは最初の1つが `<h1>`（各ページh1は1つだけ）。画像・CSS・JSのパスは `/` から始まる絶対パス
 
-### 最新変更：「SPRINT INTO THE UNKNOWN」を削除（Claude Code・2026-10-31）
+### 最新変更：スマホで1〜2文字だけ改行される問題を修正（Claude Code・2026-11-01）
+
+池田さんの指摘（「る。」「お」だけが次の行に落ちる）を受けて実施。詳細は
+[変更記録](docs/changes/2026-11-01-line-breaks.md)。
+全8ページ×スマホ9幅で自動検出し、修正前70か所 → 修正後は幅320pxの1か所のみ。
+
+### 以前の変更：「SPRINT INTO THE UNKNOWN」を削除（Claude Code・2026-10-31）
 
 池田さんの指示で、ヒーロー・マーキー・8ページのフッターからタグラインを削除。
 **今後このタグラインは使わない。** 詳細は [変更記録](docs/changes/2026-10-31-remove-sprint-into-the-unknown.md)。

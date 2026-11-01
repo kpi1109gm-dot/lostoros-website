@@ -1969,3 +1969,19 @@ main > .section--paper:first-child { clip-path: none; }
 .sp-renew,
 .sub-hero-price span,
 .sp-apply-price { letter-spacing: .04em; }
+
+/* スマホで「る。」「お」のように1〜2文字だけ次の行に落ちるのを防ぐ（2026-11-01）。
+   HTMLの日本語には文節ごとに <wbr>（ここで改行してよい目印）が入っている（tools/wbr.cjs）。
+   keep-all で文節の途中では改行させない。収まらない長い文節だけは break-word で折る。
+   pretty = 最後の行が短くなりすぎないよう、手前の行から文字を送る（Chrome 117〜・Safari 26〜）。
+   見出しは balance で各行の長さをそろえる。非対応のブラウザでは今までどおりの折り返しになる */
+body { word-break: keep-all; overflow-wrap: break-word; }
+p, li, dd, dt, td, th, figcaption, blockquote, .explore-text { text-wrap: pretty; }
+h1, h2, h3, h4 { text-wrap: balance; }
+.section-head > span:last-child { white-space: nowrap; }
+@media (max-width: 360px) { .doc-title { font-size: 24px; } }
+/* 幅320px前後の小さいスマホで、英語の大見出しが枠からはみ出す・途中で折れるのを防ぐ */
+@media (max-width: 340px) {
+  .section-title { font-size: 40px; }
+  .sub-hero-title { font-size: 38px; }
+}
