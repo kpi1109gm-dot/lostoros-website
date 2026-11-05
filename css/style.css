@@ -1010,7 +1010,7 @@ a { color: inherit; }
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: clamp(32px, 6vw, 88px);
+  gap: clamp(24px, 3vw, 56px);
 }
 
 .pt-logos li { min-width: 0; }
@@ -1018,8 +1018,8 @@ a { color: inherit; }
 .pt-logos img {
   width: auto;
   height: auto;
-  max-width: min(300px, 68vw);
-  max-height: 150px;
+  max-width: min(200px, 68vw);
+  max-height: 132px;
   object-fit: contain;
 }
 
@@ -1037,7 +1037,13 @@ a { color: inherit; }
   .pt-logos a:hover { transform: none; }
 }
 
-/* スマホ：4社を縦1列に積むと長くなるため2列に並べる（2026-11-05） */
+/* ノートPC・タブレット幅：5社が1列に収まるよう少し小さくする */
+@media (max-width: 1100px) {
+  .pt-logos:not(.pt-logos--sm) { gap: 24px; }
+  .pt-logos:not(.pt-logos--sm) img { max-width: 170px; max-height: 104px; }
+}
+
+/* スマホ：縦1列に積むと長くなるため2列に並べる（2026-11-05） */
 @media (max-width: 600px) {
   .pt-logos:not(.pt-logos--sm) {
     display: grid;
@@ -1048,6 +1054,12 @@ a { color: inherit; }
   .pt-logos:not(.pt-logos--sm) img {
     max-width: 100%;
     max-height: 112px;
+  }
+  /* 社数が奇数のとき、最後の1社は2列の中央に置く */
+  .pt-logos:not(.pt-logos--sm) li:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: calc(50% - 10px);
   }
 }
 
