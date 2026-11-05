@@ -1,7 +1,7 @@
 # CLAUDE.md — 合同会社LosToros コーポレートサイト
 
 新しいセッションで前提説明なしに作業を再開するための引き継ぎ書。
-最終更新: 2026-11-01
+最終更新: 2026-11-05
 
 **まず「作業開始時に必ず最新へ同期する」を読むこと。**
 このリポジトリは Claude Code・Codex・手作業が交代で触るため、
@@ -167,6 +167,9 @@ assets/
                               og:image と twitter:image の `?v=` も上げる**（後述）
   partner-freezia.png         パートナー企業ロゴ（FreeZia Sports・掲載許諾済み）
   partner-4assist.png         パートナー企業ロゴ（株式会社フォーアシスト・2026-10-12掲載・FreeZia Sportsと同格）
+  partner-okigai.png          パートナー企業ロゴ（OKIGAI・2026-11-05掲載）
+  partner-authense.svg        パートナー企業ロゴ（Authense司法書士法人・2026-11-05掲載）。
+                              **ブランドガイドラインあり**（色 #143377 / #C1A581、周囲の余白、改変禁止）
 
 server/index.js               Express。POST /api/contact と GET /healthz
 docs/
@@ -208,7 +211,14 @@ docs/
   実行し忘れても壊れはせず、その文章が普通の折り返しになるだけ。`<wbr>` は画面にも検索にも影響しない
 - 下層ページの見出しは最初の1つが `<h1>`（各ページh1は1つだけ）。画像・CSS・JSのパスは `/` から始まる絶対パス
 
-### 最新変更：スマホで1〜2文字だけ改行される問題を修正（Claude Code・2026-11-01）
+### 最新変更：パートナーロゴ2社を追加（Claude Code・2026-11-05）
+
+池田さんの依頼で OKIGAI・Authense司法書士法人 を OUR PARTNERS に追加（既存2社と同格・計4社）。
+Authenseはブランドガイドラインに合わせて色を指定値に直し、周囲の余白を確保した。
+ロゴに触れたときの効果は「薄くする」から「少し浮かせる」に変更（色を変えて見せないため）。
+スマホではロゴを2列に並べる。詳細は [変更記録](docs/changes/2026-11-05-partners-okigai-authense.md)。
+
+### 以前の変更：スマホで1〜2文字だけ改行される問題を修正（Claude Code・2026-11-01）
 
 池田さんの指摘（「る。」「お」だけが次の行に落ちる）を受けて実施。詳細は
 [変更記録](docs/changes/2026-11-01-line-breaks.md)。
@@ -326,10 +336,15 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 - **個別プランは商談導線、Business Supporterは `#supporter` で条件確認後にSquare決済へ進む**
 - **Business Supporter の案内に「商談不要」「商談なし」の表現は使わない**（2026-10-23 池田さん指示）。
   言い換えは「オンラインでお申し込みいただけます」。シェア画像の文言も同じ
-- OUR PARTNERS のロゴは **FreeZia Sports・株式会社フォーアシスト** の2社（同じ大きさ・横並び）。
+- OUR PARTNERS のロゴは **FreeZia Sports・株式会社フォーアシスト・OKIGAI・Authense司法書士法人** の4社
+  （同じ大きさ・PCは横1列、スマホは2列）。
   パートナーを足すときは `.pt-logos` の `<ul>` に `<li>` を足す（トップ・`/partner/`・`/supporter/` の3か所）
 - 各ロゴは先方サイトへのリンク（新しいタブ・`rel="sponsored noopener"`）。
-  FreeZia Sports → https://freeziasports.com/ ／ フォーアシスト → https://www.4assist.co.jp/
+  FreeZia Sports → https://freeziasports.com/ ／ フォーアシスト → https://www.4assist.co.jp/ ／
+  OKIGAI → https://okigai.jp/ ／ Authense司法書士法人 → https://authense-js.jp/
+- **Authense司法書士法人のロゴはブランドガイドラインに従う**：色は Authense Blue `#143377`・Gold `#C1A581`、
+  周囲に「t」の幅ぶんの余白（SVGに含めてある）、縦横比の変更・回転・影・色の変更・暗い背景は禁止。
+  そのためロゴのリンクに触れたときは**薄くせず少し浮かせるだけ**にしている（全社共通）
   **協賛関係のリンクには `rel="sponsored"` を必ず付ける**（付けないとGoogleのガイドライン違反とみなされる恐れ）
 - 年額5万円の Business Supporter 加入企業を載せる枠（BUSINESS SUPPORTERS・一段小さい表示）は
   現在**設置していない**。加入企業が出たら `docs/supporter-onboarding.md` の手順で作る

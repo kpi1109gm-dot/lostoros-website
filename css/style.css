@@ -1023,13 +1023,33 @@ a { color: inherit; }
   object-fit: contain;
 }
 
-/* ロゴは各社のサイトへのリンク。色は変えず、触れたときだけ少し薄くする */
+/* ロゴは各社のサイトへのリンク。触れたときは少し浮かせるだけにし、色・濃さは変えない
+   （薄くすると規定色が変わって見える。Authenseのガイドラインは色の変更を禁止している） */
 .pt-logos a {
   display: block;
-  transition: opacity .25s ease;
+  transition: transform .25s ease;
 }
 
-.pt-logos a:hover { opacity: .72; }
+.pt-logos a:hover { transform: translateY(-3px); }
+
+@media (prefers-reduced-motion: reduce) {
+  .pt-logos a { transition: none; }
+  .pt-logos a:hover { transform: none; }
+}
+
+/* スマホ：4社を縦1列に積むと長くなるため2列に並べる（2026-11-05） */
+@media (max-width: 600px) {
+  .pt-logos:not(.pt-logos--sm) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px 20px;
+    justify-items: center;
+  }
+  .pt-logos:not(.pt-logos--sm) img {
+    max-width: 100%;
+    max-height: 112px;
+  }
+}
 
 .pt-logos a:focus-visible {
   outline: 2px solid var(--red);
