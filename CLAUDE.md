@@ -345,7 +345,7 @@ HERO →「WHY PARTNER WITH LOSTOROS」(5項目) → 「PARTNERSHIP EXAMPLES」(
 - 各ロゴは先方サイトへのリンク（新しいタブ・`rel="sponsored noopener"`）。
   FreeZia Sports → https://freeziasports.com/ ／ フォーアシスト → https://www.4assist.co.jp/ ／
   OKIGAI → https://okigai.jp/ ／ Authense司法書士法人 → https://authense-js.jp/ ／
-  NBCA → **URL未確認のためリンクなし**
+  NBCA → https://www.nbca.or.jp/
 - **Authense司法書士法人のロゴはブランドガイドラインに従う**：色は Authense Blue `#143377`・Gold `#C1A581`、
   周囲に「t」の幅ぶんの余白（SVGに含めてある）、縦横比の変更・回転・影・色の変更・暗い背景は禁止。
   そのためロゴのリンクに触れたときは**薄くせず少し浮かせるだけ**にしている（全社共通）
