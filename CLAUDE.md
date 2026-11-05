@@ -171,7 +171,7 @@ assets/
   partner-authense.svg        パートナー企業ロゴ（Authense司法書士法人・2026-11-05掲載）。
                               **ブランドガイドラインあり**（色 #143377 / #C1A581、周囲の余白、改変禁止）
   partner-nbca.png            パートナー企業ロゴ（日本ビジネスコンディショニング協会・横長版・2026-11-05掲載）。
-                              **低解像度の仮画像**。高解像度版を受け取ったら差し替える
+                              元データは協会提供のJPG（889×341）。SVGやAI形式を受け取れたら差し替えるとなお良い
 
 server/index.js               Express。POST /api/contact と GET /healthz
 docs/
