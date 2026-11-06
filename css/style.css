@@ -2017,3 +2017,25 @@ h1, h2, h3, h4 { text-wrap: balance; }
   .section-title { font-size: 40px; }
   .sub-hero-title { font-size: 38px; }
 }
+
+/* パートナー6社（2026-11-06 BASE FOOD追加）：最後の1社だけが2段目に取り残されないよう、
+   PCは横1列に6社、タブレットは3社×2段の格子に並べる（スマホは上の2列のまま）。
+   社数を変えたら列の数（6・3）も見直すこと */
+@media (min-width: 1101px) {
+  .pt-logos:not(.pt-logos--sm) {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 32px;
+    justify-items: center;
+  }
+  .pt-logos:not(.pt-logos--sm) img { max-width: 100%; max-height: 120px; }
+}
+@media (min-width: 601px) and (max-width: 1100px) {
+  .pt-logos:not(.pt-logos--sm) {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 40px 32px;
+    justify-items: center;
+  }
+  .pt-logos:not(.pt-logos--sm) img { max-width: min(100%, 190px); max-height: 110px; }
+}
